@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Core Palette */
+  --text: #000000;
+  --text-h: #000000;
+  --bg: #ffffff;
+  --code-bg: #f9f9f9; /* Slightly off-white for code blocks to distinguish from bg */
+  --accent: #00ff11;
+
+  /* Derived Colors */
+  --border: #e5e5e5; /* Neutral gray border */
+  --accent-bg: rgba(0, 255, 17, 0.1); /* Light neon wash */
+  --accent-border: rgba(0, 255, 17, 0.5); /* Semi-transparent neon border */
+  --social-bg: rgba(245, 245, 245, 0.8); /* Subtle background for social elements */
+
+  /* Shadow */
+  --shadow:
+          rgba(0, 0, 0, 0.05) 0 10px 15px -3px,
+          rgba(0, 0, 0, 0.03) 0 4px 6px -2px; /* Softer shadow to suit white bg */
+
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Core Palette */
+    --text: #ffffff;
+    --text-h: #ffffff;
+    --bg: #000000;
+    --code-bg: #111111; /* Slightly lighter black for code distinction */
+    --accent: #00ff11;
+
+    /* Derived Colors */
+    --border: #333333; /* Dark gray border for contrast against black */
+    --accent-bg: rgba(0, 255, 17, 0.15); /* Neon glow effect */
+    --accent-border: rgba(0, 255, 17, 0.6); /* Brighter border for dark mode */
+    --social-bg: rgba(30, 30, 30, 0.6); /* Dark social background */
+
+    /* Shadow */
+    --shadow:
+            rgba(0, 0, 0, 0.8) 0 10px 15px -3px,
+            rgba(0, 0, 0, 0.6) 0 4px 6px -2px; /* Stronger shadow for depth on black */
+  }
+
+
+  #social .button-icon {
+    filter: invert(1) brightness(2);
+  }
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  /*border-inline: 1px solid var(--border);*/
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+@font-face {
+  font-family: 'DT Getai Grotesk Display Black'; /* This is the name you will use in classes */
+  font-style: normal;
+  /*font-weight: 400;*/
+  font-display: swap; /* Prevents invisible text while loading */
+
+  /* The path starts from the root '/', not 'public/' */
+  /*TODO: CHANGE BASEURL TO HOST, THROUGH ENV FILE*/
+  src: url('http://localhost:5173/fonts/DTGetaiGroteskDisplay-Black.ttf') format('woff2');
+}
+
+@font-face {
+  font-family: 'Geist SemiBold'; /* This is the name you will use in classes */
+  font-style: normal;
+  /*font-weight: 400;*/
+  font-display: swap; /* Prevents invisible text while loading */
+
+  /* The path starts from the root '/', not 'public/' */
+  /*TODO: CHANGE BASEURL TO HOST, THROUGH ENV FILE*/
+  src: url('http://localhost:5173/fonts/Geist-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'EBGaramond SemiBold'; /* This is the name you will use in classes */
+  font-style: normal;
+  /*font-weight: 400;*/
+  font-display: swap; /* Prevents invisible text while loading */
+
+  /* The path starts from the root '/', not 'public/' */
+  /*TODO: CHANGE BASEURL TO HOST, THROUGH ENV FILE*/
+  src: url('http://localhost:5173/fonts/EBGaramond-SemiBold.ttf') format('woff2');
+}
+
+@font-face {
+  font-family: 'EBGaramond Bold'; /* This is the name you will use in classes */
+  font-style: normal;
+  /*font-weight: 400;*/
+  font-display: swap; /* Prevents invisible text while loading */
+
+  /* The path starts from the root '/', not 'public/' */
+  /*TODO: CHANGE BASEURL TO HOST, THROUGH ENV FILE*/
+  src: url('http://localhost:5173/fonts/EBGaramond-Bold.ttf') format('woff2');
+}
+
+/* Apply it globally */
+body {
+  font-family: 'Geist SemiBold', sans-serif;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
