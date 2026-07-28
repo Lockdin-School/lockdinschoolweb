@@ -128,9 +128,20 @@ body {
   src: url('http://localhost:5173/fonts/EBGaramond-Bold.ttf') format('woff2');
 }
 
+@font-face {
+  font-family: 'Space Grotesk'; /* This is the name you will use in classes */
+  font-style: normal;
+  /*font-weight: 400;*/
+  font-display: swap; /* Prevents invisible text while loading */
+
+  /* The path starts from the root '/', not 'public/' */
+  /*TODO: CHANGE BASEURL TO HOST, THROUGH ENV FILE*/
+  src: url('http://localhost:5173/fonts/SpaceGrotesk-Medium.ttf') format('woff2');
+}
+
 /* Apply it globally */
 body {
-  font-family: 'Geist SemiBold', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 h1,

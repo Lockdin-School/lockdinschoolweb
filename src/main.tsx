@@ -4,7 +4,7 @@ import {BrowserRouter, Route, Routes} from "react-router";
 import './index.css'
 import App from './App.tsx'
 import Dashboard from "./pages/dashboard.tsx";
-import Subject from "./pages/subject/subject.tsx";
+import Subject from "./pages/subjects/subject.tsx";
 
 
 createRoot(document.getElementById('root')!).render(

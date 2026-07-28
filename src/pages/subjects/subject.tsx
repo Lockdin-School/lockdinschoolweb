@@ -4,7 +4,7 @@ import {HugeiconsIcon} from "@hugeicons/react";
 
 const Subject = () => {
     const params = useParams();
-    // use this subject id, to fetch the topics.
+    // use this subjects id, to fetch the topics.
     const subjectId = params.subjectId;
     return (
         <div className="w-full flex flex-col">
@@ -24,7 +24,7 @@ const Subject = () => {
                     <div className="flex h- items-center gap-3 justify-center">
                         <HugeiconsIcon size={22} icon={BellIcon}/>
                         <div className="flex aspect-square items-center justify-center px-3 bg-accent rounded-full">
-                            S
+                            T
                         </div>
                     </div>
                 </div>
