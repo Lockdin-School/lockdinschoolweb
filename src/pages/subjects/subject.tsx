@@ -2,23 +2,47 @@ import {ArrowLeft02Icon, ArrowRight02Icon, ChevronDownIcon} from "@hugeicons/cor
 import {HugeiconsIcon} from "@hugeicons/react";
 import AppHeader from "../../components/AppHeader.tsx";
 import {motion} from "motion/react";
+import {useEffect, useState} from "react";
+import {useParams} from "react-router";
+import {getTopicsBySubjectId} from "../../api/topics/topics.ts";
+import type {GetTopicsResponse} from "../../api/topics/models/TopicResponse.ts";
+
+const fillVariants = {
+    rest: { x: "-100%" },
+    hover: { x: "0%" },
+};
+
+const textVariants = {
+    rest: { color: "#e2e2e2" }, // gray-700
+    hover: { color: "#000" },
+};
+
+const topicVariants = {
+    rest: { color: "#929292" }, // gray-700
+    hover: { color: "#000" },
+};
 
 const Subject = () => {
 
-    const fillVariants = {
-        rest: { x: "-100%" },
-        hover: { x: "0%" },
-    };
+    const params = useParams();
+    const subjectId = params.subjectId;
 
-    const textVariants = {
-        rest: { color: "#a2a2a2" }, // gray-700
-        hover: { color: "#000" },
-    };
+    const [topics, setTopics] = useState<GetTopicsResponse>([]);
 
-    const topicVariants = {
-        rest: { color: "#929292" }, // gray-700
-        hover: { color: "#000" },
-    };
+    useEffect(() => {
+        const fetchTopicsBySubject = async (subjectId: string) => {
+            try {
+                const topics = await getTopicsBySubjectId(subjectId);
+                setTopics(topics);
+            } catch (e) {
+                console.error("Error fetching subjects: ", e);
+            }
+        };
+
+        fetchTopicsBySubject(subjectId!).then();
+
+    }, [subjectId]);
+
 
 
     return (
@@ -33,7 +57,7 @@ const Subject = () => {
                         {/*List of topics*/}
                         <section className="gap-1 p-1  flex flex-col w-full overflow-y-auto max-h-[calc(100vh-13vh)] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                             {
-                                Array.from({length: 1}).map((_, index) => (
+                                topics.map((topic, index) => (
                                     <motion.button
                                         key={index}
                                         className="relative flex-col flex w-full flex overflow-hidden px-5 py-4 bg-transparent border border-border  font-medium"
@@ -59,11 +83,11 @@ const Subject = () => {
                                                     Topic {index + 1}
                                                 </motion.span>
                                                 <motion.span
-                                                    className="relative text-xs text-start w-full z-10"
+                                                    className="relative text-start w-full z-10"
                                                     variants={textVariants}
                                                     transition={{ duration: 0.2, ease: "easeOut" }}
                                                 >
-                                                    Gaseous Exchange: Processes
+                                                    {topic.title}
                                                 </motion.span>
                                             </div>
                                             <motion.span

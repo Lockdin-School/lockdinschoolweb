@@ -1,10 +1,10 @@
 import {ArrowDownFreeIcons} from "@hugeicons/core-free-icons";
 import {HugeiconsIcon} from "@hugeicons/react";
-import {searchSubjects} from "../api/subjects.ts";
 import {useEffect, useState} from "react";
 import type {SearchSubjectsResponse} from "../api/subjects/models/SubjectResponse.ts";
 import {Link} from "react-router";
 import AppHeader from "../components/AppHeader.tsx";
+import {searchSubjects} from "../api/subjects/subjects.ts";
 
 const Dashboard = () => {
 
@@ -39,7 +39,7 @@ const Dashboard = () => {
                     <section className="grid gap-3 elevation-1 w-full grid-cols-3">
                         {
                             subjects.map((subject, index) => (
-                                <Link to={`/subjects/${subject.slug}`} key={index} className="text-start gap-y-0 hover:cursor-pointer w-full flex flex-col  border-border ">
+                                <Link to={`/subjects/${subject.id}`} key={index} className="text-start gap-y-0 hover:cursor-pointer w-full flex flex-col  border-border ">
                                     <div className="h-[20vh] mb-2 w-full bg-accent" />
                                     <div className="flex gap-x-2 w-full justify-between items-center">
                                         <p className="tracking-tight text-[#b2b2b2] text-sm">{subject.title}</p>

@@ -1,6 +1,8 @@
-import {api} from "./client.ts";
+import {api} from "../client.ts";
 import type {AxiosResponse} from "axios";
-import type {SearchSubjectsResponse} from "./subjects/models/SubjectResponse.ts";
+import type {SearchSubjectsResponse} from "./models/SubjectResponse.ts";
+
+
 
 export const searchSubjects = async () => {
     console.log("searching subjects");
