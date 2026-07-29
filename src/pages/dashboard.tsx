@@ -1,8 +1,10 @@
-import {ArrowDownFreeIcons, BellIcon, MenuTwoLineIcon, SearchIcon} from "@hugeicons/core-free-icons";
+import {ArrowDownFreeIcons} from "@hugeicons/core-free-icons";
 import {HugeiconsIcon} from "@hugeicons/react";
 import {searchSubjects} from "../api/subjects.ts";
 import {useEffect, useState} from "react";
 import type {SearchSubjectsResponse} from "../api/subjects/models/SubjectResponse.ts";
+import {Link} from "react-router";
+import AppHeader from "../components/AppHeader.tsx";
 
 const Dashboard = () => {
 
@@ -23,26 +25,7 @@ const Dashboard = () => {
 
     return (
         <div className="w-full h-full flex gap-10 flex-col items-center">
-            <header className="w-full flex border-b border-border justify-center  h-[8vh] ">
-                <div className="flex w-[98vw] gap-4 py-3 items-center justify-between">
-                    {/*<img src={"/logo-black.jpg"} width={50} className={"aspect-square w-50"}  alt={""}/>*/}
-                    <div className="flex  items-center gap-5">
-                        <button><HugeiconsIcon size={40} icon={MenuTwoLineIcon}/></button>
-                        <div className="w-[18vw] border gap-2 flex items-center px-2 border-border bg-transparent  h-9">
-                            <HugeiconsIcon size={20} strokeWidth={2} color={"#777"} icon={SearchIcon}/> <p className="text-xs text-[#999]">Search...</p>
-                        </div>
-                        {/*TODO: Add Search Component*/}
-                        {/*<p className="font-getai text-text text-[25px] tracking-tight pt-2">Lockdin<sup>®</sup></p>*/}
-                    </div>
-
-                    <div className="flex h- items-center gap-3 justify-center">
-                        <HugeiconsIcon size={22} icon={BellIcon}/>
-                        <div className="flex aspect-square text-bg items-center justify-center px-3 bg-accent rounded-full">
-                            S
-                        </div>
-                    </div>
-                </div>
-            </header>
+            <AppHeader />
             <section className="flex w-[98vw] h-[80vh]">
                 <aside className="w-[20vw] h-full flex flex-col items-start">
                     <p className="text-xs text-[#a2a2a2] flex items-center gap-1 border-border py-2 px-3 border">
@@ -56,12 +39,16 @@ const Dashboard = () => {
                     <section className="grid gap-3 elevation-1 w-full grid-cols-3">
                         {
                             subjects.map((subject, index) => (
-                                <div key={index} className="text-start gap-y-1 hover:cursor-pointer w-full flex flex-col border-b border-border ">
-                                    <div className="h-[20vh]  w-full bg-accent" />
-                                    <p className="tracking-tight text-[#929292] text-sm">{subject.code}</p>
-                                    <p className="tracking-tight text-[#b2b2b2] text-sm">{subject.title}</p>
-
-                                </div>
+                                <Link to={`/subjects/${subject.slug}`} key={index} className="text-start gap-y-0 hover:cursor-pointer w-full flex flex-col  border-border ">
+                                    <div className="h-[20vh] mb-2 w-full bg-accent" />
+                                    <div className="flex gap-x-2 w-full justify-between items-center">
+                                        <p className="tracking-tight text-[#b2b2b2] text-sm">{subject.title}</p>
+                                        {/*<p className="text-[#929292] inline-block">{ "·" }</p>*/}
+                                        <p className="tracking-tight text-sm text-[#929292] text-sm">{subject.code}</p>
+                                    </div>
+                                    <p className="tracking-tight text-[#929292] text-xs">{subject.description}</p>
+                                    <p className="tracking-tight text-[#929292] text-xs">Estimated hours: 2{subject.estimatedHours}hrs</p>
+                                </Link>
                                 )
                             )
                         }
