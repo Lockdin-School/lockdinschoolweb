@@ -92,7 +92,7 @@ body {
 
   /* The path starts from the root '/', not 'public/' */
   /*TODO: CHANGE BASEURL TO HOST, THROUGH ENV FILE*/
-  src: url('http://localhost:5173/fonts/DTGetaiGroteskDisplay-Black.ttf') format('woff2');
+  src: url('/fonts/DTGetaiGroteskDisplay-Black.ttf') format('woff2');
 }
 
 @font-face {
@@ -103,7 +103,7 @@ body {
 
   /* The path starts from the root '/', not 'public/' */
   /*TODO: CHANGE BASEURL TO HOST, THROUGH ENV FILE*/
-  src: url('http://localhost:5173/fonts/Geist-SemiBold.woff2') format('woff2');
+  src: url('/fonts/Geist-SemiBold.woff2') format('woff2');
 }
 
 @font-face {
@@ -114,7 +114,7 @@ body {
 
   /* The path starts from the root '/', not 'public/' */
   /*TODO: CHANGE BASEURL TO HOST, THROUGH ENV FILE*/
-  src: url('http://localhost:5173/fonts/EBGaramond-SemiBold.ttf') format('woff2');
+  src: url('/fonts/EBGaramond-SemiBold.ttf') format('woff2');
 }
 
 @font-face {
@@ -125,7 +125,7 @@ body {
 
   /* The path starts from the root '/', not 'public/' */
   /*TODO: CHANGE BASEURL TO HOST, THROUGH ENV FILE*/
-  src: url('http://localhost:5173/fonts/EBGaramond-Bold.ttf') format('woff2');
+  src: url('/fonts/EBGaramond-Bold.ttf') format('woff2');
 }
 
 @font-face {
@@ -136,7 +136,7 @@ body {
 
   /* The path starts from the root '/', not 'public/' */
   /*TODO: CHANGE BASEURL TO HOST, THROUGH ENV FILE*/
-  src: url('http://localhost:5173/fonts/SpaceGrotesk-Medium.ttf') format('woff2');
+  src: url('/fonts/SpaceGrotesk-Medium.ttf') format('woff2');
 }
 
 /* Apply it globally */
