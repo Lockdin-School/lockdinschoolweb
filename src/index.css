@@ -107,6 +107,28 @@ body {
 }
 
 @font-face {
+  font-family: 'Geist Regular'; /* This is the name you will use in classes */
+  font-style: normal;
+  /*font-weight: 400;*/
+  font-display: swap; /* Prevents invisible text while loading */
+
+  /* The path starts from the root '/', not 'public/' */
+  /*TODO: CHANGE BASEURL TO HOST, THROUGH ENV FILE*/
+  src: url('/fonts/Geist-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Geist Medium'; /* This is the name you will use in classes */
+  font-style: normal;
+  /*font-weight: 400;*/
+  font-display: swap; /* Prevents invisible text while loading */
+
+  /* The path starts from the root '/', not 'public/' */
+  /*TODO: CHANGE BASEURL TO HOST, THROUGH ENV FILE*/
+  src: url('/fonts/Geist-Medium.woff2') format('woff2');
+}
+
+@font-face {
   font-family: 'EBGaramond SemiBold'; /* This is the name you will use in classes */
   font-style: normal;
   /*font-weight: 400;*/

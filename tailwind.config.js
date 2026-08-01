@@ -24,6 +24,9 @@ export default {
       fontFamily: {
         // 'custom' becomes the class name: <h1 class="font-custom">
         'geist-semibold': ['Geist SemiBold', 'sans-serif'],
+        'geist-medium': ['Geist Medium', 'sans-serif'],
+        'geist-light': ['Geist Light', 'sans-serif'],
+        'geist-regular': ['Geist Regular', 'sans-serif'],
         'getai': ['DT Getai Grotesk Display Black', 'sans-serif'],
         'ebgaramond-semibold': ['EBGaramond SemiBold', 'sans-serif'],
         'ebgaramond-bold': ['EBGaramond SemiBold', 'sans-serif'],
