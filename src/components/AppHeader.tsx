@@ -7,7 +7,7 @@ const AppHeader = () => {
             <div className="flex w-[98vw] gap-4 py-3 items-center justify-between">
                 {/*<img src={"/logo-black.jpg"} width={50} className={"aspect-square w-50"}  alt={""}/>*/}
                 <div className="flex  items-center gap-5">
-                    <button className="border px-1 border-border"><HugeiconsIcon size={38} icon={MenuTwoLineIcon}/></button>
+                    <button className="border px-1 bg-text border-border"><HugeiconsIcon size={38} className={"text-bg"} icon={MenuTwoLineIcon}/></button>
                     <div className="w-[18vw] border gap-2 flex items-center px-2 border-border bg-transparent  h-9">
                         <HugeiconsIcon size={20} strokeWidth={2} color={"#777"} icon={SearchIcon}/> <p className="text-xs text-[#999]">Search...</p>
                     </div>

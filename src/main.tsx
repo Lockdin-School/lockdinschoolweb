@@ -4,7 +4,10 @@ import {BrowserRouter, Route, Routes} from "react-router";
 import './index.css'
 import App from './App.tsx'
 import Dashboard from "./pages/dashboard.tsx";
-import Subject from "./pages/subjects/subject.tsx";
+import SubjectLayout from "./pages/subjects/subject-layout.tsx";
+import SubjectDescriptionPage from "./pages/subjects/subject-description-page.tsx";
+import LessonPage from "./pages/materials/lesson-page.tsx";
+
 
 
 createRoot(document.getElementById('root')!).render(
@@ -14,11 +17,26 @@ createRoot(document.getElementById('root')!).render(
               <Route index element={<App />} />
               <Route path={"dashboard"} element={<Dashboard />} />
 
-              <Route path={"/subjects"}>
-                  {/*Add index route here, just a list of subjects*/}
-                  <Route path=":subjectId" element={<Subject />} />
+              <Route path="/subjects/:subjectId" element={<SubjectLayout />}>
+                  <Route
+                      index
+                      element={<SubjectDescriptionPage />}
+                  />
 
-                  {/*<Route path="register" element={} />*/}
+                  <Route
+                      path="lessons/:lessonId"
+                      element={<LessonPage />}
+                  />
+
+                  {/*<Route*/}
+                  {/*    path="exercises/:materialId"*/}
+                  {/*    element={<ExercisePage />}*/}
+                  {/*/>*/}
+
+                  {/*<Route*/}
+                  {/*    path="quizzes/:materialId"*/}
+                  {/*    element={<QuizPage />}*/}
+                  {/*/>*/}
               </Route>
 
 

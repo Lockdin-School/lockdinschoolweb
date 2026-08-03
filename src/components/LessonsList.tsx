@@ -1,1 +1,1 @@
-// list of lessons displayed in the sidebar
+// list of materials displayed in the sidebar
