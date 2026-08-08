@@ -2,10 +2,8 @@ import VideoPlayer from "../../components/VideoPlayer.tsx";
 
 import {HugeiconsIcon} from "@hugeicons/react";
 import {ArrowLeft02Icon, ArrowRight02Icon} from "@hugeicons/core-free-icons";
-import {useEffect, useState} from "react";
-import {getLessonById} from "../../api/lessons/lessons.ts";
-import type {LessonResponse} from "../../api/lessons/models/LessonResponse.ts";
 import {useParams} from "react-router";
+import {useLesson} from "../../api/lessons/queries/useLesson.ts";
 
 const CLOUDFRONT = import.meta.env.VITE_CLOUDFRONT;
 
@@ -14,20 +12,20 @@ const LessonPage = () => {
     const params = useParams();
     const lessonId = params.lessonId;
 
-    const [lesson, setLesson] = useState<LessonResponse>();
-    useEffect(() => {
-        const fetchLessonById = async (lessonId: string) => {
-            try {
-                const lesson = await getLessonById(lessonId);
-                setLesson(lesson);
-            } catch (e) {
-                console.error("Error fetching lesson: ", e);
-            }
-        };
+    const {
+        data: lesson,
+        isLoading,
+        isError,
+        error,
+    } = useLesson(lessonId!);
 
-        fetchLessonById(lessonId!).then();
-    }, [lessonId]);
+    if (isLoading) {
+        return <div>Loading lesson...</div>;
+    }
 
+    if (isError) {
+        return <div>Failed to load lesson: {error.message}</div>;
+    }
 
     return (
         lessonId && lesson && (

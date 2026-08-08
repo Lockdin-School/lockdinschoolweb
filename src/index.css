@@ -91,7 +91,6 @@ body {
   font-display: swap; /* Prevents invisible text while loading */
 
   /* The path starts from the root '/', not 'public/' */
-  /*TODO: CHANGE BASEURL TO HOST, THROUGH ENV FILE*/
   src: url('/fonts/DTGetaiGroteskDisplay-Black.ttf') format('woff2');
 }
 
@@ -102,7 +101,6 @@ body {
   font-display: swap; /* Prevents invisible text while loading */
 
   /* The path starts from the root '/', not 'public/' */
-  /*TODO: CHANGE BASEURL TO HOST, THROUGH ENV FILE*/
   src: url('/fonts/Geist-SemiBold.woff2') format('woff2');
 }
 
@@ -113,7 +111,6 @@ body {
   font-display: swap; /* Prevents invisible text while loading */
 
   /* The path starts from the root '/', not 'public/' */
-  /*TODO: CHANGE BASEURL TO HOST, THROUGH ENV FILE*/
   src: url('/fonts/Geist-Regular.woff2') format('woff2');
 }
 
@@ -124,7 +121,6 @@ body {
   font-display: swap; /* Prevents invisible text while loading */
 
   /* The path starts from the root '/', not 'public/' */
-  /*TODO: CHANGE BASEURL TO HOST, THROUGH ENV FILE*/
   src: url('/fonts/Geist-Medium.woff2') format('woff2');
 }
 
@@ -135,7 +131,6 @@ body {
   font-display: swap; /* Prevents invisible text while loading */
 
   /* The path starts from the root '/', not 'public/' */
-  /*TODO: CHANGE BASEURL TO HOST, THROUGH ENV FILE*/
   src: url('/fonts/EBGaramond-SemiBold.ttf') format('woff2');
 }
 
@@ -146,7 +141,6 @@ body {
   font-display: swap; /* Prevents invisible text while loading */
 
   /* The path starts from the root '/', not 'public/' */
-  /*TODO: CHANGE BASEURL TO HOST, THROUGH ENV FILE*/
   src: url('/fonts/EBGaramond-Bold.ttf') format('woff2');
 }
 
@@ -157,8 +151,17 @@ body {
   font-display: swap; /* Prevents invisible text while loading */
 
   /* The path starts from the root '/', not 'public/' */
-  /*TODO: CHANGE BASEURL TO HOST, THROUGH ENV FILE*/
   src: url('/fonts/SpaceGrotesk-Medium.ttf') format('woff2');
+}
+
+@font-face {
+  font-family: 'Space Grotesk Regular'; /* This is the name you will use in classes */
+  font-style: normal;
+  /*font-weight: 400;*/
+  font-display: swap; /* Prevents invisible text while loading */
+
+  /* The path starts from the root '/', not 'public/' */
+  src: url('/fonts/SpaceGrotesk-Regular.ttf') format('woff2');
 }
 
 /* Apply it globally */

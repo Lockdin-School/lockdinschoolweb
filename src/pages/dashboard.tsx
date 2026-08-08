@@ -1,27 +1,21 @@
 import {ArrowDownFreeIcons} from "@hugeicons/core-free-icons";
 import {HugeiconsIcon} from "@hugeicons/react";
-import {useEffect, useState} from "react";
-import type {SearchSubjectsResponse} from "../api/subjects/models/SubjectResponse.ts";
 import {Link} from "react-router";
 import AppHeader from "../components/AppHeader.tsx";
-import {searchSubjects} from "../api/subjects/subjects.ts";
+import {useSubjects} from "../api/subjects/queries/useSubjects.ts";
 
 const Dashboard = () => {
 
-    const [subjects, setSubjects] = useState<SearchSubjectsResponse>([]);
+    const {
+        data: subjects = [],
+        isLoading,
+        isError,
+        error,
+    } = useSubjects();
 
-    useEffect(() => {
-        const fetchSubjects = async () => {
-            try {
-                const subjects = await searchSubjects();
-                setSubjects(subjects);
-            } catch (e) {
-                console.error("Error fetching subjects: ", e);
-            }
-        };
+    if (isLoading) return <div>Loading...</div>
 
-        fetchSubjects().then();
-    }, []);
+    if (isError) return <div>Error: {error.message}</div>
 
     return (
         <div className="w-full h-full flex gap-10 flex-col items-center">

@@ -1,13 +1,10 @@
 import {AnimatePresence, motion} from "motion/react";
 import {HugeiconsIcon} from "@hugeicons/react";
-import {
-    ChevronDownIcon,
-} from "@hugeicons/core-free-icons";
-import type {TopicResponse} from "../../api/topics/models/TopicResponse.ts";
+import {ChevronDownIcon} from "@hugeicons/core-free-icons";
 import {useState} from "react";
-import type {GetMaterialsResponse} from "../../api/materials/models/MaterialResponse.ts";
-import {getMaterialsByTopicId} from "../../api/materials/materials.ts";
 import {Link} from "react-router";
+import {useMaterials} from "../api/materials/queries/useMaterials.ts";
+import type {TopicResponse} from "../api/topics/models/TopicResponse.ts";
 
 interface TopicCollapsibleProps {
     topic: TopicResponse;
@@ -20,17 +17,14 @@ const fillVariants = {
     rest: {x: "-100%"},
     hover: {x: "0%"},
 };
-
 const textVariants = {
     rest: {color: "#e2e2e2"}, // gray-700
     hover: {color: "#000"},
 };
-
 const iconVariants = {
     rest: {color: "#e2e2e2", x: "-100%"}, // gray-700
     hover: {color: "#000", x: "0%"},
 };
-
 const topicVariants = {
     rest: {color: "#929292"}, // gray-700
     hover: {color: "#000"},
@@ -42,25 +36,24 @@ export function TopicCollapsible(
         index,
     }: TopicCollapsibleProps
 ) {
+    const [isOpen, setIsOpen] = useState(false);
+    const {
+        data: materials = [],
+        isLoading,
+        isError,
+        error,
+    } = useMaterials(topic.id, isOpen);
 
-    const [materials, setMaterials] = useState<GetMaterialsResponse>([]);
-    const [openIndex, setOpenIndex] = useState<number | null>(null);
+    if (isLoading) return <div>Loading...</div>
 
-    const handleGetMaterialsByTopic = async (topicId: string) => {
-        setOpenIndex(isOpen ? null : index)
-        try {
-            const materialsResult = await getMaterialsByTopicId(topicId);
-            setMaterials(materialsResult);
-        } catch (e) {
-            console.error("Error fetching subjects: ", e);
-        }
-    };
-    const isOpen = openIndex === index;
+    if (isError) return (
+        <div>Failed to load materials: {error.message}</div>
+    )
 
     return (
         <div className="overflow-hidden border border-border">
             <motion.button
-                onClick={handleGetMaterialsByTopic.bind(null, topic.id)}
+                onClick={() => setIsOpen(prev => !prev)}
                 className="relative flex flex-col w-full px-5 py-4"
                 initial="rest"
                 whileHover="hover"
@@ -150,7 +143,7 @@ export function TopicCollapsible(
                                 <Link
                                     key={index}
                                     to={`${page}/${material.material_id}`}
-                                    className="flex flex-col items-start gap-1 border-t border-border px-5 py-3 text-sm tracking-wide text-start font-geist-medium hover:cursor-pointer hover:bg-accent-bg" >
+                                    className="flex flex-col items-start gap-1 border-t border-border px-5 py-3 text-sm tracking-wide text-start font-geist-medium hover:cursor-pointer hover:bg-accent-bg">
                                     {/* TODO: When progress tracking service is live.*/}
                                     <p className={`text-xs ${colorCode}`}>{material.material_type}</p>
                                     {material.title}

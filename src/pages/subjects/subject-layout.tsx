@@ -1,10 +1,8 @@
 import AppHeader from "../../components/AppHeader.tsx";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Outlet, useParams} from "react-router";
-import {getTopicsBySubjectId} from "../../api/topics/topics.ts";
-import type {GetTopicsResponse} from "../../api/topics/models/TopicResponse.ts";
-
-import {TopicCollapsible} from "../../components/topics/TopicCollapsible.tsx";
+import {useTopics} from "../../api/topics/queries/useTopics.ts";
+import {TopicCollapsible} from "../../components/TopicCollapsible.tsx";
 
 
 
@@ -13,34 +11,30 @@ const SubjectLayout = () => {
     const params = useParams();
     const subjectId = params.subjectId;
 
+    const {
+        data: topics = [],
+        isLoading,
+        isError,
+        error,
+    } = useTopics(subjectId!);
 
-
-    const [topics, setTopics] = useState<GetTopicsResponse>([]);
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-    useEffect(() => {
-        const fetchTopicsBySubject = async (subjectId: string) => {
-            try {
-                const topics = await getTopicsBySubjectId(subjectId);
-                setTopics(topics);
-            } catch (e) {
-                console.error("Error fetching subjects: ", e);
-            }
-        };
+    if (isLoading) {
+        return <div>Loading topics...</div>;
+    }
 
-        fetchTopicsBySubject(subjectId!).then();
-
-    }, [subjectId]);
-
-
+    if (isError) {
+        return <div>Failed to load topics: {error.message}</div>;
+    }
 
     return (
         <div className="w-full gap-10 flex flex-col">
             {/*header*/}
             <AppHeader />
             {/*    MAIN LAYOUT    */}
-            <div className="w-full  flex flex-col items-center">
-                <main className={`w-[98vw] justify-between grid grid-cols-[20%_50%_20%]`}>
+            <div className="w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+                <main className={`justify-between grid grid-cols-[20%_50%_20%]`}>
                     {/*    LIST OF TOPICS */}
                     <aside className="w-full flex flex-col relative">
                         {/*List of topics*/}

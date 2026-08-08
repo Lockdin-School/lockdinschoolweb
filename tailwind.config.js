@@ -30,7 +30,8 @@ export default {
         'getai': ['DT Getai Grotesk Display Black', 'sans-serif'],
         'ebgaramond-semibold': ['EBGaramond SemiBold', 'sans-serif'],
         'ebgaramond-bold': ['EBGaramond SemiBold', 'sans-serif'],
-        'space-medium': ['Space Grotesk', 'sans-serif']
+        'space-medium': ['Space Grotesk', 'sans-serif'],
+        'space-regular': ['Space Grotesk Regular', 'sans-serif'],
       },
     },
   },
