@@ -122,16 +122,41 @@ export function TopicCollapsible(
                         }}
                         className="overflow-hidden"
                     >
-                        {materials.map((materials, index) => (
-                            <Link
-                                key={index}
-                                to={`lessons/${materials.id}`}
-                                className="flex flex-col items-start gap-1 border-t border-border px-5 py-3 text-sm tracking-wide text-start font-geist-medium hover:cursor-pointer hover:bg-accent-bg" >
-                                {/* TODO: When progress tracking service is live.*/}
-                                <p className="text-xs text-purple-400">{materials.material_type}</p>
-                                {materials.title}
-                            </Link>
-                        ))}
+                        {materials.map((material, index) => {
+                            let page;
+                            let colorCode;
+                            switch (material.material_type) {
+                                case "Lesson":
+                                    page = 'lessons';
+                                    colorCode = "text-[#aa2277]"
+                                    break;
+                                case "Resource":
+                                    page = 'resources';
+                                    colorCode = "text-[#bb99fd]"
+                                    break;
+                                case "Quiz":
+                                    page = 'quizzes';
+                                    break;
+                                case "Exercise":
+                                    page = 'exercises';
+                                    break;
+                                case "Assignment":
+                                    page = 'assignments'
+                                    break;
+                                default:
+                                    throw new Error("Unknow Material Type");
+                            }
+                            return (
+                                <Link
+                                    key={index}
+                                    to={`${page}/${material.material_id}`}
+                                    className="flex flex-col items-start gap-1 border-t border-border px-5 py-3 text-sm tracking-wide text-start font-geist-medium hover:cursor-pointer hover:bg-accent-bg" >
+                                    {/* TODO: When progress tracking service is live.*/}
+                                    <p className={`text-xs ${colorCode}`}>{material.material_type}</p>
+                                    {material.title}
+                                </Link>
+                            )
+                        })}
                     </motion.div>
                 )}
             </AnimatePresence>

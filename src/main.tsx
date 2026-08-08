@@ -5,9 +5,9 @@ import './index.css'
 import App from './App.tsx'
 import Dashboard from "./pages/dashboard.tsx";
 import SubjectLayout from "./pages/subjects/subject-layout.tsx";
-import SubjectDescriptionPage from "./pages/subjects/subject-description-page.tsx";
+import SubjectOverviewPage from "./pages/subjects/subject-overview-page.tsx";
 import LessonPage from "./pages/materials/lesson-page.tsx";
-
+import ResourcePage from "./pages/materials/resource-page.tsx";
 
 
 createRoot(document.getElementById('root')!).render(
@@ -20,7 +20,7 @@ createRoot(document.getElementById('root')!).render(
               <Route path="/subjects/:subjectId" element={<SubjectLayout />}>
                   <Route
                       index
-                      element={<SubjectDescriptionPage />}
+                      element={<SubjectOverviewPage />}
                   />
 
                   <Route
@@ -28,10 +28,10 @@ createRoot(document.getElementById('root')!).render(
                       element={<LessonPage />}
                   />
 
-                  {/*<Route*/}
-                  {/*    path="exercises/:materialId"*/}
-                  {/*    element={<ExercisePage />}*/}
-                  {/*/>*/}
+                  <Route
+                      path="resources/:resourceId"
+                      element={<ResourcePage />}
+                  />
 
                   {/*<Route*/}
                   {/*    path="quizzes/:materialId"*/}

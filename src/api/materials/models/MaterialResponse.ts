@@ -1,7 +1,7 @@
 import type {MaterialStatus, MaterialType} from "./CreateMaterialRequest.ts";
 
 export type MaterialResponseDTO = {
-    id: string; // UUID
+    material_id: string; // UUID
 
     code: string;
     slug: string;

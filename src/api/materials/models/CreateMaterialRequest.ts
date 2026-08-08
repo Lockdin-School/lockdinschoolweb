@@ -11,8 +11,6 @@ export type CreateMaterialRequest = {
 
     topic_id: string;
 
-    material_type: MaterialType;
-
     display_order: number;
     estimated_duration_seconds?: number | null;
 

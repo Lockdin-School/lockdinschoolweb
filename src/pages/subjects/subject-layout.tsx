@@ -13,6 +13,8 @@ const SubjectLayout = () => {
     const params = useParams();
     const subjectId = params.subjectId;
 
+
+
     const [topics, setTopics] = useState<GetTopicsResponse>([]);
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
