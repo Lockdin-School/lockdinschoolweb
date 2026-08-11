@@ -115,6 +115,16 @@ body {
 }
 
 @font-face {
+  font-family: 'Geist Light'; /* This is the name you will use in classes */
+  font-style: normal;
+  /*font-weight: 400;*/
+  font-display: swap; /* Prevents invisible text while loading */
+
+  /* The path starts from the root '/', not 'public/' */
+  src: url('/fonts/Geist-Light.woff2') format('woff2');
+}
+
+@font-face {
   font-family: 'Geist Medium'; /* This is the name you will use in classes */
   font-style: normal;
   /*font-weight: 400;*/
@@ -161,8 +171,10 @@ body {
   font-display: swap; /* Prevents invisible text while loading */
 
   /* The path starts from the root '/', not 'public/' */
-  src: url('/fonts/SpaceGrotesk-Regular.ttf') format('woff2');
+  src: url('/fonts/SpaceGrotesk-Light.ttf') format('woff2');
 }
+
+
 
 /* Apply it globally */
 body {

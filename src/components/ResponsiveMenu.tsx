@@ -1,7 +1,8 @@
-import { AnimatePresence, motion, type Variants } from "framer-motion";
-import { useState } from "react";
+import {AnimatePresence, motion, type Variants} from "framer-motion";
+import {useState} from "react";
 import {HugeiconsIcon} from "@hugeicons/react";
 import {Close} from "@hugeicons/core-free-icons";
+import NavItem from "./NavItem.tsx";
 
 interface ResponsiveMenuProps {
     open: boolean;
@@ -52,7 +53,17 @@ const itemVariants: Variants = {
     },
 };
 
-const ResponsiveMenu = ({ open, onClose }: ResponsiveMenuProps) => {
+const navigationItems = [
+    'Dashboard',
+    'Subjects',
+    'My Learning',
+    'Schedule',
+    'Practice',
+    'Progress',
+    'Community',
+]
+
+const ResponsiveMenu = ({open, onClose}: ResponsiveMenuProps) => {
     const [showNavigation, setShowNavigation] = useState(false);
 
     const handleDrawerAnimationComplete = () => {
@@ -71,10 +82,10 @@ const ResponsiveMenu = ({ open, onClose }: ResponsiveMenuProps) => {
                     {/* Backdrop */}
                     <motion.div
                         className="fixed inset-0 z-40 bg-black/60"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.25 }}
+                        initial={{opacity: 0}}
+                        animate={{opacity: 1}}
+                        exit={{opacity: 0}}
+                        transition={{duration: 0.25}}
                         onClick={handleClose}
                     />
 
@@ -89,6 +100,7 @@ const ResponsiveMenu = ({ open, onClose }: ResponsiveMenuProps) => {
                             w-full
                             bg-bg
                             lg:w-1/2
+                            border-r border-border
                         "
                         variants={drawerVariants}
                         initial="hidden"
@@ -101,125 +113,44 @@ const ResponsiveMenu = ({ open, onClose }: ResponsiveMenuProps) => {
                         onAnimationComplete={handleDrawerAnimationComplete}
                     >
                         {/* Close */}
-                        <div className="flex justify-end p-5">
+                        <div className="flex justify-between items-end  p-3 px-5">
+                            <p className="text-[#929292] text-lg">
+                                NAVIGATION
+                            </p>
                             <button
                                 type="button"
                                 onClick={handleClose}
                                 aria-label="Close menu"
+                                className="border border-border p-2"
                             >
-                                <HugeiconsIcon size={38} icon={Close} />
+                                <HugeiconsIcon size={38} icon={Close}/>
                             </button>
                         </div>
 
                         {/* Navigation */}
                         {showNavigation && (
                             <motion.nav
-                                className="flex flex-col items-start font-space-regular text-6xl md:text-7xl gap-2 px-6"
+                                className="flex flex-col  items-start text-6xl md:text-7xl"
                                 variants={navVariants}
                                 initial="hidden"
                                 animate="visible"
                             >
-                                <motion.a
-                                    href="#"
-                                    variants={itemVariants}
-                                    className="
-                                        px-4
-                                        py-3
-                                        border-b border-border
+                                {
+                                    navigationItems.map((item, index) => (
+                                        <motion.a
+                                            key={index}
+                                            href="#"
+                                            variants={itemVariants}
+                                            className="
+                                        font-space-regular
                                         font-medium
-                                        transition-colors
-                                        hover:bg-accent
+                                        w-full text-start
                                     "
-                                >
-                                    Dashboard
-                                </motion.a>
-
-                                <motion.a
-                                    href="#"
-                                    variants={itemVariants}
-                                    className="
-                                        px-4
-                                        py-3
-                                        font-medium
-                                        border-b border-border
-                                        transition-colors
-                                        hover:bg-accent
-                                    "
-                                >
-                                    Subjects
-                                </motion.a>
-
-                                <motion.a
-                                    href="#"
-                                    variants={itemVariants}
-                                    className="
-                                        px-4
-                                        py-3
-                                        font-medium
-                                        border-b border-border
-                                        transition-colors
-                                        text-start
-                                        hover:bg-accent
-                                    "
-                                >
-                                    My Learning
-                                </motion.a>
-                                <motion.a
-                                    href="#"
-                                    variants={itemVariants}
-                                    className="
-                                        px-4
-                                        py-3
-                                        font-medium
-                                        border-b border-border
-                                        transition-colors
-                                        hover:bg-accent
-                                    "
-                                >
-                                    Schedule
-                                </motion.a>
-                                <motion.a
-                                    href="#"
-                                    variants={itemVariants}
-                                    className="
-                                        px-4
-                                        py-3
-                                        font-medium
-                                        border-b border-border
-                                        transition-colors
-                                        hover:bg-accent
-                                    "
-                                >
-                                    Practice
-                                </motion.a>
-                                <motion.a
-                                    href="#"
-                                    variants={itemVariants}
-                                    className="
-                                        px-4
-                                        py-3
-                                        font-medium
-                                        border-b border-border
-                                        transition-colors
-                                        hover:bg-accent
-                                    "
-                                >
-                                    Progress
-                                </motion.a>
-                                <motion.a
-                                    href="#"
-                                    variants={itemVariants}
-                                    className="
-                                        px-4
-                                        py-3
-                                        font-medium
-                                        border-b border-border
-                                        transition-colors
-                                        hover:bg-accent
-                                    "
-                                >
-                                    Community
-                                </motion.a>
+                                        >
+                                            <NavItem label={item}/>
+                                        </motion.a>
+                                    ))
+                                }
                             </motion.nav>
                         )}
                     </motion.aside>

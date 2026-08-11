@@ -1,12 +1,13 @@
 import {AnimatePresence, motion} from "motion/react";
+import {useParams, Link} from "@tanstack/react-router"
 import {HugeiconsIcon} from "@hugeicons/react";
 import {ChevronDownIcon} from "@hugeicons/core-free-icons";
 import {useState} from "react";
-import {Link} from "react-router";
 import {useMaterials} from "../api/materials/queries/useMaterials.ts";
 import type {TopicResponse} from "../api/topics/models/TopicResponse.ts";
 
 interface TopicCollapsibleProps {
+    subjectId: string;
     topic: TopicResponse;
     index: number;
     isOpen: boolean;
@@ -33,9 +34,14 @@ const topicVariants = {
 export function TopicCollapsible(
     {
         topic,
+        subjectId,
         index,
     }: TopicCollapsibleProps
 ) {
+    const params = useParams({
+        strict: false,
+    });
+    const {lessonId} = params;
     const [isOpen, setIsOpen] = useState(false);
     const {
         data: materials = [],
@@ -44,7 +50,6 @@ export function TopicCollapsible(
         error,
     } = useMaterials(topic.id, isOpen);
 
-    if (isLoading) return <div>Loading...</div>
 
     if (isError) return (
         <div>Failed to load materials: {error.message}</div>
@@ -115,41 +120,32 @@ export function TopicCollapsible(
                         }}
                         className="overflow-hidden"
                     >
-                        {materials.map((material, index) => {
-                            let page;
-                            let colorCode;
-                            switch (material.material_type) {
-                                case "Lesson":
-                                    page = 'lessons';
-                                    colorCode = "text-[#aa2277]"
-                                    break;
-                                case "Resource":
-                                    page = 'resources';
-                                    colorCode = "text-[#bb99fd]"
-                                    break;
-                                case "Quiz":
-                                    page = 'quizzes';
-                                    break;
-                                case "Exercise":
-                                    page = 'exercises';
-                                    break;
-                                case "Assignment":
-                                    page = 'assignments'
-                                    break;
-                                default:
-                                    throw new Error("Unknow Material Type");
-                            }
-                            return (
-                                <Link
-                                    key={index}
-                                    to={`${page}/${material.material_id}`}
-                                    className="flex flex-col items-start gap-1 border-t border-border px-5 py-3 text-sm tracking-wide text-start font-geist-medium hover:cursor-pointer hover:bg-accent-bg">
-                                    {/* TODO: When progress tracking service is live.*/}
-                                    <p className={`text-xs ${colorCode}`}>{material.material_type}</p>
-                                    {material.title}
-                                </Link>
-                            )
-                        })}
+                        {isLoading && (<div className={"w-full bg-code-bg h-10"}></div>)}
+                        {
+                            materials.map((material, index) => {
+                                const activeLink = lessonId === material.material_id;
+
+                                switch (material.material_type) {
+                                    case "Lesson":
+                                        return <Link
+                                            key={index}
+                                            to="/subjects/$subjectId/topics/$topicId/lessons/$lessonId"
+                                            params={{
+                                                subjectId,
+                                                topicId: topic.id,
+                                                lessonId: material.material_id,
+                                            }}
+                                            className={` ${activeLink && "bg-accent-bg"} flex flex-col items-start gap-1 border-t border-border px-5 py-3 text-sm tracking-wide text-start font-geist-medium  hover:cursor-pointer hover:bg-accent-bg`}>
+                                            {/* TODO: When progress tracking service is live.*/}
+                                            <p className={`text-xs text-[#929292] font-space-semibold`}>{material.display_order} / {materials.length}</p>
+                                            {material.title}
+                                        </Link>
+                                    default:
+                                        throw new Error("Unknown Material Type")
+
+                                }
+                            })
+                        }
                     </motion.div>
                 )}
             </AnimatePresence>
