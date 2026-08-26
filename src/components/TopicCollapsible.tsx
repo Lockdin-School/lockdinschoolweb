@@ -1,7 +1,7 @@
 import {AnimatePresence, motion} from "motion/react";
 import {useParams, Link} from "@tanstack/react-router"
 import {HugeiconsIcon} from "@hugeicons/react";
-import {ChevronDownIcon} from "@hugeicons/core-free-icons";
+import {ChevronDownIcon, DotIcon} from "@hugeicons/core-free-icons";
 import {useState} from "react";
 import {useMaterials} from "../api/materials/queries/useMaterials.ts";
 import type {TopicResponse} from "../api/topics/models/TopicResponse.ts";
@@ -41,7 +41,7 @@ export function TopicCollapsible(
     const params = useParams({
         strict: false,
     });
-    const {lessonId} = params;
+    const {materialId} = params;
     const [isOpen, setIsOpen] = useState(false);
     const {
         data: materials = [],
@@ -56,7 +56,7 @@ export function TopicCollapsible(
     )
 
     return (
-        <div className="overflow-hidden border border-border">
+        <div className="overflow-hidden rounded border border-border">
             <motion.button
                 onClick={() => setIsOpen(prev => !prev)}
                 className="relative flex flex-col w-full px-5 py-4"
@@ -123,23 +123,40 @@ export function TopicCollapsible(
                         {isLoading && (<div className={"w-full bg-code-bg h-10"}></div>)}
                         {
                             materials.map((material, index) => {
-                                const activeLink = lessonId === material.material_id;
-
+                                const activeLink = materialId === material.material_id;
                                 switch (material.material_type) {
                                     case "Lesson":
-                                        return <Link
-                                            key={index}
-                                            to="/subjects/$subjectId/topics/$topicId/lessons/$lessonId"
-                                            params={{
-                                                subjectId,
-                                                topicId: topic.id,
-                                                lessonId: material.material_id,
-                                            }}
-                                            className={` ${activeLink && "bg-accent-bg"} flex flex-col items-start gap-1 border-t border-border px-5 py-3 text-sm tracking-wide text-start font-geist-medium  hover:cursor-pointer hover:bg-accent-bg`}>
-                                            {/* TODO: When progress tracking service is live.*/}
-                                            <p className={`text-xs text-[#929292] font-space-semibold`}>{material.display_order} / {materials.length}</p>
-                                            {material.title}
-                                        </Link>
+                                        return (
+                                            <Link
+                                                key={index}
+                                                to="/subjects/$subjectId/topics/$topicId/lessons/$materialId"
+                                                params={{
+                                                    subjectId,
+                                                    topicId: topic.id,
+                                                    materialId: material.material_id,
+                                                }}
+                                                className={` ${activeLink && "bg-accent-bg"} flex flex-col items-start gap-1 border-t border-border px-5 py-3 text-sm tracking-wide text-start font-geist-medium  hover:cursor-pointer hover:bg-accent-bg`}>
+                                                {/* TODO: When progress tracking service is live.*/}
+                                                <p className={`text-xs text-[#929292] font-space-semibold flex items-center`}>{material.display_order} / {materials.length} <HugeiconsIcon icon={DotIcon} /> {material.material_type}</p>
+                                                {material.title}
+                                            </Link>
+                                        )
+                                    case "Quiz":
+                                        return (
+                                            <Link
+                                                key={index}
+                                                to="/subjects/$subjectId/topics/$topicId/quizzes/$materialId"
+                                                params={{
+                                                    subjectId,
+                                                    topicId: topic.id,
+                                                    materialId: material.material_id,
+                                                }}
+                                                className={` ${activeLink && "bg-accent-bg"} flex flex-col items-start gap-1 border-t border-border px-5 py-3 text-sm tracking-wide text-start font-geist-medium  hover:cursor-pointer hover:bg-accent-bg`}>
+                                                {/* TODO: When progress tracking service is live.*/}
+                                                <p className={`text-xs text-[#929292] font-space-semibold flex items-center`}>{material.display_order} / {materials.length} <HugeiconsIcon icon={DotIcon} /> {material.material_type}</p>
+                                                {material.title}
+                                            </Link>
+                                        )
                                     default:
                                         throw new Error("Unknown Material Type")
 

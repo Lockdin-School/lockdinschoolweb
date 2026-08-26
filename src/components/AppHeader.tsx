@@ -15,31 +15,29 @@ const AppHeader = () => {
                         <button
                             onClick={() => setMenuOpen(true)}
                             type="button"
-                            className="flex items-center justify-center"
+                            className="flex border items-center justify-center"
                             aria-label="Open menu"
                         >
                             <HugeiconsIcon
                                 size={38}
-                                className="text-bg mx-2 bg-white"
+                                className=" mx-1"
                                 icon={MenuTwoLineIcon}
                             />
                         </button>
 
                         {/* Search */}
-                        <button
-                            type="button"
-                            className="flex items-center gap-2 text-sm text-[#777] sm:w-48 sm:border sm:border-border sm:px-3 sm:py-2"
+                        <form
+                            className="flex items-center gap-2 text-sm text-[#777] sm:w-48 sm:border sm:border-border rounded sm:px-3 sm:py-2"
                         >
                             <HugeiconsIcon
                                 size={20}
+                                className="text-[#f0f0f0]"
                                 strokeWidth={2}
                                 icon={SearchIcon}
                             />
 
-                            <span className="hidden sm:inline">
-                            Search...
-                        </span>
-                        </button>
+                            <input className="hidden sm:inline outline-none bg-transparent w-full" type="text" />
+                        </form>
                     </div>
 
                     {/* Right */}

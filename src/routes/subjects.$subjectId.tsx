@@ -42,10 +42,11 @@ function SubjectLayout  ()  {
             <AppHeader/>
             {/*    MAIN LAYOUT    */}
             <div className="w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center">
-                <main className={` w-full justify-between gap-4 flex flex-col-reverse lg:grid lg:grid-cols-4`}>
+                <main className={` w-full justify-between gap-10 flex flex-col-reverse lg:grid lg:grid-cols-4`}>
                     {/*    LIST OF TOPICS */}
                     <aside className="w-full flex flex-col relative">
                         {/*List of topics*/}
+                        {/*TODO: THIS SHOULD BE IN ITS OWN COMPONENT AND THEN HANDLE THE ACTIVE STATE THERE*/}
                         <section
                             className="gap-1 p-1  flex flex-col w-full overflow-y-auto max-h-[calc(100vh-13vh)] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                             {topics.map((topic, index) => {

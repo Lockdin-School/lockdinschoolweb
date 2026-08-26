@@ -132,7 +132,7 @@ const VideoPlayer = ({src, poster}: VideoPlayerProps) => {
 
     return (
         <div
-            className="group relative w-full overflow-hidden  bg-black"
+            className="group rounded relative w-full overflow-hidden  bg-black"
             onMouseEnter={() => setShowControls(true)}
             onMouseLeave={() => setShowControls(!isPlaying)}
         >

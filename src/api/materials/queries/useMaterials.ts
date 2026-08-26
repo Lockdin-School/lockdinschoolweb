@@ -1,5 +1,5 @@
 import {useQuery} from "@tanstack/react-query";
-import {getMaterialsByTopicId} from "../materials.ts";
+import {getMaterialById, getMaterialsByTopicId} from "../materials.ts";
 
 export const useMaterials = (
     topicId: string,
@@ -10,4 +10,11 @@ export const useMaterials = (
         queryFn: () => getMaterialsByTopicId(topicId),
         enabled: enabled && !!topicId,
     });
+};
+
+export const useMaterial = (materialId: string) => {
+    return useQuery({
+        queryKey: ["materials", materialId],
+        queryFn: () => getMaterialById(materialId),
+    })
 };

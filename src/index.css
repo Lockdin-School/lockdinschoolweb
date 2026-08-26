@@ -41,6 +41,23 @@
   }
 }
 
+@theme {
+  --color-text: var(--text);
+  --color-bg: var(--bg);
+  --color-code-bg: var(--code-bg);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-accent-bg: var(--accent-bg);      /* Now generates var() reference */
+  --color-accent-border: var(--accent-border);
+  --color-social-bg: var(--social-bg);
+
+  /* Fonts can stay inline or non-inline, doesn't matter for dark mode */
+  --font-alliance: 'Alliance No.1 Regular', sans-serif;
+  --font-alliance-2: 'Alliance No.2 Regular', sans-serif;
+  --font-alliance-light: 'Alliance No.1 Light', sans-serif;
+  --font-alliance-2-light: 'Alliance No.2 Light', sans-serif;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     /* Core Palette */
@@ -82,6 +99,48 @@
 
 body {
   margin: 0;
+}
+
+@font-face {
+  font-family: 'Alliance No.1 Light'; /* This is the name you will use in classes */
+  font-style: normal;
+  /*font-weight: 400;*/
+  font-display: swap; /* Prevents invisible text while loading */
+
+  /* The path starts from the root '/', not 'public/' */
+  src: url('/fonts/Alliance No.1 Light.otf') format('woff2');
+}
+
+
+@font-face {
+  font-family: 'Alliance No.2 Light'; /* This is the name you will use in classes */
+  font-style: normal;
+  /*font-weight: 400;*/
+  font-display: swap; /* Prevents invisible text while loading */
+
+  /* The path starts from the root '/', not 'public/' */
+  src: url('/fonts/Alliance No.2 Light.otf') format('woff2');
+}
+
+@font-face {
+  font-family: 'Alliance No.1 Regular'; /* This is the name you will use in classes */
+  font-style: normal;
+  /*font-weight: 400;*/
+  font-display: swap; /* Prevents invisible text while loading */
+
+  /* The path starts from the root '/', not 'public/' */
+  src: url('/fonts/Alliance-No.1-Regular.otf') format('woff2');
+}
+
+
+@font-face {
+  font-family: 'Alliance No.2 Regular'; /* This is the name you will use in classes */
+  font-style: normal;
+  /*font-weight: 400;*/
+  font-display: swap; /* Prevents invisible text while loading */
+
+  /* The path starts from the root '/', not 'public/' */
+  src: url('/fonts/Alliance No.2 Regular.otf') format('woff2');
 }
 
 @font-face {
@@ -178,7 +237,7 @@ body {
 
 /* Apply it globally */
 body {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Alliance No.2 Regular', sans-serif;
 }
 
 h1,

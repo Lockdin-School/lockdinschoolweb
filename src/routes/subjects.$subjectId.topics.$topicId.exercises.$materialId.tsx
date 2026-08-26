@@ -1,8 +1,7 @@
-
 import {createFileRoute} from '@tanstack/react-router'
 
 export const Route = createFileRoute(
-    '/subjects/$subjectId/topics/$topicId/resources/$resourceId',
+    '/subjects/$subjectId/topics/$topicId/exercises/$materialId',
 )({
     component: RouteComponent,
 })
