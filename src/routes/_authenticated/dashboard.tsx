@@ -1,11 +1,11 @@
 import {createFileRoute} from '@tanstack/react-router'
-import {useSubjects} from "../api/subjects/queries/useSubjects.ts";
-import AppHeader from "../components/AppHeader.tsx";
+import {useSubjects} from "@/api/subjects/queries/useSubjects.ts";
+import AppHeader from "@/components/AppHeader.tsx";
 import {HugeiconsIcon} from "@hugeicons/react";
 import {ArrowDownFreeIcons} from "@hugeicons/core-free-icons";
 
 
-export const Route = createFileRoute('/dashboard')({
+export const Route = createFileRoute('/_authenticated/dashboard')({
     component: Dashboard,
 })
 

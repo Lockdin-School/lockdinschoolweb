@@ -1,22 +1,22 @@
 import {createFileRoute, useParams, Outlet} from '@tanstack/react-router'
-import {useTopics} from "../api/topics/queries/useTopics.ts";
+import {useTopics} from "@/api/topics/queries/useTopics.ts";
 import {useState} from "react";
-import AppHeader from "../components/AppHeader.tsx";
-import {TopicCollapsible} from "../components/TopicCollapsible.tsx";
+import AppHeader from "@/components/AppHeader.tsx";
+import {TopicCollapsible} from "@/components/TopicCollapsible.tsx";
 
-export const Route = createFileRoute('/subjects/$subjectId')({
+export const Route = createFileRoute('/_authenticated/subjects/$subjectId')({
     component: SubjectLayout,
 })
 
 function SubjectLayout  ()  {
 
     const params = useParams({
-        from: '/subjects/$subjectId',
+        from: '/_authenticated/subjects/$subjectId',
     });
     const {subjectId} = params;
 
     if (!subjectId) {
-        throw new Error("Subject ID is required");
+        throw new Error("Subject Not Found");
     }
 
     const {

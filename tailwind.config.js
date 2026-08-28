@@ -32,6 +32,8 @@ export default {
         'ebgaramond-bold': ['EBGaramond SemiBold', 'sans-serif'],
         'space-medium': ['Space Grotesk', 'sans-serif'],
         'space-regular': ['Space Grotesk Regular', 'sans-serif'],
+        'inter-regular': ['Inter Regular', 'sans-serif'],
+        'inter-medium': ['Inter Medium', 'sans-serif'],
       },
     },
   },

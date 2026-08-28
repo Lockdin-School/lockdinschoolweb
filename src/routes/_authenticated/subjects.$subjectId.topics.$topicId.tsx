@@ -1,9 +1,9 @@
 import { createFileRoute, Outlet, useParams } from '@tanstack/react-router';
-import { useMaterials } from "../api/materials/queries/useMaterials.ts";
+import { useMaterials } from "@/api/materials/queries/useMaterials.ts";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft02Icon, ArrowRight02Icon } from "@hugeicons/core-free-icons";
 
-export const Route = createFileRoute('/subjects/$subjectId/topics/$topicId')({
+export const Route = createFileRoute('/_authenticated/subjects/$subjectId/topics/$topicId')({
     component: TopicLayout,
 });
 

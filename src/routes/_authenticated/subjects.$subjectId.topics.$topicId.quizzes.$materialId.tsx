@@ -1,11 +1,11 @@
 
 import {createFileRoute, useParams} from '@tanstack/react-router'
-import {useMaterial} from "../api/materials/queries/useMaterials.ts";
-import {Quiz} from "../components/Quiz.tsx";
-import {mockQuizQuestions} from "../features/quizzes/mocks/quizQuestions.ts";
+import {useMaterial} from "@/api/materials/queries/useMaterials.ts";
+import {mockQuizQuestions} from "@/features/quizzes/mocks/quizQuestions.ts";
+import {Quiz} from "@/components/Quiz.tsx";
 
 export const Route = createFileRoute(
-    '/subjects/$subjectId/topics/$topicId/quizzes/$materialId',
+    '/_authenticated/subjects/$subjectId/topics/$topicId/quizzes/$materialId',
 )({
     component: RouteComponent,
 })
@@ -13,7 +13,7 @@ export const Route = createFileRoute(
 function RouteComponent() {
 
     const params = useParams({
-        from: '/subjects/$subjectId/topics/$topicId/quizzes/$materialId',
+        from: '/_authenticated/subjects/$subjectId/topics/$topicId/quizzes/$materialId',
     });
 
     const quizId = params.materialId

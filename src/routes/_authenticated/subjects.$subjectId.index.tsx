@@ -1,6 +1,6 @@
 import {createFileRoute} from '@tanstack/react-router'
 
-export const Route = createFileRoute('/subjects/$subjectId/')({
+export const Route = createFileRoute('/_authenticated/subjects/$subjectId/')({
     component: SubjectOverviewPage,
 })
 

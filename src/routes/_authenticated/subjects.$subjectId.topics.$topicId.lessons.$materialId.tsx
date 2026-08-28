@@ -1,10 +1,10 @@
 import {createFileRoute, useParams} from '@tanstack/react-router'
-import {useLesson} from "../api/lessons/queries/useLesson.ts";
-import VideoPlayer from "../components/VideoPlayer.tsx";
-import {useMaterial} from "../api/materials/queries/useMaterials.ts";
+import VideoPlayer from "@/components/VideoPlayer.tsx";
+import {useMaterial} from "@/api/materials/queries/useMaterials.ts";
+import {useLesson} from "@/api/lessons/queries/useLesson.ts";
 
 export const Route = createFileRoute(
-    '/subjects/$subjectId/topics/$topicId/lessons/$materialId',
+    '/_authenticated/subjects/$subjectId/topics/$topicId/lessons/$materialId',
 )({
     component: Lesson,
 })
@@ -13,7 +13,7 @@ const CLOUDFRONT = import.meta.env.VITE_CLOUDFRONT;
 
 function Lesson() {
     const params = useParams({
-        from: '/subjects/$subjectId/topics/$topicId/lessons/$materialId',
+        from: '/_authenticated/subjects/$subjectId/topics/$topicId/lessons/$materialId',
     });
     const lessonId = params.materialId;
 

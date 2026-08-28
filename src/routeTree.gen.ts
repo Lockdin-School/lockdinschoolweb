@@ -10,24 +10,26 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as SigninRouteImport } from './routes/signin'
-import { Route as SubjectsSubjectIdRouteImport } from './routes/subjects.$subjectId'
-import { Route as SubjectsSubjectIdIndexRouteImport } from './routes/subjects.$subjectId.index'
-import { Route as SubjectsSubjectIdTopicsTopicIdRouteImport } from './routes/subjects.$subjectId.topics.$topicId'
-import { Route as SubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRouteImport } from './routes/subjects.$subjectId.topics.$topicId.exercises.$materialId'
-import { Route as SubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRouteImport } from './routes/subjects.$subjectId.topics.$topicId.lessons.$materialId'
-import { Route as SubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRouteImport } from './routes/subjects.$subjectId.topics.$topicId.quizzes.$materialId'
-import { Route as SubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRouteImport } from './routes/subjects.$subjectId.topics.$topicId.resources.$materialId'
+import { Route as SignoutRouteImport } from './routes/signout'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedSubjectsSubjectIdRouteImport } from './routes/_authenticated/subjects.$subjectId'
+import { Route as AuthenticatedSubjectsSubjectIdIndexRouteImport } from './routes/_authenticated/subjects.$subjectId.index'
+import { Route as AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteImport } from './routes/_authenticated/subjects.$subjectId.topics.$topicId'
+import { Route as AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRouteImport } from './routes/_authenticated/subjects.$subjectId.topics.$topicId.exercises.$materialId'
+import { Route as AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRouteImport } from './routes/_authenticated/subjects.$subjectId.topics.$topicId.lessons.$materialId'
+import { Route as AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRouteImport } from './routes/_authenticated/subjects.$subjectId.topics.$topicId.quizzes.$materialId'
+import { Route as AuthenticatedSubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRouteImport } from './routes/_authenticated/subjects.$subjectId.topics.$topicId.resources.$materialId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardRoute = DashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SigninRoute = SigninRouteImport.update({
@@ -35,89 +37,123 @@ const SigninRoute = SigninRouteImport.update({
   path: '/signin',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SubjectsSubjectIdRoute = SubjectsSubjectIdRouteImport.update({
-  id: '/subjects/$subjectId',
-  path: '/subjects/$subjectId',
+const SignoutRoute = SignoutRouteImport.update({
+  id: '/signout',
+  path: '/signout',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SubjectsSubjectIdIndexRoute = SubjectsSubjectIdIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => SubjectsSubjectIdRoute,
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const SubjectsSubjectIdTopicsTopicIdRoute =
-  SubjectsSubjectIdTopicsTopicIdRouteImport.update({
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedSubjectsSubjectIdRoute =
+  AuthenticatedSubjectsSubjectIdRouteImport.update({
+    id: '/subjects/$subjectId',
+    path: '/subjects/$subjectId',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedSubjectsSubjectIdIndexRoute =
+  AuthenticatedSubjectsSubjectIdIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedSubjectsSubjectIdRoute,
+  } as any)
+const AuthenticatedSubjectsSubjectIdTopicsTopicIdRoute =
+  AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteImport.update({
     id: '/topics/$topicId',
     path: '/topics/$topicId',
-    getParentRoute: () => SubjectsSubjectIdRoute,
+    getParentRoute: () => AuthenticatedSubjectsSubjectIdRoute,
   } as any)
-const SubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute =
-  SubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRouteImport.update({
-    id: '/exercises/$materialId',
-    path: '/exercises/$materialId',
-    getParentRoute: () => SubjectsSubjectIdTopicsTopicIdRoute,
-  } as any)
-const SubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute =
-  SubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRouteImport.update({
-    id: '/lessons/$materialId',
-    path: '/lessons/$materialId',
-    getParentRoute: () => SubjectsSubjectIdTopicsTopicIdRoute,
-  } as any)
-const SubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute =
-  SubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRouteImport.update({
-    id: '/quizzes/$materialId',
-    path: '/quizzes/$materialId',
-    getParentRoute: () => SubjectsSubjectIdTopicsTopicIdRoute,
-  } as any)
-const SubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRoute =
-  SubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRouteImport.update({
-    id: '/resources/$materialId',
-    path: '/resources/$materialId',
-    getParentRoute: () => SubjectsSubjectIdTopicsTopicIdRoute,
-  } as any)
+const AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute =
+  AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRouteImport.update(
+    {
+      id: '/exercises/$materialId',
+      path: '/exercises/$materialId',
+      getParentRoute: () => AuthenticatedSubjectsSubjectIdTopicsTopicIdRoute,
+    } as any,
+  )
+const AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute =
+  AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRouteImport.update(
+    {
+      id: '/lessons/$materialId',
+      path: '/lessons/$materialId',
+      getParentRoute: () => AuthenticatedSubjectsSubjectIdTopicsTopicIdRoute,
+    } as any,
+  )
+const AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute =
+  AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRouteImport.update(
+    {
+      id: '/quizzes/$materialId',
+      path: '/quizzes/$materialId',
+      getParentRoute: () => AuthenticatedSubjectsSubjectIdTopicsTopicIdRoute,
+    } as any,
+  )
+const AuthenticatedSubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRoute =
+  AuthenticatedSubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRouteImport.update(
+    {
+      id: '/resources/$materialId',
+      path: '/resources/$materialId',
+      getParentRoute: () => AuthenticatedSubjectsSubjectIdTopicsTopicIdRoute,
+    } as any,
+  )
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
   '/signin': typeof SigninRoute
-  '/subjects/$subjectId': typeof SubjectsSubjectIdRouteWithChildren
-  '/subjects/$subjectId/': typeof SubjectsSubjectIdIndexRoute
-  '/subjects/$subjectId/topics/$topicId': typeof SubjectsSubjectIdTopicsTopicIdRouteWithChildren
-  '/subjects/$subjectId/topics/$topicId/exercises/$materialId': typeof SubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
-  '/subjects/$subjectId/topics/$topicId/lessons/$materialId': typeof SubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute
-  '/subjects/$subjectId/topics/$topicId/quizzes/$materialId': typeof SubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute
-  '/subjects/$subjectId/topics/$topicId/resources/$materialId': typeof SubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRoute
+  '/signout': typeof SignoutRoute
+  '/signup': typeof SignupRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/subjects/$subjectId': typeof AuthenticatedSubjectsSubjectIdRouteWithChildren
+  '/subjects/$subjectId/': typeof AuthenticatedSubjectsSubjectIdIndexRoute
+  '/subjects/$subjectId/topics/$topicId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteWithChildren
+  '/subjects/$subjectId/topics/$topicId/exercises/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
+  '/subjects/$subjectId/topics/$topicId/lessons/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute
+  '/subjects/$subjectId/topics/$topicId/quizzes/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute
+  '/subjects/$subjectId/topics/$topicId/resources/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
   '/signin': typeof SigninRoute
-  '/subjects/$subjectId': typeof SubjectsSubjectIdIndexRoute
-  '/subjects/$subjectId/topics/$topicId': typeof SubjectsSubjectIdTopicsTopicIdRouteWithChildren
-  '/subjects/$subjectId/topics/$topicId/exercises/$materialId': typeof SubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
-  '/subjects/$subjectId/topics/$topicId/lessons/$materialId': typeof SubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute
-  '/subjects/$subjectId/topics/$topicId/quizzes/$materialId': typeof SubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute
-  '/subjects/$subjectId/topics/$topicId/resources/$materialId': typeof SubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRoute
+  '/signout': typeof SignoutRoute
+  '/signup': typeof SignupRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/subjects/$subjectId': typeof AuthenticatedSubjectsSubjectIdIndexRoute
+  '/subjects/$subjectId/topics/$topicId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteWithChildren
+  '/subjects/$subjectId/topics/$topicId/exercises/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
+  '/subjects/$subjectId/topics/$topicId/lessons/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute
+  '/subjects/$subjectId/topics/$topicId/quizzes/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute
+  '/subjects/$subjectId/topics/$topicId/resources/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/signin': typeof SigninRoute
-  '/subjects/$subjectId': typeof SubjectsSubjectIdRouteWithChildren
-  '/subjects/$subjectId/': typeof SubjectsSubjectIdIndexRoute
-  '/subjects/$subjectId/topics/$topicId': typeof SubjectsSubjectIdTopicsTopicIdRouteWithChildren
-  '/subjects/$subjectId/topics/$topicId/exercises/$materialId': typeof SubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
-  '/subjects/$subjectId/topics/$topicId/lessons/$materialId': typeof SubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute
-  '/subjects/$subjectId/topics/$topicId/quizzes/$materialId': typeof SubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute
-  '/subjects/$subjectId/topics/$topicId/resources/$materialId': typeof SubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRoute
+  '/signout': typeof SignoutRoute
+  '/signup': typeof SignupRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/subjects/$subjectId': typeof AuthenticatedSubjectsSubjectIdRouteWithChildren
+  '/_authenticated/subjects/$subjectId/': typeof AuthenticatedSubjectsSubjectIdIndexRoute
+  '/_authenticated/subjects/$subjectId/topics/$topicId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteWithChildren
+  '/_authenticated/subjects/$subjectId/topics/$topicId/exercises/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
+  '/_authenticated/subjects/$subjectId/topics/$topicId/lessons/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute
+  '/_authenticated/subjects/$subjectId/topics/$topicId/quizzes/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute
+  '/_authenticated/subjects/$subjectId/topics/$topicId/resources/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/dashboard'
     | '/signin'
+    | '/signout'
+    | '/signup'
+    | '/dashboard'
     | '/subjects/$subjectId'
     | '/subjects/$subjectId/'
     | '/subjects/$subjectId/topics/$topicId'
@@ -128,8 +164,10 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/dashboard'
     | '/signin'
+    | '/signout'
+    | '/signup'
+    | '/dashboard'
     | '/subjects/$subjectId'
     | '/subjects/$subjectId/topics/$topicId'
     | '/subjects/$subjectId/topics/$topicId/exercises/$materialId'
@@ -139,22 +177,26 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/dashboard'
+    | '/_authenticated'
     | '/signin'
-    | '/subjects/$subjectId'
-    | '/subjects/$subjectId/'
-    | '/subjects/$subjectId/topics/$topicId'
-    | '/subjects/$subjectId/topics/$topicId/exercises/$materialId'
-    | '/subjects/$subjectId/topics/$topicId/lessons/$materialId'
-    | '/subjects/$subjectId/topics/$topicId/quizzes/$materialId'
-    | '/subjects/$subjectId/topics/$topicId/resources/$materialId'
+    | '/signout'
+    | '/signup'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/subjects/$subjectId'
+    | '/_authenticated/subjects/$subjectId/'
+    | '/_authenticated/subjects/$subjectId/topics/$topicId'
+    | '/_authenticated/subjects/$subjectId/topics/$topicId/exercises/$materialId'
+    | '/_authenticated/subjects/$subjectId/topics/$topicId/lessons/$materialId'
+    | '/_authenticated/subjects/$subjectId/topics/$topicId/quizzes/$materialId'
+    | '/_authenticated/subjects/$subjectId/topics/$topicId/resources/$materialId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DashboardRoute: typeof DashboardRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   SigninRoute: typeof SigninRoute
-  SubjectsSubjectIdRoute: typeof SubjectsSubjectIdRouteWithChildren
+  SignoutRoute: typeof SignoutRoute
+  SignupRoute: typeof SignupRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -166,11 +208,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteImport
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/signin': {
@@ -180,101 +222,142 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SigninRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/subjects/$subjectId': {
-      id: '/subjects/$subjectId'
-      path: '/subjects/$subjectId'
-      fullPath: '/subjects/$subjectId'
-      preLoaderRoute: typeof SubjectsSubjectIdRouteImport
+    '/signout': {
+      id: '/signout'
+      path: '/signout'
+      fullPath: '/signout'
+      preLoaderRoute: typeof SignoutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/subjects/$subjectId/': {
-      id: '/subjects/$subjectId/'
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/subjects/$subjectId': {
+      id: '/_authenticated/subjects/$subjectId'
+      path: '/subjects/$subjectId'
+      fullPath: '/subjects/$subjectId'
+      preLoaderRoute: typeof AuthenticatedSubjectsSubjectIdRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/subjects/$subjectId/': {
+      id: '/_authenticated/subjects/$subjectId/'
       path: '/'
       fullPath: '/subjects/$subjectId/'
-      preLoaderRoute: typeof SubjectsSubjectIdIndexRouteImport
-      parentRoute: typeof SubjectsSubjectIdRoute
+      preLoaderRoute: typeof AuthenticatedSubjectsSubjectIdIndexRouteImport
+      parentRoute: typeof AuthenticatedSubjectsSubjectIdRoute
     }
-    '/subjects/$subjectId/topics/$topicId': {
-      id: '/subjects/$subjectId/topics/$topicId'
+    '/_authenticated/subjects/$subjectId/topics/$topicId': {
+      id: '/_authenticated/subjects/$subjectId/topics/$topicId'
       path: '/topics/$topicId'
       fullPath: '/subjects/$subjectId/topics/$topicId'
-      preLoaderRoute: typeof SubjectsSubjectIdTopicsTopicIdRouteImport
-      parentRoute: typeof SubjectsSubjectIdRoute
+      preLoaderRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteImport
+      parentRoute: typeof AuthenticatedSubjectsSubjectIdRoute
     }
-    '/subjects/$subjectId/topics/$topicId/exercises/$materialId': {
-      id: '/subjects/$subjectId/topics/$topicId/exercises/$materialId'
+    '/_authenticated/subjects/$subjectId/topics/$topicId/exercises/$materialId': {
+      id: '/_authenticated/subjects/$subjectId/topics/$topicId/exercises/$materialId'
       path: '/exercises/$materialId'
       fullPath: '/subjects/$subjectId/topics/$topicId/exercises/$materialId'
-      preLoaderRoute: typeof SubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRouteImport
-      parentRoute: typeof SubjectsSubjectIdTopicsTopicIdRoute
+      preLoaderRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRouteImport
+      parentRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRoute
     }
-    '/subjects/$subjectId/topics/$topicId/lessons/$materialId': {
-      id: '/subjects/$subjectId/topics/$topicId/lessons/$materialId'
+    '/_authenticated/subjects/$subjectId/topics/$topicId/lessons/$materialId': {
+      id: '/_authenticated/subjects/$subjectId/topics/$topicId/lessons/$materialId'
       path: '/lessons/$materialId'
       fullPath: '/subjects/$subjectId/topics/$topicId/lessons/$materialId'
-      preLoaderRoute: typeof SubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRouteImport
-      parentRoute: typeof SubjectsSubjectIdTopicsTopicIdRoute
+      preLoaderRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRouteImport
+      parentRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRoute
     }
-    '/subjects/$subjectId/topics/$topicId/quizzes/$materialId': {
-      id: '/subjects/$subjectId/topics/$topicId/quizzes/$materialId'
+    '/_authenticated/subjects/$subjectId/topics/$topicId/quizzes/$materialId': {
+      id: '/_authenticated/subjects/$subjectId/topics/$topicId/quizzes/$materialId'
       path: '/quizzes/$materialId'
       fullPath: '/subjects/$subjectId/topics/$topicId/quizzes/$materialId'
-      preLoaderRoute: typeof SubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRouteImport
-      parentRoute: typeof SubjectsSubjectIdTopicsTopicIdRoute
+      preLoaderRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRouteImport
+      parentRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRoute
     }
-    '/subjects/$subjectId/topics/$topicId/resources/$materialId': {
-      id: '/subjects/$subjectId/topics/$topicId/resources/$materialId'
+    '/_authenticated/subjects/$subjectId/topics/$topicId/resources/$materialId': {
+      id: '/_authenticated/subjects/$subjectId/topics/$topicId/resources/$materialId'
       path: '/resources/$materialId'
       fullPath: '/subjects/$subjectId/topics/$topicId/resources/$materialId'
-      preLoaderRoute: typeof SubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRouteImport
-      parentRoute: typeof SubjectsSubjectIdTopicsTopicIdRoute
+      preLoaderRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRouteImport
+      parentRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRoute
     }
   }
 }
 
-interface SubjectsSubjectIdTopicsTopicIdRouteChildren {
-  SubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute: typeof SubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
-  SubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute: typeof SubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute
-  SubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute: typeof SubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute
-  SubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRoute: typeof SubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRoute
+interface AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteChildren {
+  AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
+  AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute
+  AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute
+  AuthenticatedSubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRoute
 }
 
-const SubjectsSubjectIdTopicsTopicIdRouteChildren: SubjectsSubjectIdTopicsTopicIdRouteChildren =
+const AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteChildren: AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteChildren =
   {
-    SubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute:
-      SubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute,
-    SubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute:
-      SubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute,
-    SubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute:
-      SubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute,
-    SubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRoute:
-      SubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRoute,
+    AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute:
+      AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute,
+    AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute:
+      AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute,
+    AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute:
+      AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute,
+    AuthenticatedSubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRoute:
+      AuthenticatedSubjectsSubjectIdTopicsTopicIdResourcesMaterialIdRoute,
   }
 
-const SubjectsSubjectIdTopicsTopicIdRouteWithChildren =
-  SubjectsSubjectIdTopicsTopicIdRoute._addFileChildren(
-    SubjectsSubjectIdTopicsTopicIdRouteChildren,
+const AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteWithChildren =
+  AuthenticatedSubjectsSubjectIdTopicsTopicIdRoute._addFileChildren(
+    AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteChildren,
   )
 
-interface SubjectsSubjectIdRouteChildren {
-  SubjectsSubjectIdIndexRoute: typeof SubjectsSubjectIdIndexRoute
-  SubjectsSubjectIdTopicsTopicIdRoute: typeof SubjectsSubjectIdTopicsTopicIdRouteWithChildren
+interface AuthenticatedSubjectsSubjectIdRouteChildren {
+  AuthenticatedSubjectsSubjectIdIndexRoute: typeof AuthenticatedSubjectsSubjectIdIndexRoute
+  AuthenticatedSubjectsSubjectIdTopicsTopicIdRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteWithChildren
 }
 
-const SubjectsSubjectIdRouteChildren: SubjectsSubjectIdRouteChildren = {
-  SubjectsSubjectIdIndexRoute: SubjectsSubjectIdIndexRoute,
-  SubjectsSubjectIdTopicsTopicIdRoute:
-    SubjectsSubjectIdTopicsTopicIdRouteWithChildren,
+const AuthenticatedSubjectsSubjectIdRouteChildren: AuthenticatedSubjectsSubjectIdRouteChildren =
+  {
+    AuthenticatedSubjectsSubjectIdIndexRoute:
+      AuthenticatedSubjectsSubjectIdIndexRoute,
+    AuthenticatedSubjectsSubjectIdTopicsTopicIdRoute:
+      AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteWithChildren,
+  }
+
+const AuthenticatedSubjectsSubjectIdRouteWithChildren =
+  AuthenticatedSubjectsSubjectIdRoute._addFileChildren(
+    AuthenticatedSubjectsSubjectIdRouteChildren,
+  )
+
+interface AuthenticatedRouteChildren {
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedSubjectsSubjectIdRoute: typeof AuthenticatedSubjectsSubjectIdRouteWithChildren
 }
 
-const SubjectsSubjectIdRouteWithChildren =
-  SubjectsSubjectIdRoute._addFileChildren(SubjectsSubjectIdRouteChildren)
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedSubjectsSubjectIdRoute:
+    AuthenticatedSubjectsSubjectIdRouteWithChildren,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DashboardRoute: DashboardRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
   SigninRoute: SigninRoute,
-  SubjectsSubjectIdRoute: SubjectsSubjectIdRouteWithChildren,
+  SignoutRoute: SignoutRoute,
+  SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

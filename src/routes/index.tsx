@@ -21,7 +21,7 @@ function App() {
             <p className="px-px text-xl font-space-medium tracking-tight">Quality learning, now accessible to all.</p>
             <div className="flex items-center gap-2">
               {/*<Link to={"/manifesto"} className="text-xs bg-text text-bg hover:underline p-4 py-6 my-10">Read Our Manifesto</Link>*/}
-              <Link to={"/dashboard"} className="text-xs border border-[#a2a2a2] hover:underline p-4 py-6 my-10">Sign In</Link>
+              <Link to={"/signin"} className="text-xs border border-[#a2a2a2] hover:underline p-4 py-6 my-10">Sign In</Link>
             </div>
           </section>
         </main>

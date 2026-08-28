@@ -2,16 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+:root {
+  /* Override the default white/black with an off-white hex */
+  --bg: #f0fff4 !important; /* Light gray/off-white */
+  --text: #1a1a1a !important; /* Ensure text is dark enough for contrast */
+  --code-bg: #e9ecef !important; /* Slightly darker off-white for code blocks */
+  --border: #dedee0 !important; /* Softer border for off-white bg */
+}
+
 :root {
   /* Core Palette */
-  --text: #000000;
+  /* Override the default white/black with an off-white hex */
+  --bg: #f0fff4 !important; /* Light gray/off-white */
+  --text: #1a1a1a !important; /* Ensure text is dark enough for contrast */
+  --code-bg: #e9ecef !important; /* Slightly darker off-white for code blocks */
+  --border: #dedee0 !important; /* Softer border for off-white bg */
+
+
   --text-h: #000000;
-  --bg: #ffffff;
-  --code-bg: #f9f9f9; /* Slightly off-white for code blocks to distinguish from bg */
   --accent: #00ff11;
 
   /* Derived Colors */
-  --border: #e5e5e5; /* Neutral gray border */
+
   --accent-bg: rgba(0, 255, 17, 0.1); /* Light neon wash */
   --accent-border: rgba(0, 255, 17, 0.5); /* Semi-transparent neon border */
   --social-bg: rgba(245, 245, 245, 0.8); /* Subtle background for social elements */
@@ -22,7 +36,7 @@
           rgba(0, 0, 0, 0.03) 0 4px 6px -2px; /* Softer shadow to suit white bg */
 
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
@@ -56,16 +70,18 @@
   --font-alliance-2: 'Alliance No.2 Regular', sans-serif;
   --font-alliance-light: 'Alliance No.1 Light', sans-serif;
   --font-alliance-2-light: 'Alliance No.2 Light', sans-serif;
+  --font-inter: 'Inter Regular', sans-serif;
+  --font-inter-medium: 'Inter Medium', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Core Palette */
-    --text: #ffffff;
-    --text-h: #ffffff;
-    --bg: #000000;
-    --code-bg: #111111; /* Slightly lighter black for code distinction */
-    --accent: #00ff11;
+    /*!* Core Palette *!*/
+    /*--text: #ffffff;*/
+    /*--text-h: #ffffff;*/
+    /*--bg: #000000;*/
+    /*--code-bg: #111111; !* Slightly lighter black for code distinction *!*/
+    /*--accent: #00ff11;*/
 
     /* Derived Colors */
     --border: #333333; /* Dark gray border for contrast against black */
@@ -233,11 +249,27 @@ body {
   src: url('/fonts/SpaceGrotesk-Light.ttf') format('woff2');
 }
 
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Inter-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/Inter-Medium.woff2') format('woff2');
+}
+
 
 
 /* Apply it globally */
 body {
-  font-family: 'Alliance No.2 Regular', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 h1,
@@ -282,4 +314,144 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+
+/* Amplify UI Overrides */
+[data-amplify-authenticator] [data-amplify-container] {
+  max-width: 100vw !important;
+  width: 100vw !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  padding: 0 !important; /* Remove padding so image touches edges */
+  min-height: 100vh;
+  border: 1px solid hsl(var(--border));
+}
+
+[data-amplify-authenticator] [data-amplify-container] > div:first-child {
+  flex: 0 0 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 4rem; /* Add padding back only to the form side */
+  background-color: var(--bg); /* Ensure background matches */
+}
+
+/*[data-amplify-authenticator] [data-amplify-container] > div {*/
+/*  margin-right: 10%; !* Adjust based on image width *!*/
+/*  max-width: 50%;*/
+/*}*/
+
+.auth-image {
+  flex: 0 0 50%;
+  background-image: url('/lockdin.svg'); /* Replace with your image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 768px) {
+  [data-amplify-authenticator] [data-amplify-container] {
+    flex-direction: column !important;
+  }
+  [data-amplify-authenticator] [data-amplify-container] > div:first-child,
+  .auth-image {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+  }
+  .auth-image {
+    height: 30vh; /* Smaller image on mobile */
+  }
+}
+
+/* Sign up form fields */
+[data-amplify-authenticator] fieldset.amplify-flex {
+  @apply xl:w-full xl:max-w-4xl md:w-[40vw] w-full flex flex-col;
+}
+
+/* Amplify Sign In Form */
+[data-amplify-authenticator] div.amplify-flex {
+  @apply w-full ;
+}
+
+/* Amplify Form Labels*/
+[data-amplify-authenticator] label.amplify-label {
+  @apply text-xs text-left font-medium hidden;
+}
+
+[data-amplify-authenticator] [data-amplify-form] {
+  @apply flex justify-center w-full
+}
+
+[data-amplify-authenticator] [data-variation] {
+  @apply w-full  flex justify-center;
+}
+
+[data-amplify-authenticator] .amplify-fieldset__legend {
+  @apply text-sm font-medium mt-4;
+}
+
+[data-amplify-authenticator] .amplify-radiogroupfield {
+  @apply mt-1 flex flex-col gap-y-1;
+}
+
+/* Amplify Sing Up Form: Hide Legend Label */
+[data-amplify-authenticator] legend.amplify-visually-hidden {
+  @apply hidden;
+}
+
+/* Amplify Sign Up Form: Gap Between Roles */
+[data-amplify-authenticator] div.flex.flex-col.text-sm.items-start {
+  @apply gap-y-1;
+}
+
+/* Amplify Sign Up Form:  */
+[data-amplify-authenticator] span.amplify-visually-hidden {
+  @apply hidden
+}
+
+[data-amplify-authenticator] div.amplify-field-group--horizontal {
+  @apply flex items-center rounded-[8px] p-1 justify-stretch border border-border  w-full;
+}
+
+[data-amplify-authenticator] .amplify-textfield {
+  @apply mt-4 flex flex-col gap-y-2;
+}
+
+/* Cognito Input Field */
+[data-amplify-authenticator] input.amplify-field-group__control {
+  /*padding: 1rem !important;*/
+  @apply p-2 w-full ;
+  @apply bg-transparent text-xs outline-none border-none ring-0;
+}
+
+[data-amplify-authenticator] .amplify-field-group__outer-end {
+  @apply h-full w-full px-2 flex flex-1;
+}
+
+[data-amplify-authenticator] .amplify-field-group__field-wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
+  @apply w-full flex items-stretch justify-stretch h-full;
+}
+
+[data-amplify-authenticator] .amplify-tabs__list {
+  display: none;
+}
+
+
+
+[data-amplify-authenticator] .amplify-button--primary {
+  height: 2.75rem;
+  margin-top: 1rem;
+  /*background-color: hsl(var(--primary)) !important;*/
+  @apply bg-[#1e2914] text-[#fff] font-bold hover:bg-[#1e2914]/80 capitalize hover:text-[#fff] hover:border hover:border-border;
+  @apply font-medium;
+  @apply w-full  text-xs tracking-tighter  rounded-full;
+}
+
+[data-amplify-authenticator] p.text-muted-foreground {
+  @apply text-sm
 }
