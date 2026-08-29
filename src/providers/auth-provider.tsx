@@ -255,7 +255,7 @@ const Auth = ({children}: { children: React.ReactNode }) => {
             {/*<p className="absolute font-getai z-5 text-[#1e2914] text-2xl tracking-[-2px] m-5">*/}
             {/*    Lockdin<sup>®</sup>*/}
             {/*</p>*/}
-            <div className="flex relative max-sm:mt-[20vh]  mt-[30vh] w-full items-center justify-center lg:w-1/2">
+            <div className="flex relative max-sm:mt-[5vh]  mt-[30vh] w-full items-center justify-center lg:w-1/2">
 
                 <Authenticator
                     components={components}
@@ -264,7 +264,7 @@ const Auth = ({children}: { children: React.ReactNode }) => {
                 >
                     {() => <div />}
                 </Authenticator>
-                <div className="absolute w-full max-sm:bottom-10 bottom-20 flex flex-col items-center z-5 ">
+                <div className="absolute w-full bottom-20 flex flex-col items-center z-5 ">
                     <p className={"text-[#1e2914] font-getai text-xl tracking-[-2px]"}>
                         Lockdin<sup>®</sup>
                     </p>
