@@ -446,6 +446,32 @@ code {
 }
 
 
+[data-amplify-authenticator] button.amplify-button.amplify-field-group__control {
+  @apply mt-4 text-sm max-sm:underline;
+}
+
+[data-amplify-authenticator] div.amplify-flex.amplify-alert.amplify-alert--error {
+  @apply text-red-500 text-xs flex items-center gap-x-2 text-left pt-1;
+}
+
+.amplify-loader {
+  width: 2.5rem;
+  height: 2.5rem;
+  @apply hidden;
+  color: #1e2914;
+}
+
+.amplify-loader svg {
+  stroke: #1e2914;
+}
+
+.amplify-loader circle {
+  stroke: #d7f5dc;
+}
+
+.amplify-loader path {
+  stroke: #1e2914;
+}
 
 [data-amplify-authenticator] .amplify-button--primary {
   height: 2.75rem;
@@ -453,7 +479,7 @@ code {
   /*background-color: hsl(var(--primary)) !important;*/
   @apply bg-[#1e2914] text-[#fff] font-bold hover:bg-[#1e2914]/80 capitalize hover:text-[#fff] hover:border hover:border-border;
   @apply font-medium;
-  @apply w-full  text-xs tracking-tighter  rounded-full;
+  @apply w-full  text-xs tracking-tighter no-underline rounded-full !important;
 }
 
 [data-amplify-authenticator] p.text-muted-foreground {

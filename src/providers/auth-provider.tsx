@@ -16,6 +16,18 @@ Amplify.configure({
 
 const components = {
     SignIn: {
+        Loading() {
+            return (
+                <View className="flex min-h-[300px] w-full items-center justify-center">
+                    <div className="flex flex-col items-center gap-4">
+                        <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#d7f5dc] border-t-[#1e2914]" />
+                        <p className="font-inter text-xs tracking-tight text-[#7b7194]">
+                            Getting things ready...
+                        </p>
+                    </div>
+                </View>
+            )
+        },
         Header() {
             return (
                 <View className={"mt-4 flex flex-col max-sm:items-center items-start "}>
@@ -69,6 +81,18 @@ const components = {
         }
     },
     SignUp: {
+        Loading() {
+            return (
+                <View className="flex min-h-[300px] w-full items-center justify-center">
+                    <div className="flex flex-col items-center gap-4">
+                        <div className="h-10 w-10 animate-spin rounded-full border-2 border-[#d7f5dc] border-t-[#1e2914]" />
+                        <p className="font-inter text-xs tracking-tight text-[#7b7194]">
+                            Getting things ready...
+                        </p>
+                    </div>
+                </View>
+            )
+        },
         Header() {
             return (
                 <View className={"mt-4 flex flex-col max-sm:items-center items-start "}>
