@@ -224,10 +224,10 @@ const Auth = ({children}: { children: React.ReactNode }) => {
     // Determine slide direction
     const [direction, setDirection] = useState(0);
 
-    const handleSlideChange = (index: number) => {
-        setDirection(index > currentSlide ? 0 : -1);
-        setCurrentSlide(index);
-    };
+    // const handleSlideChange = (index: number) => {
+    //     setDirection(index > currentSlide ? 0 : -1);
+    //     setCurrentSlide(index);
+    // };
 
     const autoAdvance = () => {
         setDirection(1); // Always slide left for auto-advance
@@ -302,31 +302,31 @@ const Auth = ({children}: { children: React.ReactNode }) => {
 
                         {/* Caption - Animate separately so it doesn't slide with the image */}
                         <div className="relative z-10 flex h-full flex-col justify-end p-12">
-                            <h2
-                                key={currentSlide} // Re-animate caption
-                                className="text-4xl font-bold text-white"
-                            >
-                                {SLIDES[currentSlide].caption}
-                            </h2>
+                            {/*<h2*/}
+                            {/*    key={currentSlide} // Re-animate caption*/}
+                            {/*    className="text-4xl font-bold text-white"*/}
+                            {/*>*/}
+                            {/*    {SLIDES[currentSlide].caption}*/}
+                            {/*</h2>*/}
                         </div>
                     </motion.div>
                 </AnimatePresence>
 
                 {/* Indicators */}
-                <div className="absolute bottom-8 left-0 right-0 z-20 flex justify-center gap-3">
-                    {SLIDES.map((_, index) => (
-                        <button
-                            key={index}
-                            onClick={() => handleSlideChange(index)}
-                            className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
-                                currentSlide === index
-                                    ? 'w-8 bg-[#00ff11] shadow-[0_0_10px_rgba(0,255,17,0.5)]'
-                                    : 'bg-white/40 hover:bg-white/60'
-                            }`}
-                            aria-label={`Go to slide ${index + 1}`}
-                        />
-                    ))}
-                </div>
+                {/*<div className="absolute bottom-8 left-0 right-0 z-20 flex justify-center gap-3">*/}
+                {/*    {SLIDES.map((_, index) => (*/}
+                {/*        <button*/}
+                {/*            key={index}*/}
+                {/*            onClick={() => handleSlideChange(index)}*/}
+                {/*            className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${*/}
+                {/*                currentSlide === index*/}
+                {/*                    ? 'w-8 bg-[#00ff11] shadow-[0_0_10px_rgba(0,255,17,0.5)]'*/}
+                {/*                    : 'bg-white/40 hover:bg-white/60'*/}
+                {/*            }`}*/}
+                {/*            aria-label={`Go to slide ${index + 1}`}*/}
+                {/*        />*/}
+                {/*    ))}*/}
+                {/*</div>*/}
             </div>
 
 
