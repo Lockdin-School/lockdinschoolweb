@@ -47,6 +47,7 @@ const components = {
                         >
                             Privacy Policy
                         </button>
+                        .
                     </p>
                     <p className="text-xs tracking-tighter text-[#7b7194]">
                         Don't have an account? {" "}
@@ -93,6 +94,7 @@ const components = {
                         >
                             Privacy Policy
                         </button>
+                        .
                     </p>
                     <p className="text-xs tracking-tighter text-[#7b7194]">
                         Already have an account? {" "}
@@ -253,7 +255,7 @@ const Auth = ({children}: { children: React.ReactNode }) => {
             {/*<p className="absolute font-getai z-5 text-[#1e2914] text-2xl tracking-[-2px] m-5">*/}
             {/*    Lockdin<sup>®</sup>*/}
             {/*</p>*/}
-            <div className="flex relative  mt-[30vh] w-full items-center justify-center lg:w-1/2">
+            <div className="flex relative max-sm:mt-[20vh]  mt-[30vh] w-full items-center justify-center lg:w-1/2">
 
                 <Authenticator
                     components={components}
@@ -262,7 +264,7 @@ const Auth = ({children}: { children: React.ReactNode }) => {
                 >
                     {() => <div />}
                 </Authenticator>
-                <div className="absolute w-full bottom-20 flex flex-col items-center z-5 ">
+                <div className="absolute w-full max-sm:bottom-10 bottom-20 flex flex-col items-center z-5 ">
                     <p className={"text-[#1e2914] font-getai text-xl tracking-[-2px]"}>
                         Lockdin<sup>®</sup>
                     </p>
@@ -300,16 +302,12 @@ const Auth = ({children}: { children: React.ReactNode }) => {
 
                         {/* Caption - Animate separately so it doesn't slide with the image */}
                         <div className="relative z-10 flex h-full flex-col justify-end p-12">
-                            <motion.h2
+                            <h2
                                 key={currentSlide} // Re-animate caption
-                                initial={{ y: 20, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                exit={{ y: -20, opacity: 0 }}
-                                transition={{ duration: 0.3, delay: 0.2 }}
                                 className="text-4xl font-bold text-white"
                             >
                                 {SLIDES[currentSlide].caption}
-                            </motion.h2>
+                            </h2>
                         </div>
                     </motion.div>
                 </AnimatePresence>

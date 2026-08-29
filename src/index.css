@@ -368,12 +368,12 @@ code {
 
 /* Sign up form fields */
 [data-amplify-authenticator] fieldset.amplify-flex {
-  @apply xl:w-full xl:max-w-4xl md:w-[40vw] w-full flex flex-col;
+  @apply xl:w-full xl:max-w-4xl md:w-[40vw] w-full  flex flex-col;
 }
 
 /* Amplify Sign In Form */
 [data-amplify-authenticator] div.amplify-flex {
-  @apply w-full ;
+  @apply max-sm:w-[90vw] ;
 }
 
 /* Amplify Form Labels*/
