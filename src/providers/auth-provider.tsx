@@ -15,6 +15,20 @@ Amplify.configure({
 });
 
 const components = {
+    ConfirmSignUp: {
+        Header() {
+            return (
+                <View className={"mt-4 flex flex-col max-sm:items-center items-start "}>
+                    <img
+                        src="/logo/logo-gw.svg"
+                        alt="Lockdin School Logo"
+                        className="w-16 h-16 mb-5"
+                    />
+                    <p className="font-inter text-text text-3xl tracking-tighter pb-5 py-2">Confirm Email</p>
+                </View>
+            )
+        },
+    },
     SignIn: {
         Loading() {
             return (
