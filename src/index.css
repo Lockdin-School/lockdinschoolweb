@@ -381,6 +381,10 @@ code {
   @apply text-xs text-left font-medium hidden;
 }
 
+[data-amplify-authenticator] p.amplify-text.amplify-text--error {
+  @apply text-red-500 text-xs text-left pt-1;
+}
+
 [data-amplify-authenticator] [data-amplify-form] {
   @apply flex justify-center w-full
 }
