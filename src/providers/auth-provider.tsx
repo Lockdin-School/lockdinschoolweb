@@ -31,6 +31,8 @@ const components = {
         },
         Footer() {
             const {toSignUp} = useAuthenticator();
+            const navigate = useNavigate();
+
             return (
                 <View className={"mt-5 space-y-5"}>
                     <p className="text-xs tracking-tighter text-[#7b7194]">
@@ -50,9 +52,13 @@ const components = {
                         .
                     </p>
                     <p className="text-xs tracking-tighter text-[#7b7194]">
-                        Don't have an account? {" "}
+                        Don&apos;t have an account?{" "}
                         <button
-                            onClick={toSignUp}
+                            type={"button"}
+                            onClick={() => {
+                                toSignUp();
+                                void navigate({to: '/signup', replace: true})
+                            }}
                             className="text-text hover:underline"
                         >
                             Sign up
@@ -78,6 +84,7 @@ const components = {
         },
         Footer() {
             const {toSignIn} = useAuthenticator();
+            const navigate = useNavigate();
             return (
                 <View className={"mt-5 space-y-5"}>
                     <p className="text-xs tracking-tighter text-[#7b7194]">
@@ -99,7 +106,12 @@ const components = {
                     <p className="text-xs tracking-tighter text-[#7b7194]">
                         Already have an account? {" "}
                         <button
-                            onClick={toSignIn}
+                            type={"button"}
+                            onClick={
+                                () => {
+                                    toSignIn();
+                                    void navigate({to: '/signin', replace: true});
+                                }}
                             className="text-text text-[#0088ff] hover:underline"
                         >
                             Sign in here
@@ -125,26 +137,20 @@ const formFields = {
         },
     },
     signUp: {
-        username: {
-            order: 1,
-            label: 'Username',
-            placeholder: 'Choose a username',
-            isRequired: true,
-        },
         email: {
-            order: 2,
+            order: 1,
             label: 'Email',
             placeholder: 'Enter your email address',
             isRequired: true,
         },
         password: {
-            order: 3,
+            order: 2,
             label: 'Password',
             placeholder: 'Create a password',
             isRequired: true,
         },
         confirm_password: {
-            order: 4,
+            order: 3,
             label: 'Confirm Password',
             placeholder: 'Confirm your password',
             isRequired: true,
@@ -174,7 +180,7 @@ const Auth = ({children}: { children: React.ReactNode }) => {
     const pathname = useLocation({select: (location) => location.pathname})
     const navigate = useNavigate();
 
-    const isAuthPage = pathname.match(/^\/(signin|signup)$/);
+    const isAuthPage = /^\/(signin|signup)\/?$/.test(pathname);
     const isDashboard = pathname.startsWith("/dashboard");
 
     // Redirect to dashboard if the user is authenticated
@@ -258,8 +264,11 @@ const Auth = ({children}: { children: React.ReactNode }) => {
             <div className="flex relative max-sm:mt-[5vh]  mt-[30vh] w-full items-center justify-center lg:w-1/2">
 
                 <Authenticator
+                    key={pathname.includes("signup") ? "signup" : "signin"}
                     components={components}
                     formFields={formFields}
+                    loginMechanisms={['email']}
+                    signUpAttributes={['email']}
                     initialState={pathname.includes("signup") ? "signUp" : "signIn"}
                 >
                     {() => <div />}
