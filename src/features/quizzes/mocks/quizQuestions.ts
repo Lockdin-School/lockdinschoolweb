@@ -1,4 +1,4 @@
-import type {QuizQuestion} from "../../../components/QuizQuestion.tsx";
+import type {QuizQuestion} from "@/components/QuizQuestion.tsx";
 
 export const mockQuizQuestions: QuizQuestion[] = [
     {

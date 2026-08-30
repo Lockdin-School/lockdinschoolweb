@@ -5,5 +5,5 @@ export const Route = createFileRoute('/signin')({
 })
 
 function RouteComponent() {
-  return null
+  return <></>
 }

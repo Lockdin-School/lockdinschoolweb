@@ -213,6 +213,7 @@ const SLIDES = [
 const Auth = ({children}: { children: React.ReactNode }) => {
 
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [direction, setDirection] = useState(0);
 
     const {user} = useAuthenticator((context) => [context.user]);
     const pathname = useLocation({select: (location) => location.pathname})
@@ -221,7 +222,36 @@ const Auth = ({children}: { children: React.ReactNode }) => {
     const isAuthPage = /^\/(signin|signup)\/?$/.test(pathname);
     const isDashboard = pathname.startsWith("/dashboard");
 
-    // Redirect to dashboard if the user is authenticated
+
+
+    const autoAdvance = () => {
+        setDirection(1); // Always slide left for auto-advance
+        setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
+    };
+
+    useEffect(()=> {
+        if (!user && isDashboard) {
+            navigate({
+                to: '/signin',
+                replace: true,
+            }).then()
+        }
+
+        if (user && isAuthPage) {
+            navigate({to: '/dashboard'}).then()
+        }
+
+
+        const timer = setInterval(autoAdvance, 6000);
+        return () => clearInterval(timer);
+
+    }, [isAuthPage, user, navigate, currentSlide]);
+    useEffect(() => {
+        if (!isAuthPage) return;
+
+        const timer = setInterval(autoAdvance, 6000);
+        return () => clearInterval(timer);
+    }, [isAuthPage]);
 
 
     // Variants for a "Push" effect
@@ -242,53 +272,22 @@ const Auth = ({children}: { children: React.ReactNode }) => {
             zIndex: 1,
         }),
     };
-
-    useEffect(()=> {
-
-
-
-        if (!user && isDashboard) {
-            navigate({
-                to: '/signin',
-                replace: true,
-            }).then()
-        }
-
-        if (user && isAuthPage) {
-            navigate({to: '/dashboard'}).then()
-        }
-
-
-        const timer = setInterval(autoAdvance, 6000);
-        return () => clearInterval(timer);
-
-    }, [isAuthPage, user, navigate, currentSlide]);
-
-
     // Determine slide direction
-    const [direction, setDirection] = useState(0);
+
 
     // const handleSlideChange = (index: number) => {
     //     setDirection(index > currentSlide ? 0 : -1);
     //     setCurrentSlide(index);
     // };
 
-    const autoAdvance = () => {
-        setDirection(1); // Always slide left for auto-advance
-        setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
-    };
+
 
     // Allow access to public pages without authentication
     if (!isAuthPage && !isDashboard) {
         return <>{children}</>;
     }
 
-    useEffect(() => {
-        if (!isAuthPage) return;
 
-        const timer = setInterval(autoAdvance, 6000);
-        return () => clearInterval(timer);
-    }, [isAuthPage, currentSlide]);
 
     if (!isAuthPage) {
         return <>{children}</>;

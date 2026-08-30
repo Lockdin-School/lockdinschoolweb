@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
+import {createFileRoute, useNavigate} from '@tanstack/react-router'
 
 
 export const Route = createFileRoute('/')({
@@ -6,6 +6,7 @@ export const Route = createFileRoute('/')({
 })
 
 function App() {
+    const navigate = useNavigate();
   return (
       <>
         <header className="w-full flex justify-center border-b border-[#a2a2a2] h-[8vh] ">
@@ -21,7 +22,7 @@ function App() {
             <p className="px-px text-xl font-space-medium tracking-tight">Quality learning, now accessible to all.</p>
             <div className="flex items-center gap-2">
               {/*<Link to={"/manifesto"} className="text-xs bg-text text-bg hover:underline p-4 py-6 my-10">Read Our Manifesto</Link>*/}
-              <Link to={"/signin"} className="text-xs border border-[#a2a2a2] hover:underline p-4 py-6 my-10">Sign In</Link>
+              <button onClick={()=> { void navigate({ to: '/signin' })}} className="text-xs border border-[#a2a2a2] hover:underline p-4 py-6 my-10">Sign In</button>
             </div>
           </section>
         </main>
