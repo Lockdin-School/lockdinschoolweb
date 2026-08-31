@@ -9,7 +9,7 @@
   --bg: #f0fff4 !important; /* Light gray/off-white */
   --text: #1a1a1a !important; /* Ensure text is dark enough for contrast */
   --code-bg: #e9ecef !important; /* Slightly darker off-white for code blocks */
-  --border: #dedee0 !important; /* Softer border for off-white bg */
+  --border: #1e2914 !important; /* Softer border for off-white bg */
 }
 
 :root {
@@ -18,7 +18,7 @@
   --bg: #f0fff4 !important; /* Light gray/off-white */
   --text: #1a1a1a !important; /* Ensure text is dark enough for contrast */
   --code-bg: #e9ecef !important; /* Slightly darker off-white for code blocks */
-  --border: #dedee0 !important; /* Softer border for off-white bg */
+  --border: #1e2914 !important; /* Softer border for off-white bg */
 
 
   --text-h: #000000;

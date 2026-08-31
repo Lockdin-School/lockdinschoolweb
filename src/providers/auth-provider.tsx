@@ -210,6 +210,7 @@ const SLIDES = [
     }
 ];
 
+
 const Auth = ({children}: { children: React.ReactNode }) => {
 
     const [currentSlide, setCurrentSlide] = useState(0);

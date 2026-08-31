@@ -13,7 +13,11 @@ function App() {
           <div className="flex w-[80vw] gap-4 py-3 items-center">
             <p className="font-getai text-text text-2xl tracking-tight pt-2">Lockdin<sup>®</sup></p>
             <div className='w-px bg-text h-8' />
-            <button className="bg-accent px-5 py-2 text-xs text-black border-text">Create account</button>
+            <button
+                onClick={()=> { void navigate({ to: '/signup' })}}
+                className="bg-accent px-5 py-2 text-xs text-black border-text">
+                Create account
+            </button>
           </div>
         </header>
         <main className="h-[80vh] w-full flex flex-col items-center justify-center ">
@@ -22,7 +26,9 @@ function App() {
             <p className="px-px text-xl font-space-medium tracking-tight">Quality learning, now accessible to all.</p>
             <div className="flex items-center gap-2">
               {/*<Link to={"/manifesto"} className="text-xs bg-text text-bg hover:underline p-4 py-6 my-10">Read Our Manifesto</Link>*/}
-              <button onClick={()=> { void navigate({ to: '/signin' })}} className="text-xs border border-[#a2a2a2] hover:underline p-4 py-6 my-10">Sign In</button>
+              <button
+                  onClick={()=> { void navigate({ to: '/signin' })}}
+                  className="text-xs border border-[#a2a2a2] hover:underline p-4 py-6 my-10">Sign In</button>
             </div>
           </section>
         </main>
