@@ -1,6 +1,6 @@
 export function DashboardSkeleton() {
     return (
-        <section className="flex h-[80vh] w-[98vw] py-5 flex-col items-center">
+        <section className="flex h-[80vh] w-[98vw] py-5 mt-20 flex-col items-center">
             <div className="w-full px-2 pb-5">
                 <div className="mb-2 h-4 w-44 animate-pulse rounded bg-border" />
                 <div className="h-4 w-72 animate-pulse rounded bg-border" />

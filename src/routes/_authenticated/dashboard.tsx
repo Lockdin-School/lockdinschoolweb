@@ -45,13 +45,13 @@ function Dashboard() {
     return (
         <div className="w-full min-h-screen flex gap-5 flex-col items-center">
             <AppHeader/>
-            <section className="flex flex-col items-center w-[98vw] mt-16 h-[80vh]">
-                <p className="w-full max-w-7xl max-sm:px-2 pb-5 tracking-tight text-start">
+            <section className="flex flex-col items-center w-[98vw] mt-20 h-[80vh]">
+                <p className="w-full max-w-7xl max-sm:px-4 pb-5 tracking-tight text-start">
                     <span className="text-lg py-2 block">Welcome, <b className={"capitalize"}>{studentProfile?.firstName}!</b><br /></span>
                     Build consistency, master concepts, and make progress every day.
                     All the best!
                 </p>
-                <main className="max-w-7xl max-sm:px-2 w-full gap-5 flex flex-col items-start">
+                <main className="max-w-7xl max-sm:px-4 w-full gap-5 flex flex-col items-start">
                     <div className="flex flex-col items-start">
                         <p className="w-full text-xs tracking-tight text-bg bg-border border py-2 px-3 border-border self-start">Subjects</p>
                     </div>

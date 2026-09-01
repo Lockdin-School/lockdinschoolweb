@@ -19,7 +19,7 @@ const AppHeader = () => {
                         <button
                             onClick={() => setMenuOpen(true)}
                             type="button"
-                            className="flex border border-border items-center justify-center"
+                            className="flex  rounded-lg border-border items-center justify-center"
                             aria-label="Open menu"
                         >
                             <HugeiconsIcon
