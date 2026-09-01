@@ -46,10 +46,10 @@ function Dashboard() {
         <div className="w-full min-h-screen flex gap-5 flex-col items-center">
             <AppHeader/>
             <section className="flex flex-col items-center w-[98vw] mt-20 h-[80vh]">
-                <p className="w-full max-w-7xl max-sm:px-4 pb-5 tracking-tight text-start">
+                <p className="w-full max-w-7xl text-[16px] max-sm:px-4 pb-5 tracking-tighter text-start">
                     <span className="text-lg py-2 block">Welcome, <b className={"capitalize"}>{studentProfile?.firstName}!</b><br /></span>
-                    Build consistency, master concepts, and make progress every day.
-                    All the best!
+                    Your learning space is ready.
+                    What are we learning today? <br />
                 </p>
                 <main className="max-w-7xl max-sm:px-4 w-full gap-5 flex flex-col items-start">
                     <div className="flex flex-col items-start">
