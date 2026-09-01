@@ -11,7 +11,7 @@ const AppHeader = () => {
 
     return (
         <>
-            <header className="w-full fixed  border-b border-border">
+            <header className="w-full fixed  sm:border-b border-border">
                 <div className="mx-auto flex h-16 w-full items-center justify-between px-4 sm:px-6 ">
 
                     {/* Left */}

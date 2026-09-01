@@ -34,7 +34,7 @@ export default defineConfig({
             ],
             manifest: {
                 name: 'Lockdin School',
-                short_name: 'Lockdin',
+                short_name: 'Lockdin School',
                 description: 'House of Merit',
                 theme_color: '#f8fff9',
                 background_color: '#f8fff9',

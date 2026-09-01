@@ -222,6 +222,7 @@ const Auth = ({children}: { children: React.ReactNode }) => {
 
     const isAuthPage = /^\/(signin|signup)\/?$/.test(pathname);
     const isDashboard = pathname.startsWith("/dashboard");
+    const isIndex = pathname === "/";
 
 
 
@@ -239,6 +240,10 @@ const Auth = ({children}: { children: React.ReactNode }) => {
         }
 
         if (user && isAuthPage) {
+            navigate({to: '/dashboard'}).then()
+        }
+
+        if (user && isIndex) {
             navigate({to: '/dashboard'}).then()
         }
 

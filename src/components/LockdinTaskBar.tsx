@@ -21,7 +21,7 @@ const taskBarItems: TaskBarItem[] = [
     },
     {
         label: "Learn",
-        href: "/subjects",
+        href: "/learn",
         icon: BookOpen01Icon,
     },
     // {
