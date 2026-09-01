@@ -5,5 +5,5 @@ export const Route = createFileRoute('/_authenticated/subjects/$subjectId/')({
 })
 
 function SubjectOverviewPage() {
-    return <div>Hello Subject Overview!</div>
+    return <div className="mt-16 py-5">Hello Subject Overview!</div>
 }

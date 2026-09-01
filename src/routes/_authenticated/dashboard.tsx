@@ -43,9 +43,9 @@ function Dashboard() {
     if (isError) return <div>Error: {error.message}</div>
 
     return (
-        <div className="w-full h-full flex gap-5 flex-col items-center">
+        <div className="w-full min-h-screen flex gap-5 flex-col items-center">
             <AppHeader/>
-            <section className="flex flex-col items-center w-[98vw] h-[80vh]">
+            <section className="flex flex-col items-center w-[98vw] mt-16 h-[80vh]">
                 <p className="w-full max-w-7xl max-sm:px-2 pb-5 tracking-tight text-start">
                     <span className="text-lg py-2 block">Welcome, <b className={"capitalize"}>{studentProfile?.firstName}!</b><br /></span>
                     Build consistency, master concepts, and make progress every day.

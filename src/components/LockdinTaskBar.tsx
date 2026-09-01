@@ -40,7 +40,7 @@ export function LockdinTaskBar() {
     const pathname = useLocation({select: (location) => location.pathname});
 
     return (
-        <nav className="fixed bottom-0 left-1/2 z-50 w-full max-w-md -translate-x-1/2 rounded-t-2xl  bg-bg/95 px-2 py-2 shadow-custom backdrop-blur">
+        <nav className="fixed lg:hidden bottom-0 left-1/2 z-30 w-full max-w-md -translate-x-1/2 rounded-t-2xl  bg-bg/95 px-2 py-1 shadow-custom backdrop-blur">
             <div className="grid grid-cols-3 gap-1">
                 {taskBarItems.map((item) => {
                     const isActive = pathname === item.href ||
