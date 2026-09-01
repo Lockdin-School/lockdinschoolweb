@@ -1,12 +1,12 @@
 export function DashboardSkeleton() {
     return (
         <section className="flex h-[80vh] w-[98vw] py-5 mt-20 flex-col items-center">
-            <div className="w-full px-2 pb-5">
+            <div className="w-full px-4 pb-5">
                 <div className="mb-2 h-4 w-44 animate-pulse rounded bg-border" />
                 <div className="h-4 w-72 animate-pulse rounded bg-border" />
             </div>
 
-            <main className="flex w-full max-w-7xl flex-col items-start gap-5 max-sm:px-2">
+            <main className="flex w-full max-w-7xl flex-col items-start gap-5 max-sm:px-4">
                 <div className="flex flex-col items-start">
                     <div className="h-8 w-24 animate-pulse rounded border border-border bg-border" />
                 </div>
