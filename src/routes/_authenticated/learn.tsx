@@ -2,7 +2,7 @@ import {createFileRoute} from '@tanstack/react-router'
 import SubjectHeader from "@/components/headers/SubjectHeader.tsx";
 import {useSubjects} from "@/api/subjects/queries/useSubjects.ts";
 import {HugeiconsIcon} from "@hugeicons/react";
-import {ChevronDownIcon} from "@hugeicons/core-free-icons";
+import { ChevronRightIcon} from "@hugeicons/core-free-icons";
 
 export const Route = createFileRoute('/_authenticated/learn')({
     component: LearningTree,
@@ -25,8 +25,8 @@ function LearningTree() {
                     <div className={"py-4"}>
                         {
                             subjects.map((subject, index) => (
-                                <button key={index} className="text-start gap-y-0 hover:cursor-pointer w-full flex items-center gap-x-2 ">
-                                    <b key={index} className="tracking-tighter">{subject.title}</b> <HugeiconsIcon size={20} icon={ChevronDownIcon} />
+                                <button key={index} className="text-start text-lg gap-y-0 hover:cursor-pointer w-full flex items-center gap-x-2 ">
+                                    <b key={index} className="tracking-tighter">{subject.title}</b> <HugeiconsIcon size={20} icon={ChevronRightIcon} />
                                 </button>
                             ))
                         }
@@ -36,3 +36,6 @@ function LearningTree() {
         </div>
     )
 }
+
+
+
