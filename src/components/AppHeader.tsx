@@ -24,7 +24,7 @@ const AppHeader = () => {
                         >
                             <HugeiconsIcon
                                 size={38}
-                                className=" mx-1"
+                                className=""
                                 icon={MenuTwoLineIcon}
                             />
                         </button>
