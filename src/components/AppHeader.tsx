@@ -1,5 +1,5 @@
 import {HugeiconsIcon} from "@hugeicons/react";
-import {BellIcon, MenuTwoLineIcon, SearchIcon} from "@hugeicons/core-free-icons";
+import {BellIcon, MenuTwoLineIcon} from "@hugeicons/core-free-icons";
 import {useState} from "react";
 import ResponsiveMenu from "./ResponsiveMenu.tsx";
 import {useAuthUser} from "@/api/auth/queries/useAuthUser.ts";
@@ -29,19 +29,19 @@ const AppHeader = () => {
                             />
                         </button>
 
-                        {/* Search */}
-                        <form
-                            className="flex items-center gap-2 text-sm text-[#777] sm:w-48 sm:border sm:border-border rounded sm:px-3 sm:py-2"
-                        >
-                            <HugeiconsIcon
-                                size={20}
-                                className="text-[#1e2914]"
-                                strokeWidth={2}
-                                icon={SearchIcon}
-                            />
+                        {/*/!* Search *!/*/}
+                        {/*<form*/}
+                        {/*    className="flex items-center gap-2 text-sm text-[#777] sm:w-48 sm:border sm:border-border rounded sm:px-3 sm:py-2"*/}
+                        {/*>*/}
+                        {/*    <HugeiconsIcon*/}
+                        {/*        size={20}*/}
+                        {/*        className="text-[#1e2914]"*/}
+                        {/*        strokeWidth={2}*/}
+                        {/*        icon={SearchIcon}*/}
+                        {/*    />*/}
 
-                            <input className="hidden sm:inline outline-none bg-transparent w-full" type="text" />
-                        </form>
+                        {/*    <input className="hidden sm:inline outline-none bg-transparent w-full" type="text" />*/}
+                        {/*</form>*/}
                     </div>
 
                     {/* Right */}
