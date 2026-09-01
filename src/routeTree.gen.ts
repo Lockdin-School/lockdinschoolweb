@@ -16,6 +16,8 @@ import { Route as SignoutRouteImport } from './routes/signout'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
+import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedSubjectsRouteImport } from './routes/_authenticated/subjects'
 import { Route as AuthenticatedSubjectsSubjectIdRouteImport } from './routes/_authenticated/subjects.$subjectId'
 import { Route as AuthenticatedSubjectsSubjectIdIndexRouteImport } from './routes/_authenticated/subjects.$subjectId.index'
 import { Route as AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteImport } from './routes/_authenticated/subjects.$subjectId.topics.$topicId'
@@ -58,11 +60,21 @@ const AuthenticatedOnboardingRoute = AuthenticatedOnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedSubjectsRoute = AuthenticatedSubjectsRouteImport.update({
+  id: '/subjects',
+  path: '/subjects',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
 const AuthenticatedSubjectsSubjectIdRoute =
   AuthenticatedSubjectsSubjectIdRouteImport.update({
-    id: '/subjects/$subjectId',
-    path: '/subjects/$subjectId',
-    getParentRoute: () => AuthenticatedRoute,
+    id: '/$subjectId',
+    path: '/$subjectId',
+    getParentRoute: () => AuthenticatedSubjectsRoute,
   } as any)
 const AuthenticatedSubjectsSubjectIdIndexRoute =
   AuthenticatedSubjectsSubjectIdIndexRouteImport.update({
@@ -116,6 +128,8 @@ export interface FileRoutesByFullPath {
   '/signup': typeof SignupRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/subjects': typeof AuthenticatedSubjectsRouteWithChildren
   '/subjects/$subjectId': typeof AuthenticatedSubjectsSubjectIdRouteWithChildren
   '/subjects/$subjectId/': typeof AuthenticatedSubjectsSubjectIdIndexRoute
   '/subjects/$subjectId/topics/$topicId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteWithChildren
@@ -131,6 +145,8 @@ export interface FileRoutesByTo {
   '/signup': typeof SignupRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/subjects': typeof AuthenticatedSubjectsRouteWithChildren
   '/subjects/$subjectId': typeof AuthenticatedSubjectsSubjectIdIndexRoute
   '/subjects/$subjectId/topics/$topicId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteWithChildren
   '/subjects/$subjectId/topics/$topicId/exercises/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
@@ -147,6 +163,8 @@ export interface FileRoutesById {
   '/signup': typeof SignupRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
+  '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/subjects': typeof AuthenticatedSubjectsRouteWithChildren
   '/_authenticated/subjects/$subjectId': typeof AuthenticatedSubjectsSubjectIdRouteWithChildren
   '/_authenticated/subjects/$subjectId/': typeof AuthenticatedSubjectsSubjectIdIndexRoute
   '/_authenticated/subjects/$subjectId/topics/$topicId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteWithChildren
@@ -164,6 +182,8 @@ export interface FileRouteTypes {
     | '/signup'
     | '/dashboard'
     | '/onboarding'
+    | '/profile'
+    | '/subjects'
     | '/subjects/$subjectId'
     | '/subjects/$subjectId/'
     | '/subjects/$subjectId/topics/$topicId'
@@ -179,6 +199,8 @@ export interface FileRouteTypes {
     | '/signup'
     | '/dashboard'
     | '/onboarding'
+    | '/profile'
+    | '/subjects'
     | '/subjects/$subjectId'
     | '/subjects/$subjectId/topics/$topicId'
     | '/subjects/$subjectId/topics/$topicId/exercises/$materialId'
@@ -194,6 +216,8 @@ export interface FileRouteTypes {
     | '/signup'
     | '/_authenticated/dashboard'
     | '/_authenticated/onboarding'
+    | '/_authenticated/profile'
+    | '/_authenticated/subjects'
     | '/_authenticated/subjects/$subjectId'
     | '/_authenticated/subjects/$subjectId/'
     | '/_authenticated/subjects/$subjectId/topics/$topicId'
@@ -262,12 +286,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOnboardingRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/profile': {
+      id: '/_authenticated/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AuthenticatedProfileRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/subjects': {
+      id: '/_authenticated/subjects'
+      path: '/subjects'
+      fullPath: '/subjects'
+      preLoaderRoute: typeof AuthenticatedSubjectsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/subjects/$subjectId': {
       id: '/_authenticated/subjects/$subjectId'
-      path: '/subjects/$subjectId'
+      path: '/$subjectId'
       fullPath: '/subjects/$subjectId'
       preLoaderRoute: typeof AuthenticatedSubjectsSubjectIdRouteImport
-      parentRoute: typeof AuthenticatedRoute
+      parentRoute: typeof AuthenticatedSubjectsRoute
     }
     '/_authenticated/subjects/$subjectId/': {
       id: '/_authenticated/subjects/$subjectId/'
@@ -356,17 +394,32 @@ const AuthenticatedSubjectsSubjectIdRouteWithChildren =
     AuthenticatedSubjectsSubjectIdRouteChildren,
   )
 
+interface AuthenticatedSubjectsRouteChildren {
+  AuthenticatedSubjectsSubjectIdRoute: typeof AuthenticatedSubjectsSubjectIdRouteWithChildren
+}
+
+const AuthenticatedSubjectsRouteChildren: AuthenticatedSubjectsRouteChildren = {
+  AuthenticatedSubjectsSubjectIdRoute:
+    AuthenticatedSubjectsSubjectIdRouteWithChildren,
+}
+
+const AuthenticatedSubjectsRouteWithChildren =
+  AuthenticatedSubjectsRoute._addFileChildren(
+    AuthenticatedSubjectsRouteChildren,
+  )
+
 interface AuthenticatedRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
-  AuthenticatedSubjectsSubjectIdRoute: typeof AuthenticatedSubjectsSubjectIdRouteWithChildren
+  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedSubjectsRoute: typeof AuthenticatedSubjectsRouteWithChildren
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
-  AuthenticatedSubjectsSubjectIdRoute:
-    AuthenticatedSubjectsSubjectIdRouteWithChildren,
+  AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedSubjectsRoute: AuthenticatedSubjectsRouteWithChildren,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(

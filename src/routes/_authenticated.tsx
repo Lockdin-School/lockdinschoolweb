@@ -3,6 +3,7 @@ import {useStudentProfile} from "@/api/student-profiles/queries/useStudentProfil
 import {useAuthUser} from "@/api/auth/queries/useAuthUser.ts";
 import {isStudentProfileNotFoundError} from "@/api/student-profiles/errors.ts";
 import {useEffect} from "react";
+import {LockdinTaskBar} from "@/components/LockdinTaskBar.tsx";
 
 export const Route = createFileRoute('/_authenticated')({
     component: AuthenticatedLayout,
@@ -129,5 +130,11 @@ function AuthenticatedLayout() {
     }
 
 
-    return <Outlet />
+
+    return (
+        <>
+            <Outlet />
+            {!isOnboardingRoute && <LockdinTaskBar />}
+        </>
+    )
 }

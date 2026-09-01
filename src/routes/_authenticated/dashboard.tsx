@@ -43,13 +43,13 @@ function Dashboard() {
     if (isError) return <div>Error: {error.message}</div>
 
     return (
-        <div className="w-full h-full flex gap-10 flex-col items-center">
+        <div className="w-full h-full flex gap-5 flex-col items-center">
             <AppHeader/>
             <section className="flex flex-col items-center w-[98vw] h-[80vh]">
-                <p className="w-full max-w-7xl text-sm max-sm:px-2 pb-5 tracking-tight text-start">
-                    <span className="text-lg py-2 block">Hello, <b className={"capitalize"}>{studentProfile?.firstName}!</b><br /></span>
-                    Everything is set. Build consistency, master concepts, and make progress every day. <br />
-                    Only the best!
+                <p className="w-full max-w-7xl max-sm:px-2 pb-5 tracking-tight text-start">
+                    <span className="text-lg py-2 block">Welcome, <b className={"capitalize"}>{studentProfile?.firstName}!</b><br /></span>
+                    Build consistency, master concepts, and make progress every day.
+                    All the best!
                 </p>
                 <main className="max-w-7xl max-sm:px-2 w-full gap-5 flex flex-col items-start">
                     <div className="flex flex-col items-start">
