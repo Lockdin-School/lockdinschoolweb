@@ -19,7 +19,7 @@ function LearningTree() {
         <div className="w-full min-h-screen flex flex-col items-center">
             <SubjectHeader/>
             <main className="mt-20 max-sm:px-4 max-w-7xl w-full">
-                <section className="flex flex-col items-start">
+                <section className="flex flex-col mb-20 items-start">
                     <p className="text-[#636363] text-sm tracking-tighter">
                         Learning Tree
                     </p>

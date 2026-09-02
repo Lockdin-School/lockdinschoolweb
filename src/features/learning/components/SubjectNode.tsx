@@ -24,53 +24,56 @@ export function SubjectNode({
             layout
             className="relative"
         >
-            <button
-                onClick={() =>
-                    setExpanded((value) => !value)
-                }
-                className="
-                    group
+
+            <div className="group
                     flex
                     items-center
                     font-medium
-                    text-start text-lg gap-y-0 hover:cursor-pointer w-full gap-x-2
-                "
-            >
-                <b className="tracking-tighter">{subject.name}</b>
-                <motion.span className="relative flex h-5 w-5 items-center justify-center">
-                    <AnimatePresence mode="wait" initial={false}>
-                        {expanded ? (
-                            <motion.span
-                                key="cancel"
-                                initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
-                                animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                                exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
-                                transition={{
-                                    duration: 0.2,
-                                    ease: "easeOut",
-                                }}
-                                className="absolute"
-                            >
-                                <HugeiconsIcon size={20} icon={CancelIcon} />
-                            </motion.span>
-                        ) : (
-                            <motion.span
-                                key="chevron"
-                                initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
-                                animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                                exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
-                                transition={{
-                                    duration: 0.2,
-                                    ease: "easeOut",
-                                }}
-                                className="absolute"
-                            >
-                                <HugeiconsIcon size={20} icon={ChevronRightIcon} />
-                            </motion.span>
-                        )}
-                    </AnimatePresence>
-                </motion.span>
-            </button>
+                    text-start text-lg gap-y-0 hover:cursor-pointer w-full gap-x-2">
+                <button>
+                    <b className="tracking-tighter underline">{subject.name}</b>
+                </button>
+                <button
+                    onClick={() =>
+                        setExpanded((value) => !value)
+                    }
+                    className="border border-border rounded-full"
+                >
+                    <motion.span className="relative flex h-5 w-5 items-center justify-center">
+                        <AnimatePresence mode="wait" initial={false}>
+                            {expanded ? (
+                                <motion.span
+                                    key="cancel"
+                                    initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
+                                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                                    exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
+                                    transition={{
+                                        duration: 0.2,
+                                        ease: "easeOut",
+                                    }}
+                                    className="absolute"
+                                >
+                                    <HugeiconsIcon size={18} icon={CancelIcon} />
+                                </motion.span>
+                            ) : (
+                                <motion.span
+                                    key="chevron"
+                                    initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
+                                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                                    exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
+                                    transition={{
+                                        duration: 0.2,
+                                        ease: "easeOut",
+                                    }}
+                                    className="absolute"
+                                >
+                                    <HugeiconsIcon size={18} icon={ChevronRightIcon} />
+                                </motion.span>
+                            )}
+                        </AnimatePresence>
+                    </motion.span>
+                </button>
+            </div>
 
             <AnimatePresence initial={false}>
                 {expanded && (

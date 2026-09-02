@@ -11,7 +11,7 @@ const SubjectHeader = () => {
 
     return (
         <>
-            <header className="w-full fixed  sm:border-b border-border">
+            <header className="w-full fixed z-40  sm:border-b border-border bg-bg/95 backdrop-blur">
                 <div className="mx-auto flex h-16 w-full items-center justify-between px-4 sm:px-6 ">
 
                     {/* Left */}
