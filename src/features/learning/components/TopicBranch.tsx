@@ -7,14 +7,14 @@ type TopicBranchProps = {
 export function TopicBranch({ delay = 0 }: TopicBranchProps) {
     return (
         <svg
-            width="32"
+            width="100"
             height="50"
-            viewBox="0 0 20 10"
+            viewBox="0 0 100 900"
             className="shrink-0 overflow-visible"
             aria-hidden="true"
         >
             <motion.path
-                d="M4 0 V20 H50"
+                d="M4 0 V20 H200"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1"
