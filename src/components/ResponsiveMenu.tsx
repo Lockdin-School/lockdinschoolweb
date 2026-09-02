@@ -1,7 +1,5 @@
 import {AnimatePresence, motion, type Variants} from "framer-motion";
 import {useState} from "react";
-import {HugeiconsIcon} from "@hugeicons/react";
-import {Close} from "@hugeicons/core-free-icons";
 import NavItem from "./NavItem.tsx";
 
 interface ResponsiveMenuProps {
@@ -95,7 +93,7 @@ const ResponsiveMenu = ({open, onClose}: ResponsiveMenuProps) => {
                             fixed
                             left-0
                             top-0
-                            z-50
+                            z-40
                             h-screen
                             w-full
                             bg-bg
@@ -112,25 +110,11 @@ const ResponsiveMenu = ({open, onClose}: ResponsiveMenuProps) => {
                         }}
                         onAnimationComplete={handleDrawerAnimationComplete}
                     >
-                        {/* Close */}
-                        <div className="flex justify-between items-end  p-3 px-5">
-                            <p className="text-[#929292] text-lg">
-                                NAVIGATION
-                            </p>
-                            <button
-                                type="button"
-                                onClick={handleClose}
-                                aria-label="Close menu"
-                                className="border border-border p-2"
-                            >
-                                <HugeiconsIcon size={38} icon={Close}/>
-                            </button>
-                        </div>
 
                         {/* Navigation */}
                         {showNavigation && (
                             <motion.nav
-                                className="flex flex-col  items-start text-6xl md:text-7xl"
+                                className="flex flex-col mt-20 items-start text-5xl md:text-7xl"
                                 variants={navVariants}
                                 initial="hidden"
                                 animate="visible"
@@ -142,7 +126,7 @@ const ResponsiveMenu = ({open, onClose}: ResponsiveMenuProps) => {
                                             href="#"
                                             variants={itemVariants}
                                             className="
-                                        font-space-regular
+                                        tracking-tighter
                                         font-medium
                                         w-full text-start
                                     "

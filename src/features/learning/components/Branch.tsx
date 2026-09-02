@@ -8,7 +8,7 @@ type BranchProps = {
 
 export function Branch({
                            height = 40,
-                           width = 32,
+                           width = 90,
                            delay = 0,
                        }: BranchProps) {
     return (
@@ -29,7 +29,7 @@ export function Branch({
                     pathLength: 0,
                 }}
                 animate={{
-                    pathLength: 1,
+                    pathLength: 20,
                 }}
                 transition={{
                     duration: 0.35,

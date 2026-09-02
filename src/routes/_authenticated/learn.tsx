@@ -21,7 +21,7 @@ function LearningTree() {
             <main className="mt-20 max-sm:px-4 max-w-7xl w-full">
                 <section className="flex flex-col mb-20 items-start">
                     <p className="text-[#636363] text-sm tracking-tighter">
-                        Learning Tree
+                        Knowledge Tree
                     </p>
                     {/*<div className={"py-4"}>*/}
                     {/*    {*/}
