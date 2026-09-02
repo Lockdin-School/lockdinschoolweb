@@ -1,10 +1,10 @@
 import { motion } from "motion/react";
 
-import type { Topic } from "../data/subjects";
 import { TopicNode } from "./TopicNode";
+import type {TopicResponse} from "@/api/topics/models/TopicResponse.ts";
 
 type TopicTreeProps = {
-    topics: Topic[];
+    topics: TopicResponse[];
 };
 
 export function TopicTree({
@@ -54,9 +54,9 @@ export function TopicTree({
                         className="flex items-start"
                     >
                         <svg
-                            width="32"
+                            width="35"
                             height="32"
-                            viewBox="0 0 32 32"
+                            viewBox="0 0 35 45"
                             className="
                                 shrink-0
                                 overflow-visible
@@ -64,10 +64,10 @@ export function TopicTree({
                             aria-hidden="true"
                         >
                             <motion.path
-                                d="M4 16 H28"
+                                d="M0 16 H28"
                                 fill="none"
                                 stroke="currentColor"
-                                strokeWidth="1"
+                                strokeWidth="2"
                                 className="text-border"
                                 initial={{
                                     pathLength: 0,

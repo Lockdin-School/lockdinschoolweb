@@ -15,7 +15,7 @@ const SubjectHeader = () => {
             <button
                 onClick={() => setMenuOpen(!menuOpen)}
                 type="button"
-                className="flex top-5 left-5 absolute z-50 rounded-lg border-border items-center justify-center"
+                className="flex top-6 left-6 fixed z-50 rounded-lg border-border items-center justify-center"
                 aria-label="Open menu"
             >
                 <motion.span className="relative flex h-5 w-5 items-center justify-center">

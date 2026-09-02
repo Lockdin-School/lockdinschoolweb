@@ -4,13 +4,14 @@ import {
 } from "motion/react";
 import {useState} from "react";
 
-import type {Subject} from "../data/subjects";
-import {TopicTree} from "./TopicTree";
 import {HugeiconsIcon} from "@hugeicons/react";
 import {CancelIcon, ChevronRightIcon} from "@hugeicons/core-free-icons";
+import type {SubjectResponse} from "@/api/subjects/models/SubjectResponse.ts";
+import {useTopics} from "@/api/topics/queries/useTopics.ts";
+import {TopicTree} from "@/features/learning/components/TopicTree.tsx";
 
 type SubjectNodeProps = {
-    subject: Subject;
+    subject: SubjectResponse;
 };
 
 export function SubjectNode({
@@ -18,6 +19,8 @@ export function SubjectNode({
                             }: SubjectNodeProps) {
     const [expanded, setExpanded] =
         useState(false);
+
+    const {data: topics, isError, isLoading, error} = useTopics(subject.id);
 
     return (
         <motion.div
@@ -31,7 +34,7 @@ export function SubjectNode({
                     font-medium
                     text-start text-lg gap-y-0 hover:cursor-pointer w-full gap-x-2">
                 <button>
-                    <b className="tracking-tighter underline">{subject.name}</b>
+                    <b className="tracking-tighter underline">{subject.title}</b>
                 </button>
                 <button
                     onClick={() =>
@@ -96,9 +99,9 @@ export function SubjectNode({
                         }}
                         className="overflow-hidden"
                     >
-                        <TopicTree
-                            topics={subject.topics}
-                        />
+                        {isError && (<div>{error.message}</div>)}
+                        {isLoading && (<div className="py-8">Loading...</div>)}
+                        {topics && <TopicTree topics={topics} />}
                     </motion.div>
                 )}
             </AnimatePresence>

@@ -1,7 +1,7 @@
 import { SubjectNode } from "./SubjectNode";
-import { subjects } from "../data/subjects";
+import type {SubjectResponse} from "@/api/subjects/models/SubjectResponse.ts";
 
-export function KnowledgeTree() {
+export function KnowledgeTree({subjects}: { subjects: SubjectResponse[]}) {
     return (
         <section className="w-full py-8">
             <div className="space-y-5">

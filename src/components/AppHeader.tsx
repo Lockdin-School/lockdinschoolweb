@@ -1,8 +1,9 @@
 import {HugeiconsIcon} from "@hugeicons/react";
-import {BellIcon, MenuTwoLineIcon} from "@hugeicons/core-free-icons";
+import {BellIcon, CancelIcon, MenuTwoLineIcon} from "@hugeicons/core-free-icons";
 import {useState} from "react";
 import ResponsiveMenu from "./ResponsiveMenu.tsx";
 import {useAuthUser} from "@/api/auth/queries/useAuthUser.ts";
+import {AnimatePresence, motion} from "motion/react";
 
 const AppHeader = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -11,23 +12,51 @@ const AppHeader = () => {
 
     return (
         <>
-            <header className="w-full fixed  sm:border-b border-border">
-                <div className="mx-auto flex h-16 w-full items-center justify-between px-4 sm:px-6 ">
+            <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                type="button"
+                className="flex top-6 left-6 fixed z-50 rounded-lg border-border items-center justify-center"
+                aria-label="Open menu"
+            >
+                <motion.span className="relative flex h-5 w-5 items-center justify-center">
+                    <AnimatePresence mode="wait" initial={false}>
+                        {menuOpen ? (
+                            <motion.span
+                                key="cancel"
+                                initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
+                                animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                                exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
+                                transition={{
+                                    duration: 0.2,
+                                    ease: "easeOut",
+                                }}
+                                className="absolute"
+                            >
+                                <HugeiconsIcon size={38} icon={CancelIcon} />
+                            </motion.span>
+                        ) : (
+                            <motion.span
+                                key="chevron"
+                                initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
+                                animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                                exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
+                                transition={{
+                                    duration: 0.2,
+                                    ease: "easeOut",
+                                }}
+                                className="absolute"
+                            >
+                                <HugeiconsIcon size={38} icon={MenuTwoLineIcon} />
+                            </motion.span>
+                        )}
+                    </AnimatePresence>
+                </motion.span>
+            </button>
+            <header className="w-full fixed bg-bg/95 backdrop-blur-2xl sm:border-b border-border">
+                <div className="flex h-16 w-full items-center justify-between px-4 sm:px-6 ">
 
                     {/* Left */}
                     <div className="flex items-center gap-4">
-                        <button
-                            onClick={() => setMenuOpen(true)}
-                            type="button"
-                            className="flex  rounded-lg border-border items-center justify-center"
-                            aria-label="Open menu"
-                        >
-                            <HugeiconsIcon
-                                size={38}
-                                className=""
-                                icon={MenuTwoLineIcon}
-                            />
-                        </button>
 
                         {/*/!* Search *!/*/}
                         {/*<form*/}

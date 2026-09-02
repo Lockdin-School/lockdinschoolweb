@@ -1,13 +1,13 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 
-import type { Topic } from "../data/subjects";
-import { Branch } from "./Branch";
+
 import {HugeiconsIcon} from "@hugeicons/react";
 import {ArrowRight02Icon, ChevronRightIcon} from "@hugeicons/core-free-icons";
+import type {TopicResponse} from "@/api/topics/models/TopicResponse.ts";
 
 type TopicNodeProps = {
-    topic: Topic;
+    topic: TopicResponse;
     index: number;
 };
 
@@ -47,7 +47,7 @@ export function TopicNode({
                     hover:text-foreground/70
                 "
             >
-                <b className="tracking-tighter">{topic.name}</b>
+                <b className="tracking-tighter text-left">{topic.title}</b>
                 <motion.span className="relative flex h-5 w-5 items-center justify-center">
                     <AnimatePresence mode="wait" initial={false}>
                         {expanded ? (
@@ -105,50 +105,50 @@ export function TopicNode({
                         }}
                         className="overflow-hidden"
                     >
-                        <div className="ml-5 mt-1">
-                            {topic.concepts.map(
-                                (concept, conceptIndex) => (
-                                    <motion.div
-                                        key={concept.id}
-                                        className="
-                                            flex
-                                            items-center
-                                            text-sm
+                        {/*<div className="ml-5 mt-1">*/}
+                        {/*    {topic.concepts.map(*/}
+                        {/*        (concept, conceptIndex) => (*/}
+                        {/*            <motion.div*/}
+                        {/*                key={concept.id}*/}
+                        {/*                className="*/}
+                        {/*                    flex*/}
+                        {/*                    items-center*/}
+                        {/*                    text-sm*/}
 
 
-                                            text-muted-foreground
-                                        "
-                                        initial={{
-                                            opacity: 0,
-                                            x: -6,
-                                        }}
-                                        animate={{
-                                            opacity: 1,
-                                            x: 0,
-                                        }}
-                                        transition={{
-                                            delay:
-                                                conceptIndex *
-                                                0.07,
-                                            duration: 0.25,
-                                        }}
-                                    >
-                                        <Branch
-                                            height={28}
-                                            width={28}
-                                            delay={
-                                                conceptIndex *
-                                                0.07
-                                            }
-                                        />
+                        {/*                    text-muted-foreground*/}
+                        {/*                "*/}
+                        {/*                initial={{*/}
+                        {/*                    opacity: 0,*/}
+                        {/*                    x: -6,*/}
+                        {/*                }}*/}
+                        {/*                animate={{*/}
+                        {/*                    opacity: 1,*/}
+                        {/*                    x: 0,*/}
+                        {/*                }}*/}
+                        {/*                transition={{*/}
+                        {/*                    delay:*/}
+                        {/*                        conceptIndex **/}
+                        {/*                        0.07,*/}
+                        {/*                    duration: 0.25,*/}
+                        {/*                }}*/}
+                        {/*            >*/}
+                        {/*                <Branch*/}
+                        {/*                    height={28}*/}
+                        {/*                    width={28}*/}
+                        {/*                    delay={*/}
+                        {/*                        conceptIndex **/}
+                        {/*                        0.07*/}
+                        {/*                    }*/}
+                        {/*                />*/}
 
-                                        <b className={"tracking-tighter"}>
-                                            {concept.name}
-                                        </b>
-                                    </motion.div>
-                                )
-                            )}
-                        </div>
+                        {/*                <b className={"tracking-tighter"}>*/}
+                        {/*                    {concept.name}*/}
+                        {/*                </b>*/}
+                        {/*            </motion.div>*/}
+                        {/*        )*/}
+                        {/*    )}*/}
+                        {/*</div>*/}
                     </motion.div>
                 )}
             </AnimatePresence>

@@ -21,6 +21,7 @@ import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticate
 import { Route as AuthenticatedSubjectsSubjectIdRouteImport } from './routes/_authenticated/subjects.$subjectId'
 import { Route as AuthenticatedSubjectsSubjectIdIndexRouteImport } from './routes/_authenticated/subjects.$subjectId.index'
 import { Route as AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteImport } from './routes/_authenticated/subjects.$subjectId.topics.$topicId'
+import { Route as AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRouteImport } from './routes/_authenticated/subjects.$subjectId.topics.$topicId.concepts.$materialId'
 import { Route as AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRouteImport } from './routes/_authenticated/subjects.$subjectId.topics.$topicId.exercises.$materialId'
 import { Route as AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRouteImport } from './routes/_authenticated/subjects.$subjectId.topics.$topicId.lessons.$materialId'
 import { Route as AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRouteImport } from './routes/_authenticated/subjects.$subjectId.topics.$topicId.quizzes.$materialId'
@@ -88,6 +89,14 @@ const AuthenticatedSubjectsSubjectIdTopicsTopicIdRoute =
     path: '/topics/$topicId',
     getParentRoute: () => AuthenticatedSubjectsSubjectIdRoute,
   } as any)
+const AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRoute =
+  AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRouteImport.update(
+    {
+      id: '/concepts/$materialId',
+      path: '/concepts/$materialId',
+      getParentRoute: () => AuthenticatedSubjectsSubjectIdTopicsTopicIdRoute,
+    } as any,
+  )
 const AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute =
   AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRouteImport.update(
     {
@@ -133,6 +142,7 @@ export interface FileRoutesByFullPath {
   '/subjects/$subjectId': typeof AuthenticatedSubjectsSubjectIdRouteWithChildren
   '/subjects/$subjectId/': typeof AuthenticatedSubjectsSubjectIdIndexRoute
   '/subjects/$subjectId/topics/$topicId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteWithChildren
+  '/subjects/$subjectId/topics/$topicId/concepts/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRoute
   '/subjects/$subjectId/topics/$topicId/exercises/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
   '/subjects/$subjectId/topics/$topicId/lessons/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute
   '/subjects/$subjectId/topics/$topicId/quizzes/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute
@@ -149,6 +159,7 @@ export interface FileRoutesByTo {
   '/profile': typeof AuthenticatedProfileRoute
   '/subjects/$subjectId': typeof AuthenticatedSubjectsSubjectIdIndexRoute
   '/subjects/$subjectId/topics/$topicId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteWithChildren
+  '/subjects/$subjectId/topics/$topicId/concepts/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRoute
   '/subjects/$subjectId/topics/$topicId/exercises/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
   '/subjects/$subjectId/topics/$topicId/lessons/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute
   '/subjects/$subjectId/topics/$topicId/quizzes/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute
@@ -168,6 +179,7 @@ export interface FileRoutesById {
   '/_authenticated/subjects/$subjectId': typeof AuthenticatedSubjectsSubjectIdRouteWithChildren
   '/_authenticated/subjects/$subjectId/': typeof AuthenticatedSubjectsSubjectIdIndexRoute
   '/_authenticated/subjects/$subjectId/topics/$topicId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteWithChildren
+  '/_authenticated/subjects/$subjectId/topics/$topicId/concepts/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRoute
   '/_authenticated/subjects/$subjectId/topics/$topicId/exercises/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
   '/_authenticated/subjects/$subjectId/topics/$topicId/lessons/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute
   '/_authenticated/subjects/$subjectId/topics/$topicId/quizzes/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute
@@ -187,6 +199,7 @@ export interface FileRouteTypes {
     | '/subjects/$subjectId'
     | '/subjects/$subjectId/'
     | '/subjects/$subjectId/topics/$topicId'
+    | '/subjects/$subjectId/topics/$topicId/concepts/$materialId'
     | '/subjects/$subjectId/topics/$topicId/exercises/$materialId'
     | '/subjects/$subjectId/topics/$topicId/lessons/$materialId'
     | '/subjects/$subjectId/topics/$topicId/quizzes/$materialId'
@@ -203,6 +216,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/subjects/$subjectId'
     | '/subjects/$subjectId/topics/$topicId'
+    | '/subjects/$subjectId/topics/$topicId/concepts/$materialId'
     | '/subjects/$subjectId/topics/$topicId/exercises/$materialId'
     | '/subjects/$subjectId/topics/$topicId/lessons/$materialId'
     | '/subjects/$subjectId/topics/$topicId/quizzes/$materialId'
@@ -221,6 +235,7 @@ export interface FileRouteTypes {
     | '/_authenticated/subjects/$subjectId'
     | '/_authenticated/subjects/$subjectId/'
     | '/_authenticated/subjects/$subjectId/topics/$topicId'
+    | '/_authenticated/subjects/$subjectId/topics/$topicId/concepts/$materialId'
     | '/_authenticated/subjects/$subjectId/topics/$topicId/exercises/$materialId'
     | '/_authenticated/subjects/$subjectId/topics/$topicId/lessons/$materialId'
     | '/_authenticated/subjects/$subjectId/topics/$topicId/quizzes/$materialId'
@@ -321,6 +336,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteImport
       parentRoute: typeof AuthenticatedSubjectsSubjectIdRoute
     }
+    '/_authenticated/subjects/$subjectId/topics/$topicId/concepts/$materialId': {
+      id: '/_authenticated/subjects/$subjectId/topics/$topicId/concepts/$materialId'
+      path: '/concepts/$materialId'
+      fullPath: '/subjects/$subjectId/topics/$topicId/concepts/$materialId'
+      preLoaderRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRouteImport
+      parentRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRoute
+    }
     '/_authenticated/subjects/$subjectId/topics/$topicId/exercises/$materialId': {
       id: '/_authenticated/subjects/$subjectId/topics/$topicId/exercises/$materialId'
       path: '/exercises/$materialId'
@@ -353,6 +375,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteChildren {
+  AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRoute
   AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
   AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute
   AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute
@@ -361,6 +384,8 @@ interface AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteChildren {
 
 const AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteChildren: AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteChildren =
   {
+    AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRoute:
+      AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRoute,
     AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute:
       AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute,
     AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute:
