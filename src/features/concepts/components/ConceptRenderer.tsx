@@ -44,9 +44,12 @@ export const ConceptRenderer = ({ concept }: {concept: Concept}) => {
                         <div key={idx} className="w-full">
                             {/* Subtitle */}
                             {section.subtitle && (
-                                <h4 className="text-lg font-anthropic-text font-medium tracking-tighter text-left mb-3 text-[#0c2204]">
+                                <Markdown
+                                    remarkPlugins={[remarkMath]}
+                                    rehypePlugins={[rehypeKatex]}
+                                >
                                     {section.subtitle}
-                                </h4>
+                                </Markdown>
                             )}
 
                             {/* 3. The Paragraphs */}
