@@ -121,7 +121,7 @@ export const ConceptRenderer = ({ concept }: {concept: Concept}) => {
 
     return (
         <div className="w-full my-20 min-h-screen flex items-center flex-col">
-            <section className="flex max-w-7xl h-[30vh]  justify-end w-full max-sm:px-8 items-start flex-col">
+            <section className="flex max-w-7xl mt-[30vh]  justify-end w-full max-sm:px-8 items-start flex-col">
                 <b className="text-[16px] tracking-tighter text-bg bg-[#1e2914] p-1 rounded px-2 mb-2">Concept</b>
                 <p className="flex tracking-[-5px] font-geist-semibold text-5xl max-sm:max-w-[80vw] text-start w-full max-w-[40vw]">{title}</p>
             </section>
