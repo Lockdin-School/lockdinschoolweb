@@ -29,7 +29,7 @@ function Dashboard() {
         isLoading: isSubjectsLoading,
         isError,
         error,
-    } = useSubjects();
+    } = useSubjects(studentProfile.grade);
 
     if (isSubjectsLoading || isStudentProfileLoading || isAuthUserLoading) {
         return (

@@ -12,7 +12,7 @@ export const ConceptRenderer = ({ concept }: {concept: Concept}) => {
     const renderDefinition = (def: { title?: string; text: string }) => (
         <div className="py-3 gap-y-2 flex flex-col text-[#1e2914] mb-3">
             {def.title && (
-                <b className="block text-left text-[22px] tracking-tighter   mb-1">
+                <b className="block text-left text-[22px] font-alliance-2 tracking-tighter   mb-1">
                     {def.title.replace("CAPS", "")}
                 </b>
             )}
@@ -42,7 +42,7 @@ export const ConceptRenderer = ({ concept }: {concept: Concept}) => {
                     )}
                     <ul className="list-disc text-left pl-5 list-inside space-y-4">
                         {section.paragraphs.map((para, i) => (
-                            <p key={i} className="leading-[20px]">
+                            <p key={i} className="tracking-tighter">
                                 <Markdown
                                     remarkPlugins={[remarkMath]}
                                     rehypePlugins={[[rehypeKatex]]}
