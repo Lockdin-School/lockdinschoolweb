@@ -1,4 +1,4 @@
-export type MaterialType = "Lesson" | "Exercise" | "Quiz" | "Assignment" | "Resource";
+export type MaterialType = "Lesson" | "Concept" | "Exercise" | "Quiz" | "Assignment" | "Resource";
 export type MaterialStatus = "Draft" | "Published" | "Archived";
 
 export type CreateMaterialRequest = {
