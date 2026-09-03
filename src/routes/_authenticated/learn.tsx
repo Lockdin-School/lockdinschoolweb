@@ -1,12 +1,11 @@
 import {createFileRoute} from '@tanstack/react-router'
 import SubjectHeader from "@/components/headers/SubjectHeader.tsx";
-// import {useSubjects} from "@/api/subjects/queries/useSubjects.ts";
-// import {HugeiconsIcon} from "@hugeicons/react";
-// import { ChevronRightIcon} from "@hugeicons/core-free-icons";
+
 import {KnowledgeTree} from "@/features/learning/components/KnowledgeTree.tsx";
 import {useSubjects} from "@/api/subjects/queries/useSubjects.ts";
 import {useStudentProfile} from "@/api/student-profiles/queries/useStudentProfile.ts";
 import {useAuthUser} from "@/api/auth/queries/useAuthUser.ts";
+
 
 export const Route = createFileRoute('/_authenticated/learn')({
     component: LearningTree,
@@ -26,6 +25,7 @@ function LearningTree() {
         isError,
         error
     } = useSubjects(profile.grade);
+
 
     return (
         <div className="w-full min-h-screen flex flex-col items-center">

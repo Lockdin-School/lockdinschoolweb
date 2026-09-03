@@ -1,22 +1,33 @@
-import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
-
+import {AnimatePresence, motion} from "motion/react";
+import {useState} from "react";
+import {ConceptBranch} from "@/features/learning/components/ConceptBranch.tsx"
 
 import {HugeiconsIcon} from "@hugeicons/react";
-import {ArrowRight02Icon, ChevronRightIcon} from "@hugeicons/core-free-icons";
+import {CancelIcon, ChevronRightIcon} from "@hugeicons/core-free-icons";
 import type {TopicResponse} from "@/api/topics/models/TopicResponse.ts";
+import {useConcepts} from "@/api/concepts/queries/useConcepts.ts";
+import {useNavigate} from "@tanstack/react-router";
+
 
 type TopicNodeProps = {
     topic: TopicResponse;
     index: number;
 };
 
-export function TopicNode({
-                              topic,
-                              index,
-                          }: TopicNodeProps) {
-    const [expanded, setExpanded] =
-        useState(false);
+export function TopicNode(
+    {
+        topic,
+        index,
+    }: TopicNodeProps) {
+    const [expanded, setExpanded] = useState(false);
+    const navigate = useNavigate();
+
+    const {
+        data: concepts,
+        isLoading,
+        isError,
+        error,
+    } = useConcepts(topic.id, true);
 
     return (
         <motion.div
@@ -41,7 +52,7 @@ export function TopicNode({
                 className="
                     flex
                     items-center
-                    gap-2
+                    gap-x-1
                     text-foreground
                     transition-colors
                     hover:text-foreground/70
@@ -53,36 +64,34 @@ export function TopicNode({
                         {expanded ? (
                             <motion.span
                                 key="cancel"
-                                initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
-                                animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                                exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
+                                initial={{opacity: 0, rotate: -90, scale: 0.7}}
+                                animate={{opacity: 1, rotate: 0, scale: 1}}
+                                exit={{opacity: 0, rotate: 90, scale: 0.7}}
                                 transition={{
                                     duration: 0.2,
                                     ease: "easeOut",
                                 }}
                                 className="absolute"
                             >
-                                <HugeiconsIcon size={20} icon={ArrowRight02Icon} />
+                                <HugeiconsIcon size={20} icon={CancelIcon}/>
                             </motion.span>
                         ) : (
                             <motion.span
                                 key="chevron"
-                                initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
-                                animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                                exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
+                                initial={{opacity: 0, rotate: -90, scale: 0.7}}
+                                animate={{opacity: 1, rotate: 0, scale: 1}}
+                                exit={{opacity: 0, rotate: 90, scale: 0.7}}
                                 transition={{
                                     duration: 0.2,
                                     ease: "easeOut",
                                 }}
                                 className="absolute"
                             >
-                                <HugeiconsIcon size={20} icon={ChevronRightIcon} />
+                                <HugeiconsIcon size={20} icon={ChevronRightIcon}/>
                             </motion.span>
                         )}
                     </AnimatePresence>
                 </motion.span>
-
-
             </button>
 
             <AnimatePresence initial={false}>
@@ -105,50 +114,53 @@ export function TopicNode({
                         }}
                         className="overflow-hidden"
                     >
-                        {/*<div className="ml-5 mt-1">*/}
-                        {/*    {topic.concepts.map(*/}
-                        {/*        (concept, conceptIndex) => (*/}
-                        {/*            <motion.div*/}
-                        {/*                key={concept.id}*/}
-                        {/*                className="*/}
-                        {/*                    flex*/}
-                        {/*                    items-center*/}
-                        {/*                    text-sm*/}
+                        <div className="ml-5 mt-1">
+                            {isLoading && (<p>Loading...</p>)}
+                            {isError && (<p>{error.message}</p>)}
+                            {concepts && concepts.map(
+                                (concept, conceptIndex) => (
+                                    <motion.div
+                                        key={concept.id}
+                                        className="
+                                            flex
+                                            items-center
+                                            text-sm
 
+                                            text-muted-foreground
+                                        "
+                                        initial={{
+                                            opacity: 0,
+                                            x: -6,
+                                        }}
+                                        animate={{
+                                            opacity: 1,
+                                            x: 0,
+                                        }}
+                                        transition={{
+                                            delay:
+                                                conceptIndex *
+                                                0.07,
+                                            duration: 0.25,
+                                        }}
+                                    >
+                                        <ConceptBranch
+                                            height={28}
+                                            width={28}
+                                            delay={
+                                                conceptIndex *
+                                                0.07
+                                            }
+                                        />
 
-                        {/*                    text-muted-foreground*/}
-                        {/*                "*/}
-                        {/*                initial={{*/}
-                        {/*                    opacity: 0,*/}
-                        {/*                    x: -6,*/}
-                        {/*                }}*/}
-                        {/*                animate={{*/}
-                        {/*                    opacity: 1,*/}
-                        {/*                    x: 0,*/}
-                        {/*                }}*/}
-                        {/*                transition={{*/}
-                        {/*                    delay:*/}
-                        {/*                        conceptIndex **/}
-                        {/*                        0.07,*/}
-                        {/*                    duration: 0.25,*/}
-                        {/*                }}*/}
-                        {/*            >*/}
-                        {/*                <Branch*/}
-                        {/*                    height={28}*/}
-                        {/*                    width={28}*/}
-                        {/*                    delay={*/}
-                        {/*                        conceptIndex **/}
-                        {/*                        0.07*/}
-                        {/*                    }*/}
-                        {/*                />*/}
-
-                        {/*                <b className={"tracking-tighter"}>*/}
-                        {/*                    {concept.name}*/}
-                        {/*                </b>*/}
-                        {/*            </motion.div>*/}
-                        {/*        )*/}
-                        {/*    )}*/}
-                        {/*</div>*/}
+                                        <button
+                                            onClick={() => void navigate({to: `/concepts/${concept.id}`})}
+                                            className={"tracking-tighter font-medium text-[15px] underline"}>
+                                            {concept.title}
+                                        </button>
+                                    </motion.div>
+                                )
+                            )}
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

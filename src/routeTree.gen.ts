@@ -18,10 +18,10 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as AuthenticatedLearnRouteImport } from './routes/_authenticated/learn'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedConceptsMaterialIdRouteImport } from './routes/_authenticated/concepts.$materialId'
 import { Route as AuthenticatedSubjectsSubjectIdRouteImport } from './routes/_authenticated/subjects.$subjectId'
 import { Route as AuthenticatedSubjectsSubjectIdIndexRouteImport } from './routes/_authenticated/subjects.$subjectId.index'
 import { Route as AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteImport } from './routes/_authenticated/subjects.$subjectId.topics.$topicId'
-import { Route as AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRouteImport } from './routes/_authenticated/subjects.$subjectId.topics.$topicId.concepts.$materialId'
 import { Route as AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRouteImport } from './routes/_authenticated/subjects.$subjectId.topics.$topicId.exercises.$materialId'
 import { Route as AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRouteImport } from './routes/_authenticated/subjects.$subjectId.topics.$topicId.lessons.$materialId'
 import { Route as AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRouteImport } from './routes/_authenticated/subjects.$subjectId.topics.$topicId.quizzes.$materialId'
@@ -71,6 +71,12 @@ const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedConceptsMaterialIdRoute =
+  AuthenticatedConceptsMaterialIdRouteImport.update({
+    id: '/concepts/$materialId',
+    path: '/concepts/$materialId',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedSubjectsSubjectIdRoute =
   AuthenticatedSubjectsSubjectIdRouteImport.update({
     id: '/subjects/$subjectId',
@@ -89,14 +95,6 @@ const AuthenticatedSubjectsSubjectIdTopicsTopicIdRoute =
     path: '/topics/$topicId',
     getParentRoute: () => AuthenticatedSubjectsSubjectIdRoute,
   } as any)
-const AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRoute =
-  AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRouteImport.update(
-    {
-      id: '/concepts/$materialId',
-      path: '/concepts/$materialId',
-      getParentRoute: () => AuthenticatedSubjectsSubjectIdTopicsTopicIdRoute,
-    } as any,
-  )
 const AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute =
   AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRouteImport.update(
     {
@@ -139,10 +137,10 @@ export interface FileRoutesByFullPath {
   '/learn': typeof AuthenticatedLearnRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/concepts/$materialId': typeof AuthenticatedConceptsMaterialIdRoute
   '/subjects/$subjectId': typeof AuthenticatedSubjectsSubjectIdRouteWithChildren
   '/subjects/$subjectId/': typeof AuthenticatedSubjectsSubjectIdIndexRoute
   '/subjects/$subjectId/topics/$topicId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteWithChildren
-  '/subjects/$subjectId/topics/$topicId/concepts/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRoute
   '/subjects/$subjectId/topics/$topicId/exercises/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
   '/subjects/$subjectId/topics/$topicId/lessons/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute
   '/subjects/$subjectId/topics/$topicId/quizzes/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute
@@ -157,9 +155,9 @@ export interface FileRoutesByTo {
   '/learn': typeof AuthenticatedLearnRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/concepts/$materialId': typeof AuthenticatedConceptsMaterialIdRoute
   '/subjects/$subjectId': typeof AuthenticatedSubjectsSubjectIdIndexRoute
   '/subjects/$subjectId/topics/$topicId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteWithChildren
-  '/subjects/$subjectId/topics/$topicId/concepts/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRoute
   '/subjects/$subjectId/topics/$topicId/exercises/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
   '/subjects/$subjectId/topics/$topicId/lessons/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute
   '/subjects/$subjectId/topics/$topicId/quizzes/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute
@@ -176,10 +174,10 @@ export interface FileRoutesById {
   '/_authenticated/learn': typeof AuthenticatedLearnRoute
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/concepts/$materialId': typeof AuthenticatedConceptsMaterialIdRoute
   '/_authenticated/subjects/$subjectId': typeof AuthenticatedSubjectsSubjectIdRouteWithChildren
   '/_authenticated/subjects/$subjectId/': typeof AuthenticatedSubjectsSubjectIdIndexRoute
   '/_authenticated/subjects/$subjectId/topics/$topicId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteWithChildren
-  '/_authenticated/subjects/$subjectId/topics/$topicId/concepts/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRoute
   '/_authenticated/subjects/$subjectId/topics/$topicId/exercises/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
   '/_authenticated/subjects/$subjectId/topics/$topicId/lessons/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute
   '/_authenticated/subjects/$subjectId/topics/$topicId/quizzes/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute
@@ -196,10 +194,10 @@ export interface FileRouteTypes {
     | '/learn'
     | '/onboarding'
     | '/profile'
+    | '/concepts/$materialId'
     | '/subjects/$subjectId'
     | '/subjects/$subjectId/'
     | '/subjects/$subjectId/topics/$topicId'
-    | '/subjects/$subjectId/topics/$topicId/concepts/$materialId'
     | '/subjects/$subjectId/topics/$topicId/exercises/$materialId'
     | '/subjects/$subjectId/topics/$topicId/lessons/$materialId'
     | '/subjects/$subjectId/topics/$topicId/quizzes/$materialId'
@@ -214,9 +212,9 @@ export interface FileRouteTypes {
     | '/learn'
     | '/onboarding'
     | '/profile'
+    | '/concepts/$materialId'
     | '/subjects/$subjectId'
     | '/subjects/$subjectId/topics/$topicId'
-    | '/subjects/$subjectId/topics/$topicId/concepts/$materialId'
     | '/subjects/$subjectId/topics/$topicId/exercises/$materialId'
     | '/subjects/$subjectId/topics/$topicId/lessons/$materialId'
     | '/subjects/$subjectId/topics/$topicId/quizzes/$materialId'
@@ -232,10 +230,10 @@ export interface FileRouteTypes {
     | '/_authenticated/learn'
     | '/_authenticated/onboarding'
     | '/_authenticated/profile'
+    | '/_authenticated/concepts/$materialId'
     | '/_authenticated/subjects/$subjectId'
     | '/_authenticated/subjects/$subjectId/'
     | '/_authenticated/subjects/$subjectId/topics/$topicId'
-    | '/_authenticated/subjects/$subjectId/topics/$topicId/concepts/$materialId'
     | '/_authenticated/subjects/$subjectId/topics/$topicId/exercises/$materialId'
     | '/_authenticated/subjects/$subjectId/topics/$topicId/lessons/$materialId'
     | '/_authenticated/subjects/$subjectId/topics/$topicId/quizzes/$materialId'
@@ -315,6 +313,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProfileRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/concepts/$materialId': {
+      id: '/_authenticated/concepts/$materialId'
+      path: '/concepts/$materialId'
+      fullPath: '/concepts/$materialId'
+      preLoaderRoute: typeof AuthenticatedConceptsMaterialIdRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/subjects/$subjectId': {
       id: '/_authenticated/subjects/$subjectId'
       path: '/subjects/$subjectId'
@@ -335,13 +340,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/subjects/$subjectId/topics/$topicId'
       preLoaderRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteImport
       parentRoute: typeof AuthenticatedSubjectsSubjectIdRoute
-    }
-    '/_authenticated/subjects/$subjectId/topics/$topicId/concepts/$materialId': {
-      id: '/_authenticated/subjects/$subjectId/topics/$topicId/concepts/$materialId'
-      path: '/concepts/$materialId'
-      fullPath: '/subjects/$subjectId/topics/$topicId/concepts/$materialId'
-      preLoaderRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRouteImport
-      parentRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRoute
     }
     '/_authenticated/subjects/$subjectId/topics/$topicId/exercises/$materialId': {
       id: '/_authenticated/subjects/$subjectId/topics/$topicId/exercises/$materialId'
@@ -375,7 +373,6 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteChildren {
-  AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRoute
   AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
   AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute
   AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdQuizzesMaterialIdRoute
@@ -384,8 +381,6 @@ interface AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteChildren {
 
 const AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteChildren: AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteChildren =
   {
-    AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRoute:
-      AuthenticatedSubjectsSubjectIdTopicsTopicIdConceptsMaterialIdRoute,
     AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute:
       AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute,
     AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute:
@@ -424,6 +419,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedLearnRoute: typeof AuthenticatedLearnRoute
   AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedConceptsMaterialIdRoute: typeof AuthenticatedConceptsMaterialIdRoute
   AuthenticatedSubjectsSubjectIdRoute: typeof AuthenticatedSubjectsSubjectIdRouteWithChildren
 }
 
@@ -432,6 +428,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedLearnRoute: AuthenticatedLearnRoute,
   AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedConceptsMaterialIdRoute: AuthenticatedConceptsMaterialIdRoute,
   AuthenticatedSubjectsSubjectIdRoute:
     AuthenticatedSubjectsSubjectIdRouteWithChildren,
 }

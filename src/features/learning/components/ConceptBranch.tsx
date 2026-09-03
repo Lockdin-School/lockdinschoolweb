@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import {motion} from "motion/react";
 
 type BranchProps = {
     height?: number;
@@ -6,11 +6,12 @@ type BranchProps = {
     delay?: number;
 };
 
-export function Branch({
-                           height = 40,
-                           width = 90,
-                           delay = 0,
-                       }: BranchProps) {
+export function ConceptBranch(
+    {
+        height = 40,
+        width = 90,
+        delay = 0,
+    }: BranchProps) {
     return (
         <svg
             width={width}

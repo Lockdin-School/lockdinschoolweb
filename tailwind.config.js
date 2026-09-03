@@ -23,6 +23,8 @@ export default {
       },
       fontFamily: {
         // 'custom' becomes the class name: <h1 class="font-custom">
+        'alliance': ['Alliance No.1 Regular', 'sans-serif'],
+        'alliance-2': ['Alliance No.2 Regular', 'sans-serif'],
         'geist-semibold': ['Geist SemiBold', 'sans-serif'],
         'geist-medium': ['Geist Medium', 'sans-serif'],
         'geist-light': ['Geist Light', 'sans-serif'],
@@ -34,6 +36,7 @@ export default {
         'space-regular': ['Space Grotesk Regular', 'sans-serif'],
         'inter-regular': ['Inter Regular', 'sans-serif'],
         'inter-medium': ['Inter Medium', 'sans-serif'],
+
       },
     },
   },
