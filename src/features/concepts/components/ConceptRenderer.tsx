@@ -188,9 +188,9 @@ export const ConceptRenderer = ({ concept }: {concept: Concept}) => {
             {/* Summary */}
             {summary && (
                 <section className="flex max-w-7xl h-auto justify-center w-full mb-5 items-start flex-col mt-6">
-                    <div className="bg-[#0f1610] px-8 text-start py-6 text-bg space-y-4">
+                    <div className="bg-[#0f1610] px-8 text-start py-12 text-bg space-y-10">
                         <b className="text-[16px] tracking-tighter text-[#1e2914] bg-bg p-1 rounded px-2 mb-2">Summary</b>
-                        <p className="font-anthropic-text text-left">
+                        <p className="font-anthropic-text text-[18px] text-left">
                             <Markdown
                                 remarkPlugins={[remarkGfm,remarkMath]}
                                 rehypePlugins={[[rehypeKatex]]}
