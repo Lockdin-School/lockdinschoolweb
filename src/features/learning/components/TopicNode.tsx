@@ -154,7 +154,7 @@ export function TopicNode(
 
                                         <button
                                             onClick={() => void navigate({to: `/concepts/${concept.id}`})}
-                                            className={"tracking-tighter font-medium text-[15px] underline"}>
+                                            className={"tracking-tighter text-left font-medium text-[15px] underline"}>
                                             {concept.title}
                                         </button>
                                     </motion.div>
