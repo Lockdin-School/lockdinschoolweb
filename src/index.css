@@ -113,26 +113,61 @@ body {
   margin: 0;
 }
 
-/*@font-face {*/
-/*  font-family: 'Alliance No.1 Light'; !* This is the name you will use in classes *!*/
-/*  font-style: normal;*/
-/*  !*font-weight: 400;*!*/
-/*  font-display: swap; !* Prevents invisible text while loading *!*/
+@font-face {
+  font-family: 'AnthropicSerif Display Italic';
+  src: url('/fonts/anthropic-serif/AnthropicSerif-Display-SemiboldItalic-Static.otf') format('woff2');
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
 
-/*  !* The path starts from the root '/', not 'public/' *!*/
-/*  src: url('/fonts/Alliance No.1 Light.otf') format('woff2');*/
-/*}*/
+@font-face {
+  font-family: 'AnthropicSerif Display Italic';
+  src: url('/fonts/anthropic-serif/AnthropicSerif-Display-MediumItalic-Static.otf') format('woff2');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
 
 
-/*@font-face {*/
-/*  font-family: 'Alliance No.2 Light'; !* This is the name you will use in classes *!*/
-/*  font-style: normal;*/
-/*  !*font-weight: 400;*!*/
-/*  font-display: swap; !* Prevents invisible text while loading *!*/
+@font-face {
+  font-family: 'AnthropicSerif Display';
+  src: url('/fonts/anthropic-serif/AnthropicSerif-Display-Medium-Static.otf') format('woff2');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
 
-/*  !* The path starts from the root '/', not 'public/' *!*/
-/*  src: url('/fonts/Alliance No.2 Light.otf') format('woff2');*/
-/*}*/
+@font-face {
+  font-family: 'AnthropicSerif Text';
+  src: url('/fonts/anthropic-serif/AnthropicSerif-Text-Medium-Static.otf') format('woff2');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'AnthropicSerif Text';
+  src: url('/fonts/anthropic-serif/AnthropicSerif-Text-Regular-Static.otf') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+.font-anthropic-display-italic {
+  font-family: "AnthropicSerif Display Italic", sans-serif !important;
+}
+
+.font-anthropic-display {
+  font-family: "AnthropicSerif Display", sans-serif !important;
+}
+
+.font-anthropic-text {
+  font-family: "AnthropicSerif Text", sans-serif !important;
+}
+
+
+
 
 @font-face {
   font-family: 'Alliance No.1 Regular'; /* This is the name you will use in classes */
