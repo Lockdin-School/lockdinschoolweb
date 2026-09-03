@@ -41,15 +41,17 @@ export const ConceptRenderer = ({ concept }: {concept: Concept}) => {
                 {/* 2. The Content Container */}
                 <div className="w-full space-y-6">
                     {sections.map((section, idx) => (
-                        <div key={idx} className="w-full">
+                        <div key={idx} className="w-full text-start">
                             {/* Subtitle */}
                             {section.subtitle && (
-                                <Markdown
-                                    remarkPlugins={[remarkMath]}
-                                    rehypePlugins={[rehypeKatex]}
-                                >
-                                    {section.subtitle}
-                                </Markdown>
+                                <p className="font-anthropic-text">
+                                    <Markdown
+                                        remarkPlugins={[remarkMath]}
+                                        rehypePlugins={[rehypeKatex]}
+                                    >
+                                        {section.subtitle}
+                                    </Markdown>
+                                </p>
                             )}
 
                             {/* 3. The Paragraphs */}
