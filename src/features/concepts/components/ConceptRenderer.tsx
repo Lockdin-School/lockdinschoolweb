@@ -32,7 +32,7 @@ export const ConceptRenderer = ({ concept }: {concept: Concept}) => {
         sections: { subtitle?: string; paragraphs: string[] }[]
     ) => (
         <div className="mb-6">
-            <h3 className="text-2xl text-left font-alliance-2 tracking-tighter">{title}</h3>
+            <h3 className="text-[30px] text-left font-alliance-2  tracking-tighter">{title}</h3>
             {sections.map((section, idx) => (
                 <div key={idx} className="mb-4">
                     {section.subtitle && (
