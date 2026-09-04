@@ -2,7 +2,8 @@ import {AnimatePresence, motion, type Variants} from "framer-motion";
 import {useState} from "react";
 import NavItem from "./NavItem.tsx";
 
-interface ResponsiveMenuProps {
+export interface ResponsiveMenuProps {
+    subjectId?: string;
     open: boolean;
     onClose: () => void;
 }

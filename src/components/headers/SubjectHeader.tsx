@@ -1,57 +1,73 @@
 import {HugeiconsIcon} from "@hugeicons/react";
-import {BellIcon, CancelIcon, MenuTwoLineIcon} from "@hugeicons/core-free-icons";
+import {ArrowLeft02Icon, BellIcon, CancelIcon, MenuTwoLineIcon} from "@hugeicons/core-free-icons";
 import {useState} from "react";
 import {useAuthUser} from "@/api/auth/queries/useAuthUser.ts";
-import ResponsiveMenu from "@/components/ResponsiveMenu.tsx";
 import {AnimatePresence, motion} from "motion/react";
+import { useRouter} from "@tanstack/react-router";
+
 
 const SubjectHeader = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const {data: student, isLoading} = useAuthUser();
+    const router = useRouter();
 
 
     return (
         <>
-            <button
-                onClick={() => setMenuOpen(!menuOpen)}
-                type="button"
-                className="flex top-6 left-6 fixed z-50 rounded-lg border-border items-center justify-center"
-                aria-label="Open menu"
-            >
-                <motion.span className="relative flex h-5 w-5 items-center justify-center">
-                    <AnimatePresence mode="wait" initial={false}>
-                        {menuOpen ? (
-                            <motion.span
-                                key="cancel"
-                                initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
-                                animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                                exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
-                                transition={{
-                                    duration: 0.2,
-                                    ease: "easeOut",
-                                }}
-                                className="absolute"
-                            >
-                                <HugeiconsIcon size={38} icon={CancelIcon} />
-                            </motion.span>
-                        ) : (
-                            <motion.span
-                                key="chevron"
-                                initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
-                                animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                                exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
-                                transition={{
-                                    duration: 0.2,
-                                    ease: "easeOut",
-                                }}
-                                className="absolute"
-                            >
-                                <HugeiconsIcon size={38} icon={MenuTwoLineIcon} />
-                            </motion.span>
-                        )}
-                    </AnimatePresence>
-                </motion.span>
-            </button>
+            <div className="fixed top-4 gap-x-4 left-4 flex z-50">
+                <button
+                    onClick={() => {
+                        router.history.back()
+                    }}
+                    type="button"
+                    className="flex  rounded-lg border-border items-center justify-center"
+                    aria-label="Open menu"
+                >
+                    <motion.span className="relative flex h-8 w-8 items-center justify-center">
+                        <HugeiconsIcon size={40} icon={ArrowLeft02Icon} />
+                    </motion.span>
+                </button>
+                <button
+                    onClick={() => setMenuOpen(!menuOpen)}
+                    type="button"
+                    className=" rounded-lg border-border items-center justify-center"
+                    aria-label="Open menu"
+                >
+                    <motion.span className="relative flex h-5 w-5 items-center justify-center">
+                        <AnimatePresence mode="wait" initial={false}>
+                            {menuOpen ? (
+                                <motion.span
+                                    key="cancel"
+                                    initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
+                                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                                    exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
+                                    transition={{
+                                        duration: 0.2,
+                                        ease: "easeOut",
+                                    }}
+                                    className="absolute"
+                                >
+                                    <HugeiconsIcon size={38} icon={CancelIcon} />
+                                </motion.span>
+                            ) : (
+                                <motion.span
+                                    key="chevron"
+                                    initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
+                                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                                    exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
+                                    transition={{
+                                        duration: 0.2,
+                                        ease: "easeOut",
+                                    }}
+                                    className="absolute"
+                                >
+                                    <HugeiconsIcon size={38} icon={MenuTwoLineIcon} />
+                                </motion.span>
+                            )}
+                        </AnimatePresence>
+                    </motion.span>
+                </button>
+            </div>
 
             <header className="w-full fixed z-40  sm:border-b border-border bg-bg/95 backdrop-blur">
                 <div className="mx-auto flex h-16 w-full items-center justify-between px-4 sm:px-6 ">
@@ -99,11 +115,6 @@ const SubjectHeader = () => {
 
                 </div>
             </header>
-
-            <ResponsiveMenu
-                open={menuOpen}
-                onClose={() => setMenuOpen(false)}
-            />
         </>
     );
 };

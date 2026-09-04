@@ -2,6 +2,7 @@ import {createFileRoute, useParams} from '@tanstack/react-router'
 import {useConcept} from "@/api/concepts/queries/useConcepts.ts";
 import {ConceptRenderer} from "@/features/concepts/components/ConceptRenderer.tsx";
 import ConceptHeader from "@/components/headers/ConceptHeader.tsx";
+import {ConceptRendererSkeleton} from "@/components/skeletons/ConceptRendererSkeleton.tsx";
 
 
 export const Route = createFileRoute(
@@ -26,7 +27,7 @@ function ConceptPage() {
     <>
         <ConceptHeader />
         <div className="w-full flex flex-col">
-            {conceptIsLoading && <p>Loading...</p>}
+            {conceptIsLoading && <ConceptRendererSkeleton  />}
             {conceptIsError && <p>{conceptError.message}</p>}
             {concept && <ConceptRenderer concept={concept} />}
         </div>

@@ -157,6 +157,20 @@ export function TopicCollapsible(
                                                 {material.title}
                                             </Link>
                                         )
+                                    case "Concept":
+                                        return (
+                                            <Link
+                                                key={index}
+                                                to="/concepts/$materialId"
+                                                params={{
+                                                    materialId: material.material_id,
+                                                }}
+                                                className={` ${activeLink && "bg-accent-bg"} flex flex-col items-start gap-1 border-t border-border px-5 py-3 text-sm tracking-wide text-start font-geist-medium  hover:cursor-pointer hover:bg-accent-bg`}>
+                                                {/* TODO: When progress tracking service is live.*/}
+                                                <p className={`text-xs text-[#929292] font-space-semibold flex items-center`}>{material.display_order} / {materials.length} <HugeiconsIcon icon={DotIcon} /> {material.material_type}</p>
+                                                {material.title}
+                                            </Link>
+                                        )
                                     default:
                                         throw new Error("Unknown Material Type")
 

@@ -1,8 +1,8 @@
 import {createFileRoute, useParams, Outlet} from '@tanstack/react-router'
 import {useTopics} from "@/api/topics/queries/useTopics.ts";
 import {useState} from "react";
-import AppHeader from "@/components/AppHeader.tsx";
 import {TopicCollapsible} from "@/components/TopicCollapsible.tsx";
+import SubjectHeader from "@/components/headers/SubjectHeader.tsx";
 
 export const Route = createFileRoute('/_authenticated/subjects/$subjectId')({
     component: SubjectLayout,
@@ -39,24 +39,21 @@ function SubjectLayout  ()  {
     return (
         <div className="w-full gap-10 flex flex-col">
             {/*header*/}
-            <AppHeader/>
+            <SubjectHeader />
             {/*    MAIN LAYOUT    */}
-            <div className="w-full px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+            <div className="w-full px-4 sm:px-6 mt-20 lg:px-8 flex flex-col items-center">
                 <main className={` w-full justify-between gap-10 flex flex-col-reverse lg:grid lg:grid-cols-4`}>
                     {/*    LIST OF TOPICS */}
                     <aside className="w-full flex flex-col relative">
                         {/*List of topics*/}
                         {/*TODO: THIS SHOULD BE IN ITS OWN COMPONENT AND THEN HANDLE THE ACTIVE STATE THERE*/}
                         <section
-                            className="gap-1 p-1  flex flex-col w-full overflow-y-auto max-h-[calc(100vh-13vh)] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                            className="gap-1 p-1  flex flex-col w-full ">
                             {topics.map((topic, index) => {
                                 const isOpen = openIndex === index;
 
                                 return (
                                     <>
-                                        <p className="text-border lg:hidden text-start">
-                                            Topics
-                                        </p>
                                         <TopicCollapsible
                                             topic={topic}
                                             index={index}
