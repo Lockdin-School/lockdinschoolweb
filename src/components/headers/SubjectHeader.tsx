@@ -1,20 +1,26 @@
 import {HugeiconsIcon} from "@hugeicons/react";
 import {ArrowLeft02Icon, BellIcon, CancelIcon, MenuTwoLineIcon} from "@hugeicons/core-free-icons";
-import {useState} from "react";
 import {useAuthUser} from "@/api/auth/queries/useAuthUser.ts";
 import {AnimatePresence, motion} from "motion/react";
 import { useRouter} from "@tanstack/react-router";
 
 
-const SubjectHeader = () => {
-    const [menuOpen, setMenuOpen] = useState(false);
+type SubjectHeaderProps = {
+    menuOpen: boolean;
+    onMenuToggle: () => void;
+};
+
+const SubjectHeader = ({
+                           menuOpen,
+                           onMenuToggle,
+                       }: SubjectHeaderProps) => {
     const {data: student, isLoading} = useAuthUser();
     const router = useRouter();
 
 
     return (
         <>
-            <div className="fixed top-4 gap-x-4 left-4 flex z-50">
+            <div className="fixed top-4  lg:hidden  gap-x-4 left-4 flex z-50">
                 <button
                     onClick={() => {
                         router.history.back()
@@ -28,40 +34,70 @@ const SubjectHeader = () => {
                     </motion.span>
                 </button>
                 <button
-                    onClick={() => setMenuOpen(!menuOpen)}
+                    onClick={onMenuToggle}
                     type="button"
-                    className=" rounded-lg border-border items-center justify-center"
-                    aria-label="Open menu"
+                    className="rounded-lg border-border items-center justify-center"
+                    aria-label={menuOpen ? "Close menu" : "Open menu"}
                 >
                     <motion.span className="relative flex h-5 w-5 items-center justify-center">
                         <AnimatePresence mode="wait" initial={false}>
                             {menuOpen ? (
                                 <motion.span
                                     key="cancel"
-                                    initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
-                                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                                    exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
+                                    initial={{
+                                        opacity: 0,
+                                        rotate: -90,
+                                        scale: 0.7,
+                                    }}
+                                    animate={{
+                                        opacity: 1,
+                                        rotate: 0,
+                                        scale: 1,
+                                    }}
+                                    exit={{
+                                        opacity: 0,
+                                        rotate: 90,
+                                        scale: 0.7,
+                                    }}
                                     transition={{
                                         duration: 0.2,
                                         ease: "easeOut",
                                     }}
                                     className="absolute"
                                 >
-                                    <HugeiconsIcon size={38} icon={CancelIcon} />
+                                    <HugeiconsIcon
+                                        size={38}
+                                        icon={CancelIcon}
+                                    />
                                 </motion.span>
                             ) : (
                                 <motion.span
-                                    key="chevron"
-                                    initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
-                                    animate={{ opacity: 1, rotate: 0, scale: 1 }}
-                                    exit={{ opacity: 0, rotate: 90, scale: 0.7 }}
+                                    key="menu"
+                                    initial={{
+                                        opacity: 0,
+                                        rotate: -90,
+                                        scale: 0.7,
+                                    }}
+                                    animate={{
+                                        opacity: 1,
+                                        rotate: 0,
+                                        scale: 1,
+                                    }}
+                                    exit={{
+                                        opacity: 0,
+                                        rotate: 90,
+                                        scale: 0.7,
+                                    }}
                                     transition={{
                                         duration: 0.2,
                                         ease: "easeOut",
                                     }}
                                     className="absolute"
                                 >
-                                    <HugeiconsIcon size={38} icon={MenuTwoLineIcon} />
+                                    <HugeiconsIcon
+                                        size={38}
+                                        icon={MenuTwoLineIcon}
+                                    />
                                 </motion.span>
                             )}
                         </AnimatePresence>
@@ -115,6 +151,10 @@ const SubjectHeader = () => {
 
                 </div>
             </header>
+
+
+
+        {/*    THE MENU SHOULD Appear here*/}
         </>
     );
 };

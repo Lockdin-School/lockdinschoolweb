@@ -1,32 +1,37 @@
-import {createFileRoute, useParams, Outlet} from '@tanstack/react-router'
-import {useTopics} from "@/api/topics/queries/useTopics.ts";
-import {useState} from "react";
-import {TopicCollapsible} from "@/components/TopicCollapsible.tsx";
+import {
+    createFileRoute,
+    useParams,
+    Outlet,
+} from "@tanstack/react-router";
+
+import { useTopics } from "@/api/topics/queries/useTopics.ts";
+import { useState } from "react";
 import SubjectHeader from "@/components/headers/SubjectHeader.tsx";
+import { TopicList } from "@/components/TopicList.tsx";
 
-export const Route = createFileRoute('/_authenticated/subjects/$subjectId')({
+export const Route = createFileRoute(
+    "/_authenticated/subjects/$subjectId"
+)({
     component: SubjectLayout,
-})
+});
 
-function SubjectLayout  ()  {
-
-    const params = useParams({
-        from: '/_authenticated/subjects/$subjectId',
+function SubjectLayout() {
+    const { subjectId } = useParams({
+        from: "/_authenticated/subjects/$subjectId",
     });
-    const {subjectId} = params;
-
-    if (!subjectId) {
-        throw new Error("Subject Not Found");
-    }
 
     const {
         data: topics = [],
         isLoading,
         isError,
         error,
-    } = useTopics(subjectId!);
+    } = useTopics(subjectId);
 
-    const [openIndex, setOpenIndex] = useState<number | null>(null);
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    if (!subjectId) {
+        throw new Error("Subject Not Found");
+    }
 
     if (isLoading) {
         return <div>Loading topics...</div>;
@@ -38,42 +43,55 @@ function SubjectLayout  ()  {
 
     return (
         <div className="w-full gap-10 flex flex-col">
-            {/*header*/}
-            <SubjectHeader />
-            {/*    MAIN LAYOUT    */}
+            <SubjectHeader
+                menuOpen={menuOpen}
+                onMenuToggle={() => setMenuOpen((open) => !open)}
+            />
+
+            {/* MOBILE TOPIC MENU */}
+            <div
+                className={`
+                    fixed inset-0 z-30
+                    bg-bg
+                    pt-24 px-6
+                    overflow-y-auto
+                    lg:hidden
+                    transition-all duration-300
+                    ${
+                    menuOpen
+                        ? "translate-x-0 opacity-100"
+                        : "-translate-x-full opacity-0 pointer-events-none"
+                }
+                `}
+            >
+                <div className="max-w-xl mx-auto">
+                    <div className="mb-6">
+                        <span className="text-xs uppercase tracking-widest text-gray-500">
+                            Topics
+                        </span>
+                    </div>
+
+                    <TopicList
+                        topics={topics}
+                        subjectId={subjectId}
+                        onTopicSelect={() => setMenuOpen(false)}
+                    />
+                </div>
+            </div>
+
+            {/* MAIN LAYOUT */}
             <div className="w-full px-4 sm:px-6 mt-20 lg:px-8 flex flex-col items-center">
-                <main className={` w-full justify-between gap-10 flex flex-col-reverse lg:grid lg:grid-cols-4`}>
-                    {/*    LIST OF TOPICS */}
-                    <aside className="w-full flex flex-col relative">
-                        {/*List of topics*/}
-                        {/*TODO: THIS SHOULD BE IN ITS OWN COMPONENT AND THEN HANDLE THE ACTIVE STATE THERE*/}
-                        <section
-                            className="gap-1 p-1  flex flex-col w-full ">
-                            {topics.map((topic, index) => {
-                                const isOpen = openIndex === index;
+                <main className="w-full justify-between gap-10 flex flex-col-reverse lg:grid lg:grid-cols-4">
 
-                                return (
-                                    <>
-                                        <TopicCollapsible
-                                            topic={topic}
-                                            index={index}
-                                            isOpen={isOpen}
-                                            subjectId={subjectId!}
-                                            onToggle={() => setOpenIndex(isOpen ? null : index)}
-                                        />
-                                    </>
-                                );
-                            })}
-                        </section>
-
-
-                        {/*<button className="absolute bottom-4 border-border border right-4 bg-bg text-bg p-2 rounded-full shadow-lg hover:bg-opacity-90 transition-all">*/}
-                        {/*    <HugeiconsIcon size={25} color={"#fff"} icon={ArrowDown02Icon}/>*/}
-                        {/*</button>*/}
-
-
+                    {/* DESKTOP TOPICS */}
+                    <aside className="hidden lg:flex w-full flex-col relative">
+                        <TopicList
+                            topics={topics}
+                            subjectId={subjectId}
+                        />
                     </aside>
-                    {/*    Topics Layout */}
+
+                    {/* TOPIC CONTENT */}
                     <Outlet />
                 </main>
             </div>

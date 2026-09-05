@@ -1,8 +1,7 @@
 
 import {createFileRoute, useParams} from '@tanstack/react-router'
-import {useMaterial} from "@/api/materials/queries/useMaterials.ts";
-import {mockQuizQuestions} from "@/features/quizzes/mocks/quizQuestions.ts";
-import {Quiz} from "@/components/Quiz.tsx";
+import QuizRenderer from "@/features/quizzes/components/QuizRenderer.tsx";
+import {useQuiz} from "@/api/quizzes/queries/useQuiz.ts";
 
 export const Route = createFileRoute(
     '/_authenticated/subjects/$subjectId/topics/$topicId/quizzes/$materialId',
@@ -19,23 +18,23 @@ function RouteComponent() {
     const quizId = params.materialId
 
     const {
-        data: material,
-        isLoading: isLoadingMaterial,
-        isError: isErrorMaterial,
-        error: errorMaterial,
-    } = useMaterial(quizId!);
+        data: quiz,
+        isLoading: quizLoading,
+        isError: quizIsError,
+        error: quizError,
+    } = useQuiz(quizId);
 
-    if (isLoadingMaterial) {
-        return <div>Loading quiz...</div>;
+    if (quizLoading) {
+        return <div className="w-full h-screen flex items-center justify-center">Loading quiz...</div>;
     }
 
-    if (isErrorMaterial) {
-        return <div>Failed to load quiz: {errorMaterial?.message}</div>;
+    if (quizIsError) {
+        return <div className="w-full h-screen flex items-center justify-center">Failed to load quiz: {quizError?.message}</div>;
     }
 
     return (
-        <div className="p-1 flex items-start flex-col overflow-y-auto max-h-[calc(100vh-20vh)] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] gap-8 w-full">
-            <Quiz title={material!.title} questions={mockQuizQuestions} />
+        <div className="p-1 flex items-start flex-col overflow-y-auto min-h-[calc(100vh-20vh)] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] gap-8 w-full">
+            {quiz && <QuizRenderer quiz={quiz} />}
         </div>
     )
 }

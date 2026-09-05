@@ -1,10 +1,9 @@
 import {createFileRoute} from '@tanstack/react-router'
-import SubjectHeader from "@/components/headers/SubjectHeader.tsx";
-
 import {KnowledgeTree} from "@/features/learning/components/KnowledgeTree.tsx";
 import {useSubjects} from "@/api/subjects/queries/useSubjects.ts";
 import {useStudentProfile} from "@/api/student-profiles/queries/useStudentProfile.ts";
 import {useAuthUser} from "@/api/auth/queries/useAuthUser.ts";
+import AppHeader from "@/components/AppHeader.tsx";
 
 
 export const Route = createFileRoute('/_authenticated/learn')({
@@ -29,7 +28,7 @@ function LearningTree() {
 
     return (
         <div className="w-full min-h-screen flex flex-col items-center">
-            <SubjectHeader/>
+            <AppHeader />
             <main className="mt-20 max-sm:px-4 max-w-7xl w-full">
                 <section className="flex flex-col mb-20 items-start">
                     <p className="text-[#636363] text-sm tracking-tighter">

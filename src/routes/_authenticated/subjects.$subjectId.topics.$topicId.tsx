@@ -64,8 +64,8 @@ function TopicLayout() {
     const hasNext = onDisplay < totalNumOfMaterials - 1; // Corrected logic: index < total - 1
 
     return (
-        <main className="w-full col-span-3 gap-10 justify-between grid grid-cols-3">
-            <section className="col-span-2 gap-4 flex-col flex">
+        <main className="w-full col-span-3 max-md:grid-cols-1 gap-10 justify-between grid grid-cols-3">
+            <section className="col-span-2  gap-4 flex-col flex">
                 {/* Render the actual lesson content */}
                 <Outlet />
 
@@ -96,7 +96,7 @@ function TopicLayout() {
                 </div>
             </section>
 
-            <aside className="w-full h-full">
+            <aside className="w-full lg:block hidden h-full">
                 <p className="text-[#929292] text-start text-sm">RESOURCES</p>
                 {/* Add your resources list here */}
             </aside>
