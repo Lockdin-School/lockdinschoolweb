@@ -25,7 +25,7 @@ function Dashboard() {
     } = useStudentProfile(accountId);
 
     const {
-        data: subjects = [],
+        data: subjects,
         isLoading: isSubjectsLoading,
         isError,
         error,
@@ -57,7 +57,7 @@ function Dashboard() {
                     </div>
                     <section className="grid gap-3 grid-cols-1 w-full lg:grid-cols-3">
                         {
-                            subjects.map((subject, index) => (
+                            subjects && subjects.map((subject, index) => (
                                     <a href={`/subjects/${subject.id}`} key={index}
                                           className="text-start gap-y-0 hover:cursor-pointer w-full flex flex-col  border-border ">
                                         <div className="sm:h-[20vh] h-[25vh] mb-2 rounded w-full bg-accent">
