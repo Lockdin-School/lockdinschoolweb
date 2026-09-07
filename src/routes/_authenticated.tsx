@@ -53,6 +53,7 @@ function AuthenticatedLayout() {
         }
 
         if (
+            !studentProfile &&
             isStudentProfileError &&
             isStudentProfileNotFoundError(studentProfileError) &&
             !isOnboardingRoute
