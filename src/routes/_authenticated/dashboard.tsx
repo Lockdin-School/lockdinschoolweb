@@ -29,7 +29,7 @@ function Dashboard() {
         isLoading: isSubjectsLoading,
         isError,
         error,
-    } = useSubjects(studentProfile.grade);
+    } = useSubjects(studentProfile?.grade);
 
     if (isSubjectsLoading || isStudentProfileLoading || isAuthUserLoading) {
         return (
@@ -38,6 +38,10 @@ function Dashboard() {
                 <DashboardSkeleton />
             </>
         );
+    }
+
+    if (!studentProfile) {
+        return null; // or a fallback — layout's effect will redirect on next commit
     }
 
     if (isError) return <div>Error: {error.message}</div>

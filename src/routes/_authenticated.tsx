@@ -52,16 +52,13 @@ function AuthenticatedLayout() {
             return;
         }
 
+
         if (
-            !studentProfile &&
             isStudentProfileError &&
             isStudentProfileNotFoundError(studentProfileError) &&
             !isOnboardingRoute
         ) {
-            void navigate({
-                to: "/onboarding",
-                replace: true,
-            });
+            void navigate({ to: "/onboarding", replace: true });
             return;
         }
 
@@ -94,9 +91,10 @@ function AuthenticatedLayout() {
         isOnboardingRoute,
         isStudentProfileError,
         isStudentProfileLoading,
-        navigate,
         studentProfile,
         studentProfileError,
+        isStudentProfileNotFoundError,
+        navigate,
     ]);
 
     if (isAuthUserLoading || isStudentProfileLoading) {
