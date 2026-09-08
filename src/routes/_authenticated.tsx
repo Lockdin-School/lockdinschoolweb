@@ -93,7 +93,6 @@ function AuthenticatedLayout() {
         isStudentProfileLoading,
         studentProfile,
         studentProfileError,
-        isStudentProfileNotFoundError,
         navigate,
     ]);
 

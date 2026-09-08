@@ -62,6 +62,9 @@ const QuizRenderer = ({quiz}: QuizRendererProps) => {
                     ))
                 }
             </section>
+            <section className={"w-full flex justify-center items-center"}>
+                <button className="bg-[#1e2914] text-white px-4 py-2 rounded-md hover:bg-[#1e2914]/90 transition-colors">Submit</button>
+            </section>
         </div>
     );
 };
