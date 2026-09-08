@@ -37,7 +37,8 @@ function App() {
                         {/*<Link to={"/manifesto"} className="text-xs bg-text text-bg hover:underline p-4 py-6 my-10">Read Our Manifesto</Link>*/}
                         <button
                             onClick={()=> { void navigate({ to: '/signin' })}}
-                            className="text-sm font-alliance border border-[#a2a2a2] hover:underline p-4 py-6 my-8 sm:my-10 bg-white backdrop-blur-sm">Sign In</button>
+                            className="text-lg text-white
+                             rounded font-alliance border border-white  hover:underline px-8 py-3 my-8 sm:my-10 bg-transparent backdrop-blur-sm">Sign In</button>
                     </div>
                 </section>
             </main>
