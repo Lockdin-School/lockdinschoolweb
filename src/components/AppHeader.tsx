@@ -1,5 +1,5 @@
 import {HugeiconsIcon} from "@hugeicons/react";
-import {BellIcon, CancelIcon, LiveStreaming03Icon, MenuTwoLineIcon} from "@hugeicons/core-free-icons";
+import {CancelIcon, LiveStreaming03Icon, MenuTwoLineIcon} from "@hugeicons/core-free-icons";
 import {useState} from "react";
 import ResponsiveMenu from "./ResponsiveMenu.tsx";
 import {useAuthUser} from "@/api/auth/queries/useAuthUser.ts";

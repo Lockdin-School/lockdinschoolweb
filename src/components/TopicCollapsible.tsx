@@ -3,7 +3,6 @@ import { useParams, Link } from "@tanstack/react-router";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
     ChevronDownIcon,
-    DotIcon,
 } from "@hugeicons/core-free-icons";
 import { useState } from "react";
 import { useMaterials } from "../api/materials/queries/useMaterials.ts";
@@ -116,7 +115,7 @@ export function TopicCollapsible({
                                 duration: 0.2,
                             },
                         }}
-                        className="overflow-hidden"
+                        className="overflow-hidden bg-accent"
                     >
                         {isLoading && (
                             <div className="w-full bg-code-bg h-10" />
@@ -138,11 +137,9 @@ hover:bg-accent-bg
     `;
 
                             const materialInfo = (
-                                <p className="text-xs text-[#929292] font-space-semibold flex items-center">
-                                    {material.display_order} / {materials.length}
-                                    <HugeiconsIcon icon={DotIcon} />
+                                <b className="text-[12px] uppercase self-start  bg-[#1e2914] text-bg p-1 rounded px-2 mb-2">
                                     {material.material_type}
-                                </p>
+                                </b>
                             );
 
                             switch (material.material_type) {

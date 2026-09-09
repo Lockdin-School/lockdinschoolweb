@@ -1,8 +1,7 @@
 import {HugeiconsIcon} from "@hugeicons/react";
-import {ArrowLeft02Icon, BellIcon, CancelIcon, MenuTwoLineIcon} from "@hugeicons/core-free-icons";
+import {CancelIcon, LiveStreaming03Icon, Menu03Icon} from "@hugeicons/core-free-icons";
 import {useAuthUser} from "@/api/auth/queries/useAuthUser.ts";
 import {AnimatePresence, motion} from "motion/react";
-import { useRouter} from "@tanstack/react-router";
 
 
 type SubjectHeaderProps = {
@@ -15,24 +14,12 @@ const SubjectHeader = ({
                            onMenuToggle,
                        }: SubjectHeaderProps) => {
     const {data: student, isLoading} = useAuthUser();
-    const router = useRouter();
 
 
     return (
         <>
-            <div className="fixed top-4  lg:hidden  gap-x-4 left-4 flex z-50">
-                <button
-                    onClick={() => {
-                        router.history.back()
-                    }}
-                    type="button"
-                    className="flex  rounded-lg border-border items-center justify-center"
-                    aria-label="Open menu"
-                >
-                    <motion.span className="relative flex h-8 w-8 items-center justify-center">
-                        <HugeiconsIcon size={40} icon={ArrowLeft02Icon} />
-                    </motion.span>
-                </button>
+            <div className="fixed top-6  lg:hidden  gap-x-4 left-6 flex z-50">
+
                 <button
                     onClick={onMenuToggle}
                     type="button"
@@ -96,7 +83,7 @@ const SubjectHeader = ({
                                 >
                                     <HugeiconsIcon
                                         size={38}
-                                        icon={MenuTwoLineIcon}
+                                        icon={Menu03Icon}
                                     />
                                 </motion.span>
                             )}
@@ -135,8 +122,8 @@ const SubjectHeader = ({
                             aria-label="Notifications"
                         >
                             <HugeiconsIcon
-                                size={22}
-                                icon={BellIcon}
+                                size={24}
+                                icon={LiveStreaming03Icon}
                             />
                         </button>
 

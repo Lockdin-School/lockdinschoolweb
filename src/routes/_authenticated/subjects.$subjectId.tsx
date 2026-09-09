@@ -42,7 +42,7 @@ function SubjectLayout() {
     }
 
     return (
-        <div className="w-full gap-10 flex flex-col">
+        <div className="w-full flex flex-col">
             <SubjectHeader
                 menuOpen={menuOpen}
                 onMenuToggle={() => setMenuOpen((open) => !open)}
@@ -53,10 +53,13 @@ function SubjectLayout() {
                 className={`
                     fixed inset-0 z-30
                     bg-bg
-                    pt-24 px-6
-                    overflow-y-auto
+                    pt-20 px-4
+                   
                     lg:hidden
                     transition-all duration-300
+                    
+                    overflow-y-auto min-h-[calc(100vh-20vh)] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]
+                    
                     ${
                     menuOpen
                         ? "translate-x-0 opacity-100"
@@ -64,8 +67,8 @@ function SubjectLayout() {
                 }
                 `}
             >
-                <div className="max-w-xl mx-auto">
-                    <div className="mb-6">
+                <div className="max-w-xl ">
+                    <div className="mb-4">
                         <span className="text-xs uppercase tracking-widest text-gray-500">
                             Topics
                         </span>
