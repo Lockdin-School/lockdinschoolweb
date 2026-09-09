@@ -20,12 +20,12 @@ const QuizCompleted = ({quiz, attempt, onBackToDashboard}: QuizCompletedProps) =
                 <b className="text-[16px] tracking-tighter text-bg bg-[#1e2914] p-1 rounded px-2 mb-2">
                     Quiz Completed
                 </b>
-                <p className="text-5xl font-geist-semibold max-w-md leading-9 tracking-[-5px] text-left">
+                <p className="text-4xl font-geist-semibold max-w-md leading-9 tracking-[-5px] text-left">
                     {quiz.title}
                 </p>
             </section>
 
-            <section className="w-full flex flex-col items-center justify-center gap-6 py-10">
+            <section className="w-full h-full flex flex-col items-center justify-center gap-6 py-10">
                 <div className="flex flex-col items-center gap-2">
                     <p className="font-anthropic-display text-8xl tracking-[-3px] text-[#1e2914]">
                         {percentage}%
