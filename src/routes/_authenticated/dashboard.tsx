@@ -1,4 +1,4 @@
-import {createFileRoute} from '@tanstack/react-router'
+import {createFileRoute, useNavigate} from '@tanstack/react-router'
 import {useSubjects} from "@/api/subjects/queries/useSubjects.ts";
 import AppHeader from "@/components/AppHeader.tsx";
 import {useAuthUser} from "@/api/auth/queries/useAuthUser.ts";
@@ -18,6 +18,8 @@ function Dashboard() {
     } = useAuthUser();
 
     const accountId = authUser?.userInfo?.id;
+
+    const navigate = useNavigate();
 
     const {
         data: studentProfile,
@@ -55,17 +57,21 @@ function Dashboard() {
                     Your learning space is ready.
                     What are we learning today? <br />
                 </p>
-                <main className="max-w-7xl max-sm:px-4 w-full  gap-5 flex flex-col items-start">
+                <main className="max-w-7xl mb-20 max-sm:px-4 w-full  gap-5 flex flex-col items-start">
                     <div className="flex flex-col items-start">
-                        <p className="w-full text-xs tracking-tight text-bg bg-border border py-2 px-3 border-border self-start">Subjects</p>
+                        <p className="w-full text-xs tracking-tight rounded-full text-bg bg-border border py-2 px-3 border-border self-start">Subjects</p>
                     </div>
                     <section className="grid gap-3 grid-cols-1 w-full lg:grid-cols-3">
                         {
                             subjects && subjects.map((subject, index) => (
-                                    <a href={`/subjects/${subject.id}`} key={index}
+                                    <button
+                                        onClick={()=>{
+                                            void navigate({to: `/subjects/$subjectId`, params: {subjectId: subject.id}})
+                                        }}
+                                        key={index}
                                           className="text-start gap-y-0 hover:cursor-pointer w-full flex flex-col  border-border ">
-                                        <div className="sm:h-[20vh] h-[25vh] mb-2 rounded w-full bg-accent">
-                                            <img src={"/carousel/5.jpg"} alt={subject.title} className="w-full rounded h-full object-center object-cover" />
+                                        <div className="sm:h-[20vh] h-[25vh] mb-2 rounded-[20px] w-full bg-accent">
+                                            <img src={"/carousel/5.jpg"} alt={subject.title} className="w-full rounded-[20px] h-full object-center object-cover" />
                                         </div>
                                         <div className="flex gap-x-2 w-full justify-between items-center">
                                             <p className="tracking-tighter  ">{subject.title}</p>
@@ -75,7 +81,7 @@ function Dashboard() {
                                         <b className="tracking-tighter">{subject.description}</b>
                                         {/*<p className="tracking-tight text-xs">Estimated hours:*/}
                                         {/*    2{subject.estimatedHours}hrs</p>*/}
-                                    </a>
+                                    </button>
                                 )
                             )
                         }
