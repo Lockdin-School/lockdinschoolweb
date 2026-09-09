@@ -1,5 +1,5 @@
 import {HugeiconsIcon} from "@hugeicons/react";
-import {BellIcon, CancelIcon, MenuTwoLineIcon} from "@hugeicons/core-free-icons";
+import {BellIcon, CancelIcon, LiveStreaming03Icon, MenuTwoLineIcon} from "@hugeicons/core-free-icons";
 import {useState} from "react";
 import ResponsiveMenu from "./ResponsiveMenu.tsx";
 import {useAuthUser} from "@/api/auth/queries/useAuthUser.ts";
@@ -81,8 +81,8 @@ const AppHeader = () => {
                             aria-label="Notifications"
                         >
                             <HugeiconsIcon
-                                size={22}
-                                icon={BellIcon}
+                                size={24}
+                                icon={LiveStreaming03Icon}
                             />
                         </button>
 
