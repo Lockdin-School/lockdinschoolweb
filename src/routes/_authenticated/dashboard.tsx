@@ -71,7 +71,7 @@ function Dashboard() {
                                         key={index}
                                           className="text-start gap-y-0 hover:cursor-pointer w-full flex flex-col  border-border ">
                                         <div className="sm:h-[20vh] h-[25vh] mb-2 rounded-[22px] w-full bg-code-bg">
-                                            <img src={"/carousel/5.jpg"} alt={subject.title} className="w-full rounded-[20px] h-full object-center object-cover" />
+                                            <img src={subject.coverImageUrl ?? "/carousel/5.jpg"} alt={subject.title} className="w-full rounded-[20px] h-full object-center object-cover" />
                                         </div>
                                         <div className="flex gap-x-2 w-full justify-between items-center">
                                             <p className="tracking-tighter  ">{subject.title}</p>
