@@ -25,10 +25,6 @@ const textVariants = {
     hover: { color: "#000" },
 };
 
-const iconVariants = {
-    rest: { color: "#000", x: "-100%" },
-    hover: { color: "#000", x: "0%" },
-};
 
 
 export function TopicCollapsible({
@@ -74,16 +70,15 @@ export function TopicCollapsible({
                     transition={{ duration: 0.2 }}
                 />
 
-                <div className="relative z-10 flex w-full items-center justify-between">
-                    <div className="flex flex-col text-left w-full items-start gap-1">
+                <div className="z-10 flex w-full items-center justify-end">
+                    <motion.div className="flex flex-col text-left w-full items-start gap-1">
                         <motion.span variants={textVariants}>
                             {topic.title}
                         </motion.span>
-                    </div>
+                    </motion.div>
 
                     <motion.div
-                        variants={iconVariants}
-                        animate={{ rotate: isOpen ? 180 : 0 }}
+                        animate={{ rotate: isOpen ? -180 : -90 }}
                         transition={{ duration: 0.25 }}
                     >
                         <HugeiconsIcon icon={ChevronDownIcon} />

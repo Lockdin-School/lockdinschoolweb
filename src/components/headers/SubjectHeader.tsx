@@ -23,7 +23,7 @@ const SubjectHeader = ({
                 <button
                     onClick={onMenuToggle}
                     type="button"
-                    className="rounded-lg border-border items-center justify-center"
+                    className="rounded-lg z-50 border-border items-center justify-center"
                     aria-label={menuOpen ? "Close menu" : "Open menu"}
                 >
                     <motion.span className="relative flex h-5 w-5 items-center justify-center">
@@ -82,7 +82,7 @@ const SubjectHeader = ({
                                     className="absolute"
                                 >
                                     <HugeiconsIcon
-                                        size={38}
+                                        size={33}
                                         icon={Menu03Icon}
                                     />
                                 </motion.span>
