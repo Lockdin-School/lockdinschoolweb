@@ -18,7 +18,9 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as AuthenticatedLearnRouteImport } from './routes/_authenticated/learn'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedSessionsRouteImport } from './routes/_authenticated/sessions'
 import { Route as AuthenticatedConceptsMaterialIdRouteImport } from './routes/_authenticated/concepts.$materialId'
+import { Route as AuthenticatedSessionsIndexRouteImport } from './routes/_authenticated/sessions.index'
 import { Route as AuthenticatedSubjectsSubjectIdRouteImport } from './routes/_authenticated/subjects.$subjectId'
 import { Route as AuthenticatedSubjectsSubjectIdIndexRouteImport } from './routes/_authenticated/subjects.$subjectId.index'
 import { Route as AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteImport } from './routes/_authenticated/subjects.$subjectId.topics.$topicId'
@@ -71,11 +73,22 @@ const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedSessionsRoute = AuthenticatedSessionsRouteImport.update({
+  id: '/sessions',
+  path: '/sessions',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
 const AuthenticatedConceptsMaterialIdRoute =
   AuthenticatedConceptsMaterialIdRouteImport.update({
     id: '/concepts/$materialId',
     path: '/concepts/$materialId',
     getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedSessionsIndexRoute =
+  AuthenticatedSessionsIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedSessionsRoute,
   } as any)
 const AuthenticatedSubjectsSubjectIdRoute =
   AuthenticatedSubjectsSubjectIdRouteImport.update({
@@ -137,8 +150,10 @@ export interface FileRoutesByFullPath {
   '/learn': typeof AuthenticatedLearnRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/sessions': typeof AuthenticatedSessionsRouteWithChildren
   '/concepts/$materialId': typeof AuthenticatedConceptsMaterialIdRoute
   '/subjects/$subjectId': typeof AuthenticatedSubjectsSubjectIdRouteWithChildren
+  '/sessions/': typeof AuthenticatedSessionsIndexRoute
   '/subjects/$subjectId/': typeof AuthenticatedSubjectsSubjectIdIndexRoute
   '/subjects/$subjectId/topics/$topicId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteWithChildren
   '/subjects/$subjectId/topics/$topicId/exercises/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
@@ -156,6 +171,7 @@ export interface FileRoutesByTo {
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/profile': typeof AuthenticatedProfileRoute
   '/concepts/$materialId': typeof AuthenticatedConceptsMaterialIdRoute
+  '/sessions': typeof AuthenticatedSessionsIndexRoute
   '/subjects/$subjectId': typeof AuthenticatedSubjectsSubjectIdIndexRoute
   '/subjects/$subjectId/topics/$topicId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteWithChildren
   '/subjects/$subjectId/topics/$topicId/exercises/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
@@ -174,8 +190,10 @@ export interface FileRoutesById {
   '/_authenticated/learn': typeof AuthenticatedLearnRoute
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/sessions': typeof AuthenticatedSessionsRouteWithChildren
   '/_authenticated/concepts/$materialId': typeof AuthenticatedConceptsMaterialIdRoute
   '/_authenticated/subjects/$subjectId': typeof AuthenticatedSubjectsSubjectIdRouteWithChildren
+  '/_authenticated/sessions/': typeof AuthenticatedSessionsIndexRoute
   '/_authenticated/subjects/$subjectId/': typeof AuthenticatedSubjectsSubjectIdIndexRoute
   '/_authenticated/subjects/$subjectId/topics/$topicId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteWithChildren
   '/_authenticated/subjects/$subjectId/topics/$topicId/exercises/$materialId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
@@ -194,8 +212,10 @@ export interface FileRouteTypes {
     | '/learn'
     | '/onboarding'
     | '/profile'
+    | '/sessions'
     | '/concepts/$materialId'
     | '/subjects/$subjectId'
+    | '/sessions/'
     | '/subjects/$subjectId/'
     | '/subjects/$subjectId/topics/$topicId'
     | '/subjects/$subjectId/topics/$topicId/exercises/$materialId'
@@ -213,6 +233,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/profile'
     | '/concepts/$materialId'
+    | '/sessions'
     | '/subjects/$subjectId'
     | '/subjects/$subjectId/topics/$topicId'
     | '/subjects/$subjectId/topics/$topicId/exercises/$materialId'
@@ -230,8 +251,10 @@ export interface FileRouteTypes {
     | '/_authenticated/learn'
     | '/_authenticated/onboarding'
     | '/_authenticated/profile'
+    | '/_authenticated/sessions'
     | '/_authenticated/concepts/$materialId'
     | '/_authenticated/subjects/$subjectId'
+    | '/_authenticated/sessions/'
     | '/_authenticated/subjects/$subjectId/'
     | '/_authenticated/subjects/$subjectId/topics/$topicId'
     | '/_authenticated/subjects/$subjectId/topics/$topicId/exercises/$materialId'
@@ -313,12 +336,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProfileRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/sessions': {
+      id: '/_authenticated/sessions'
+      path: '/sessions'
+      fullPath: '/sessions'
+      preLoaderRoute: typeof AuthenticatedSessionsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/concepts/$materialId': {
       id: '/_authenticated/concepts/$materialId'
       path: '/concepts/$materialId'
       fullPath: '/concepts/$materialId'
       preLoaderRoute: typeof AuthenticatedConceptsMaterialIdRouteImport
       parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/sessions/': {
+      id: '/_authenticated/sessions/'
+      path: '/'
+      fullPath: '/sessions/'
+      preLoaderRoute: typeof AuthenticatedSessionsIndexRouteImport
+      parentRoute: typeof AuthenticatedSessionsRoute
     }
     '/_authenticated/subjects/$subjectId': {
       id: '/_authenticated/subjects/$subjectId'
@@ -372,6 +409,19 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedSessionsRouteChildren {
+  AuthenticatedSessionsIndexRoute: typeof AuthenticatedSessionsIndexRoute
+}
+
+const AuthenticatedSessionsRouteChildren: AuthenticatedSessionsRouteChildren = {
+  AuthenticatedSessionsIndexRoute: AuthenticatedSessionsIndexRoute,
+}
+
+const AuthenticatedSessionsRouteWithChildren =
+  AuthenticatedSessionsRoute._addFileChildren(
+    AuthenticatedSessionsRouteChildren,
+  )
+
 interface AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteChildren {
   AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdExercisesMaterialIdRoute
   AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute: typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdLessonsMaterialIdRoute
@@ -419,6 +469,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedLearnRoute: typeof AuthenticatedLearnRoute
   AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedSessionsRoute: typeof AuthenticatedSessionsRouteWithChildren
   AuthenticatedConceptsMaterialIdRoute: typeof AuthenticatedConceptsMaterialIdRoute
   AuthenticatedSubjectsSubjectIdRoute: typeof AuthenticatedSubjectsSubjectIdRouteWithChildren
 }
@@ -428,6 +479,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedLearnRoute: AuthenticatedLearnRoute,
   AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedSessionsRoute: AuthenticatedSessionsRouteWithChildren,
   AuthenticatedConceptsMaterialIdRoute: AuthenticatedConceptsMaterialIdRoute,
   AuthenticatedSubjectsSubjectIdRoute:
     AuthenticatedSubjectsSubjectIdRouteWithChildren,

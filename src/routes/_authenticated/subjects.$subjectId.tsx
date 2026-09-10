@@ -51,7 +51,7 @@ function SubjectLayout() {
             {/* MOBILE TOPIC MENU */}
             <div
                 className={`
-                    fixed inset-0 z-40
+                    fixed inset-0 z-30
                     bg-bg
                     pt-20 px-4
                    
