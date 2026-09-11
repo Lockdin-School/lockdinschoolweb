@@ -1,8 +1,12 @@
-// BottomControlBar.tsx
-import {useState} from "react";
-import type {Room, LocalParticipant} from "livekit-client";
-import {Mic, MicOff, Video, VideoOff, MonitorUp, MessageSquare, PhoneOff} from "lucide-react";
+import {type Room, type LocalParticipant, Track} from "livekit-client";
+import {Mic, Video, VideoOff, MonitorUp, MessageSquare, PhoneOff, ChevronUp} from "lucide-react";
 import {useRouter} from "@tanstack/react-router";
+import {useRef, useState} from "react";
+import {useOnClickOutside} from "@/features/classroom/hooks/useOnClickOutside"; // any standard outside-click hook
+import {useBackgroundEffect} from "@/features/classroom/hooks/useBackgroundEffect";
+import BackgroundEffectsMenu from "@/features/classroom/components/BackgroundEffectsMenu";
+import MicControl from "@/features/classroom/components/MicControl.tsx";
+
 
 export default function BottomControlBar({
                                              subjectLabel,
@@ -26,7 +30,24 @@ export default function BottomControlBar({
     const [leaving, setLeaving] = useState(false);
     const router = useRouter();
 
-    const toggleMic = () => localParticipant.setMicrophoneEnabled(!isMicrophoneEnabled);
+    const {effect, applyEffect} = useBackgroundEffect();
+    const [effectsMenuOpen, setEffectsMenuOpen] = useState(false);
+    const cameraGroupRef = useRef<HTMLDivElement>(null);
+    useOnClickOutside(cameraGroupRef, () => setEffectsMenuOpen(false));
+
+    const toggleMic = async () => {
+        try {
+            await localParticipant.setMicrophoneEnabled(!isMicrophoneEnabled);
+        } catch (err) {
+            console.error("Failed to toggle microphone:", err);
+            // surface this to the user — a toast, inline banner, etc. —
+            // rather than letting it fail invisibly
+        }
+    };
+
+    const pub = localParticipant.getTrackPublication(Track.Source.Microphone);
+    console.log("mic publication:", pub, "muted:", pub?.isMuted, "track:", pub?.track);
+
     const toggleCamera = () => localParticipant.setCameraEnabled(!isCameraEnabled);
     const toggleShare = () => localParticipant.setScreenShareEnabled(!isScreenShareEnabled);
     const leave = async () => {
@@ -45,8 +66,33 @@ export default function BottomControlBar({
             </div>
 
             <div className="flex items-center gap-4 sm:gap-8 mx-auto sm:mx-0">
-                <ControlButton icon={isMicrophoneEnabled ? Mic : MicOff} label="Mic" active={isMicrophoneEnabled} onClick={toggleMic}/>
-                <ControlButton icon={isCameraEnabled ? Video : VideoOff} label="Camera" active={isCameraEnabled} onClick={toggleCamera}/>
+                <MicControl room={room} isMicrophoneEnabled={isMicrophoneEnabled} onToggle={toggleMic} />
+                <div ref={cameraGroupRef} className="relative flex flex-col items-center">
+                    {effectsMenuOpen && (
+                        <BackgroundEffectsMenu
+                            effect={effect}
+                            onSelect={(next) => {
+                                applyEffect(next);
+                                setEffectsMenuOpen(false);
+                            }}
+                        />
+                    )}
+                    <div className="flex items-center gap-1">
+                        <ControlButton
+                            icon={isCameraEnabled ? Video : VideoOff}
+                            label="Camera"
+                            active={isCameraEnabled}
+                            onClick={toggleCamera}
+                        />
+                        <button
+                            onClick={() => setEffectsMenuOpen((v) => !v)}
+                            className="text-[#666] hover:text-[#a9a9a9] transition-colors -ml-1 mb-4"
+                            aria-label="Background effects"
+                        >
+                            <ChevronUp size={12}/>
+                        </button>
+                    </div>
+                </div>
                 <ControlButton icon={MonitorUp} label="Share" active={isScreenShareEnabled} onClick={toggleShare}/>
                 <ControlButton icon={MessageSquare} label="Chat" active={false} onClick={onOpenChat} className="md:hidden"/>
                 <ControlButton icon={MessageSquare} label="Chat" active={false} onClick={onOpenChat} className="hidden md:flex"/>

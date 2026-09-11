@@ -19,6 +19,8 @@ export default function VideoTile({
     const heightClass =
         size === "lg" ? "h-[220px]" : size === "md" ? "h-[100px]" : "h-[72px]";
 
+    const shouldMirror = participant.isLocal;
+
     return (
         <div
             className={`relative w-full ${heightClass} rounded-xl overflow-hidden border border-white/10 bg-[#1a1b1c] shrink-0`}
@@ -27,7 +29,7 @@ export default function VideoTile({
                 // Swap in @livekit/components-react's <VideoTrack trackRef={track} />
                 // here once wired to a real publication.
                 <video
-                    className="w-full h-full object-cover"
+                    className={`w-full h-full object-cover ${shouldMirror ? "-scale-x-100" : ""}`}
                     autoPlay
                     playsInline
                     muted={participant.isLocal}

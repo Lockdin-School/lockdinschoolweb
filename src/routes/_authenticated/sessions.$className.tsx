@@ -8,6 +8,7 @@ import {LiveKitRoom, SessionProvider, useSession} from "@livekit/components-reac
 import "@livekit/components-styles";
 import "@/livekit-theme.css";
 import LockdinClassroom from "@/features/classroom/components/LockdinClassroom.tsx";
+import {RemoteAudio} from "@/features/classroom/components/RemoteAudio.tsx";
 
 export const Route = createFileRoute('/_authenticated/sessions/$className')({
   component: RouteComponent,
@@ -55,6 +56,7 @@ function RouteComponent() {
                 serverUrl={serverUrl}
                 connect
             >
+                <RemoteAudio />
                 <LockdinClassroom
                     subjectLabel="Mathematics"
                     lessonTitle="Functions & Transformations"
