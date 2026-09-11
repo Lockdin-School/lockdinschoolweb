@@ -4,9 +4,10 @@ import {useStudentProfile} from "@/api/student-profiles/queries/useStudentProfil
 import type {LiveKitConnectionRequest} from "@/api/live-sessions/models/SessionConnection.ts";
 import {useLiveSessions} from "@/api/live-sessions/queries/useLiveSessions.ts";
 import {TokenSource} from "livekit-client";
-import {LiveKitRoom, SessionProvider, useSession, VideoConference} from "@livekit/components-react";
+import {LiveKitRoom, SessionProvider, useSession} from "@livekit/components-react";
 import "@livekit/components-styles";
 import "@/livekit-theme.css";
+import LockdinClassroom from "@/features/classroom/components/LockdinClassroom.tsx";
 
 export const Route = createFileRoute('/_authenticated/sessions/$className')({
   component: RouteComponent,
@@ -54,7 +55,17 @@ function RouteComponent() {
                 serverUrl={serverUrl}
                 connect
             >
-                <VideoConference />
+                <LockdinClassroom
+                    subjectLabel="Mathematics"
+                    lessonTitle="Functions & Transformations"
+                    activity={{
+                        questionNumber: "03",
+                        answeredCount: 18,
+                        totalCount: 24,
+                        prompt: "Solve for x: 2(x + 3) = 14",
+                        correctPercentage: 28,
+                    }}
+                />
             </LiveKitRoom>
         </SessionProvider>
     )
