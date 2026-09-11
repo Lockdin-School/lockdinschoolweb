@@ -1,0 +1,137 @@
+/* livekit-theme.css */
+/* Import LiveKit's base styles once, before this file, e.g. in your root:
+   import "@livekit/components-styles"; */
+
+.lk-video-conference,
+.lk-video-conference * {
+    /* Inherit whatever font-family your Tailwind font-alliance utility
+       already set on an ancestor, rather than hardcoding a font string here. */
+    --lk-font-family: inherit;
+}
+
+.lockdin-video-room {
+    --lk-bg: #1e2124;
+    --lk-bg2: #17181a;
+    --lk-bg3: #000000;
+    --lk-fg: #ffffff;
+    --lk-fg2: #dcdcdc;
+    --lk-fg3: #767676;
+
+    --lk-border-color: rgba(255, 255, 255, 0.12);
+    --lk-border-radius: 0px;
+
+    --lk-accent-bg: #00ff11;
+    --lk-accent-fg: #000000;
+
+    --lk-danger: #ff4d4d;
+    --lk-danger-fg: #ffffff;
+    --lk-success: #00ff11;
+
+    --lk-control-bg: #000000;
+    --lk-control-fg: #dcdcdc;
+    --lk-control-hover-bg: #1e1f2b;
+    --lk-control-active-bg: #00ff11;
+    --lk-control-active-fg: #000000;
+
+    --lk-connection-excellent: #dcdcdc;
+    --lk-connection-good: #a9a9a9;
+    --lk-connection-poor: #ff4d4d;
+
+    --lk-grid-gap: 2px;
+    --lk-control-bar-height: 72px;
+
+    background: var(--lk-bg);
+    width: 100%;
+    height: 100%;
+}
+
+/* Participant tiles: sharp corners, hairline border, no shadow/glow */
+.lockdin-video-room .lk-participant-tile {
+    border: 1px solid var(--lk-border-color);
+    border-radius: 0;
+    background: #000;
+    box-shadow: none;
+    overflow: hidden;
+}
+
+/* Speaking indicator: a thin accent hairline, not a glow ring */
+.lockdin-video-room .lk-participant-tile[data-lk-speaking="true"] {
+    border-color: var(--lk-accent-bg);
+}
+
+/* Participant name: small uppercase label, matches the site's micro-label style */
+.lockdin-video-room .lk-participant-metadata {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 0;
+    padding: 4px 8px;
+    bottom: 8px;
+    left: 8px;
+}
+
+.lockdin-video-room .lk-participant-name {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--lk-fg2);
+}
+
+/* Connection quality: swap the coloured dots for something restrained */
+.lockdin-video-room .lk-connection-quality {
+    filter: grayscale(1);
+    opacity: 0.85;
+}
+
+/* Control bar: flat black strip, hairline top border, no floating pill */
+.lockdin-video-room .lk-control-bar {
+    background: #000;
+    border-top: 1px solid var(--lk-border-color);
+    border-radius: 0;
+    gap: 2px;
+    padding: 12px 16px;
+}
+
+/* Buttons: square, hairline border, no rounded pill treatment */
+.lockdin-video-room .lk-button {
+    border-radius: 0;
+    border: 1px solid var(--lk-border-color);
+    background: var(--lk-control-bg);
+    color: var(--lk-control-fg);
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.lockdin-video-room .lk-button:hover {
+    background: var(--lk-control-hover-bg);
+    color: #ffffff;
+}
+
+/* Active/toggled controls (e.g. active device menu) get the accent, inverted text */
+.lockdin-video-room .lk-button[data-lk-active="true"],
+.lockdin-video-room .lk-button[aria-pressed="true"] {
+    background: var(--lk-accent-bg);
+    color: var(--lk-accent-fg);
+    border-color: var(--lk-accent-bg);
+}
+
+/* The disconnect/leave button stays legible but restrained, not a red pill */
+.lockdin-video-room .lk-disconnect-button {
+    border-radius: 0;
+    border: 1px solid var(--lk-danger);
+    background: transparent;
+    color: var(--lk-danger);
+}
+
+.lockdin-video-room .lk-disconnect-button:hover {
+    background: var(--lk-danger);
+    color: #ffffff;
+}
+
+/* Chat panel, if enabled: same hairline/flat treatment */
+.lockdin-video-room .lk-chat {
+    background: #000;
+    border-left: 1px solid var(--lk-border-color);
+}
+
+.lockdin-video-room .lk-chat-entry {
+    border-radius: 0;
+    border-bottom: 1px solid var(--lk-border-color);
+}

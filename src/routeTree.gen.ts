@@ -21,6 +21,7 @@ import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticate
 import { Route as AuthenticatedSessionsRouteImport } from './routes/_authenticated/sessions'
 import { Route as AuthenticatedConceptsMaterialIdRouteImport } from './routes/_authenticated/concepts.$materialId'
 import { Route as AuthenticatedSessionsIndexRouteImport } from './routes/_authenticated/sessions.index'
+import { Route as AuthenticatedSessionsClassNameRouteImport } from './routes/_authenticated/sessions.$className'
 import { Route as AuthenticatedSubjectsSubjectIdRouteImport } from './routes/_authenticated/subjects.$subjectId'
 import { Route as AuthenticatedSubjectsSubjectIdIndexRouteImport } from './routes/_authenticated/subjects.$subjectId.index'
 import { Route as AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteImport } from './routes/_authenticated/subjects.$subjectId.topics.$topicId'
@@ -90,6 +91,12 @@ const AuthenticatedSessionsIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedSessionsRoute,
   } as any)
+const AuthenticatedSessionsClassNameRoute =
+  AuthenticatedSessionsClassNameRouteImport.update({
+    id: '/$className',
+    path: '/$className',
+    getParentRoute: () => AuthenticatedSessionsRoute,
+  } as any)
 const AuthenticatedSubjectsSubjectIdRoute =
   AuthenticatedSubjectsSubjectIdRouteImport.update({
     id: '/subjects/$subjectId',
@@ -152,6 +159,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof AuthenticatedProfileRoute
   '/sessions': typeof AuthenticatedSessionsRouteWithChildren
   '/concepts/$materialId': typeof AuthenticatedConceptsMaterialIdRoute
+  '/sessions/$className': typeof AuthenticatedSessionsClassNameRoute
   '/subjects/$subjectId': typeof AuthenticatedSubjectsSubjectIdRouteWithChildren
   '/sessions/': typeof AuthenticatedSessionsIndexRoute
   '/subjects/$subjectId/': typeof AuthenticatedSubjectsSubjectIdIndexRoute
@@ -171,6 +179,7 @@ export interface FileRoutesByTo {
   '/onboarding': typeof AuthenticatedOnboardingRoute
   '/profile': typeof AuthenticatedProfileRoute
   '/concepts/$materialId': typeof AuthenticatedConceptsMaterialIdRoute
+  '/sessions/$className': typeof AuthenticatedSessionsClassNameRoute
   '/sessions': typeof AuthenticatedSessionsIndexRoute
   '/subjects/$subjectId': typeof AuthenticatedSubjectsSubjectIdIndexRoute
   '/subjects/$subjectId/topics/$topicId': typeof AuthenticatedSubjectsSubjectIdTopicsTopicIdRouteWithChildren
@@ -192,6 +201,7 @@ export interface FileRoutesById {
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/_authenticated/sessions': typeof AuthenticatedSessionsRouteWithChildren
   '/_authenticated/concepts/$materialId': typeof AuthenticatedConceptsMaterialIdRoute
+  '/_authenticated/sessions/$className': typeof AuthenticatedSessionsClassNameRoute
   '/_authenticated/subjects/$subjectId': typeof AuthenticatedSubjectsSubjectIdRouteWithChildren
   '/_authenticated/sessions/': typeof AuthenticatedSessionsIndexRoute
   '/_authenticated/subjects/$subjectId/': typeof AuthenticatedSubjectsSubjectIdIndexRoute
@@ -214,6 +224,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/sessions'
     | '/concepts/$materialId'
+    | '/sessions/$className'
     | '/subjects/$subjectId'
     | '/sessions/'
     | '/subjects/$subjectId/'
@@ -233,6 +244,7 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/profile'
     | '/concepts/$materialId'
+    | '/sessions/$className'
     | '/sessions'
     | '/subjects/$subjectId'
     | '/subjects/$subjectId/topics/$topicId'
@@ -253,6 +265,7 @@ export interface FileRouteTypes {
     | '/_authenticated/profile'
     | '/_authenticated/sessions'
     | '/_authenticated/concepts/$materialId'
+    | '/_authenticated/sessions/$className'
     | '/_authenticated/subjects/$subjectId'
     | '/_authenticated/sessions/'
     | '/_authenticated/subjects/$subjectId/'
@@ -357,6 +370,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSessionsIndexRouteImport
       parentRoute: typeof AuthenticatedSessionsRoute
     }
+    '/_authenticated/sessions/$className': {
+      id: '/_authenticated/sessions/$className'
+      path: '/$className'
+      fullPath: '/sessions/$className'
+      preLoaderRoute: typeof AuthenticatedSessionsClassNameRouteImport
+      parentRoute: typeof AuthenticatedSessionsRoute
+    }
     '/_authenticated/subjects/$subjectId': {
       id: '/_authenticated/subjects/$subjectId'
       path: '/subjects/$subjectId'
@@ -410,10 +430,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedSessionsRouteChildren {
+  AuthenticatedSessionsClassNameRoute: typeof AuthenticatedSessionsClassNameRoute
   AuthenticatedSessionsIndexRoute: typeof AuthenticatedSessionsIndexRoute
 }
 
 const AuthenticatedSessionsRouteChildren: AuthenticatedSessionsRouteChildren = {
+  AuthenticatedSessionsClassNameRoute: AuthenticatedSessionsClassNameRoute,
   AuthenticatedSessionsIndexRoute: AuthenticatedSessionsIndexRoute,
 }
 
