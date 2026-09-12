@@ -6,8 +6,7 @@ import {Track} from "livekit-client";
 
 export function RemoteAudio() {
     const audioTracks = useTracks(
-        [Track.Source.Microphone],
-        {
+        [Track.Source.Microphone], {
             onlySubscribed: true,
         }
     );

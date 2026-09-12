@@ -1,22 +1,18 @@
 // RightRail.tsx
 import type {Participant} from "livekit-client";
 import {X} from "lucide-react";
-import type {ClassActivityData} from "./LockdinClassroom";
 import ParticipantsList from "./ParticipantsList";
-import ClassActivityPanel from "./ClassActivityPanel";
 
 export default function RightRail({
                                       activeTab,
                                       onTabChange,
                                       participants,
-                                      activity,
                                       mobileOpen,
                                       onMobileClose,
                                   }: {
     activeTab: "participants" | "chat";
     onTabChange: (tab: "participants" | "chat") => void;
     participants: Participant[];
-    activity?: ClassActivityData;
     mobileOpen: boolean;
     onMobileClose: () => void;
 }) {
@@ -61,12 +57,11 @@ export default function RightRail({
                         <X size={18}/>
                     </button>
                 </div>
-
                 <div className="flex-1 overflow-y-auto px-6 py-5 flex flex-col gap-8">
                     {activeTab === "participants" ? (
                         <>
                             <ParticipantsList participants={participants}/>
-                            {activity && <ClassActivityPanel activity={activity}/>}
+                            {/*{activity && <ClassActivityPanel activity={activity}/>}*/}
                         </>
                     ) : (
                         <div className="text-[13px] text-[#767676]">

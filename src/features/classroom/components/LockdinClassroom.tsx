@@ -6,11 +6,10 @@ import {
     useRoomContext,
 } from "@livekit/components-react";
 import TopBar from "./TopBar";
-import SharedScreenPanel from "./SharedScreenPanel";
-import SpeakerSidebar from "./SpeakerSidebar";
 import CameraFilmstrip from "./CameraFilmstrip";
 import RightRail from "./RightRail";
 import BottomControlBar from "./BottomControlBar";
+import MainStage from "@/features/classroom/components/MainStage.tsx";
 
 export interface ClassActivityData {
     questionNumber: string;
@@ -23,11 +22,10 @@ export interface ClassActivityData {
 export default function LockdinClassroom({
                                              subjectLabel,
                                              lessonTitle,
-                                             activity,
+
                                          }: {
     subjectLabel: string;
     lessonTitle: string;
-    activity?: ClassActivityData;
 }) {
     const room = useRoomContext();
     const participants = useParticipants();
@@ -52,12 +50,7 @@ export default function LockdinClassroom({
             <div className="flex-1 flex min-h-0 relative">
                 {/* Main stage */}
                 <div className="flex-1 flex flex-col min-w-0 px-3 md:px-6 pt-3 md:pt-5 gap-3 md:gap-4 min-h-0">
-                    <div className="flex-1 flex flex-col md:flex-row gap-3 md:gap-4 min-h-0">
-                        <SharedScreenPanel/>
-                        <div className="hidden md:flex">
-                            <SpeakerSidebar participants={participants}/>
-                        </div>
-                    </div>
+                    <MainStage participants={participants}/>
                     <CameraFilmstrip participants={participants}/>
                 </div>
 
@@ -66,7 +59,6 @@ export default function LockdinClassroom({
                     activeTab={rightTab}
                     onTabChange={setRightTab}
                     participants={participants}
-                    activity={activity}
                     mobileOpen={mobilePanelOpen}
                     onMobileClose={() => setMobilePanelOpen(false)}
                 />

@@ -32,15 +32,15 @@ export default function TopBar({
     return (
         <div className="w-full h-14 md:h-16 flex items-center justify-between px-3 md:px-6 border-b border-white/10 shrink-0">
             <div className="flex items-center gap-2 md:gap-4 min-w-0">
-                <span className="font-alliance-2 text-[13px] md:text-[15px] tracking-[0.15em] shrink-0">
-                    LOCKDIN
-                </span>
+                <div className="flex md:max-w-[80vw]  gap-3 md:gap-4 py-2">
+                    <img src="/logo/logo-gw.svg" alt="Lockdin Logo" className="w-8 h-8"/>
+                </div>
                 <div className="hidden sm:block w-px h-6 bg-white/15 shrink-0"/>
-                <div className="hidden sm:flex flex-col leading-tight min-w-0">
-                    <span className="font-alliance-2 text-[10px] tracking-widest text-[#8AF0B0] truncate">
+                <div className="hidden items-start sm:flex flex-col leading-tight min-w-0">
+                    <span className="font-inter-regular text-[12px] tracking-widest text-[#8AF0B0] truncate">
                         {subjectLabel.toUpperCase()}
                     </span>
-                    <span className="text-[13px] text-[#dcdcdc] truncate">{lessonTitle}</span>
+                    <span className="text-[13px] font-inter-regular text-[#dcdcdc] truncate">{lessonTitle}</span>
                 </div>
             </div>
 

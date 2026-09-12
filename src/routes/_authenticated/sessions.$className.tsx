@@ -60,13 +60,6 @@ function RouteComponent() {
                 <LockdinClassroom
                     subjectLabel="Mathematics"
                     lessonTitle="Functions & Transformations"
-                    activity={{
-                        questionNumber: "03",
-                        answeredCount: 18,
-                        totalCount: 24,
-                        prompt: "Solve for x: 2(x + 3) = 14",
-                        correctPercentage: 28,
-                    }}
                 />
             </LiveKitRoom>
         </SessionProvider>
